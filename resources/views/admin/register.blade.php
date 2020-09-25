@@ -7,7 +7,7 @@
     
     <form action="{{route('register')}}" method="POST">
         {{csrf_field()}}
-
+        
         <label for="usernameID">Username</label>
         <div class='form-inline'>
             <input type="text" id="usernameID" class="form-control @error('username') is-invalid @enderror" name="username" placeholder="Username" style="width:320px" value="{{old('username')}}">
