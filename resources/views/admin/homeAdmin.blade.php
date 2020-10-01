@@ -5,6 +5,4 @@
     <h1>Home Admin</h1>
     <hr>
 
-    
-    
 @endsection

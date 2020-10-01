@@ -50,10 +50,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="fas fa-clipboard-list" style="margin-left:3px; margin-right:4px"></i>
-                        To Do List
-                    </a>
                     <a href="#logistikSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-dolly-flatbed"></i>
                         Logistik
@@ -66,7 +62,7 @@
                             <a href="#">Kebutuhan APK</a>
                         </li>
                         <li>
-                            <a href="#">Kendaraan</a>
+                            <a href="/ordercar">Kendaraan</a>
                         </li>
                         <li>
                             <a href="#">Reimbursement</a>
@@ -81,6 +77,19 @@
                 </li>
                 <li>
                     <a href="#">
+                        <i class="fas fa-desktop"></i>
+                        Sist. Info. Cabang
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-hand-holding"></i>
+                        Request Job
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/myorder">
                         <i class="fas fa-id-badge" style="margin-left:3px; margin-right:4px"></i>
                         My Status
                     </a>

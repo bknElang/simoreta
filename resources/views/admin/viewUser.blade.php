@@ -17,18 +17,22 @@
             <table class="table table-hover">
                 <thead>
                     <td class="col-sm-1" style="width: 30px"><b>ID</b></td>
+                    <td class="col-sm-2" style="width: 30px"><b>Cabang</b></td>
                     <td class="col-sm-2" style="width: 100px"><b>Nama</b></td>
-                    <td class="col-sm-3" style="width: 100px"><b>Username</b></td>
-                    <td class="col-sm-2" style="width: 100px"><b>Role</b></td>
+                    <td class="col-sm-3" style="width: 100px"><b>Email</b></td>
+                    <td class="col-sm-2" style="width: 100px"><b>No. HP</b></td>
+                    <td class="col-sm-2" style="width: 100px"><b>Unit Kerja</b></td>
                     <td class="col-sm-2" style="width: 50px"><b>Edit</b></td>
                 </thead>
 
                 @foreach ($users as $user)
                     <tr>
                         <td>{{ $user->id }}</td>
+                        <td>{{ $user->cName }}</td>
                         <td>{{ $user->name}}</td>
-                        <td>{{ $user->username}}</td>
-                        <td>{{ $user->role->name}}</td>
+                        <td>{{ $user->email}}</td>
+                        <td>{{ $user->nohp}}</td>
+                        <td>{{ $user->rName}}</td>
                         <td>
                             <a href="/users/{{$user->id}}" class="btn btn-info">Details</a>
                         </td>

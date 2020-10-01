@@ -71,10 +71,6 @@
                         <li>
                             <a href="#">Reimbursement</a>
                         </li>
-                        <li>
-                            <a href="#">Request Job</a>
-                        </li>
-                        
                     </ul>
                 </li>
                 <li>

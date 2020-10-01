@@ -50,10 +50,27 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="#todolist" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-clipboard-list" style="margin-left:3px; margin-right:4px"></i>
                         To Do List
                     </a>
+                    <ul class="collapse list-unstyled" id="todolist">
+                        <li>
+                            <a href="#">Data Aktiva</a>
+                        </li>
+                        <li>
+                            <a href="#">Kebutuhan APK</a>
+                        </li>
+                        <li>
+                            <a href="/todocar">Kendaraan</a>
+                        </li>
+                        <li>
+                            <a href="#">Reimbursement</a>
+                        </li>
+                        <li>
+                            <a href="#">Requested Job</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="#">
@@ -68,7 +85,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/myorder">
                         <i class="fas fa-id-badge" style="margin-left:3px; margin-right:4px"></i>
                         My Status
                     </a>
