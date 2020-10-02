@@ -33,24 +33,24 @@
                 <thead>
                     <td class="col-sm-1" style="width: 30px"><b>ID</b></td>
                     <td class="col-sm-1" style="width: 100px"><b>Requested By</b></td>
-                    <td class="col-sm-2" style="width: 100px"><b>Tanggal Pemakaian</b></td>
-                    <td class="col-sm-2" style="width: 100px"><b>Tanggal Selesai Pemakaian</b></td>
+                    <td class="col-sm-2" style="width: 100px"><b>Order Date</b></td>
+                    <td class="col-sm-2" style="width: 100px"><b>Nama Rekening</b></td>
                     <td class="col-sm-1" style="width: 30px"><b>Status</b></td>
                 </thead>
 
-                @foreach ($orderkendaraans as $orderkendaraan)
+                @foreach ($orderreimbursements as $orderreimbursement)
                     <tr>
-                        <td><a href="/todocar/{{ $orderkendaraan->id }}" class="btn btn-light">{{ $orderkendaraan->id }}</a></td>
-                        <td>{{ $orderkendaraan->uName}}</td>
-                        <td>{{ $orderkendaraan->useDatetime}}</td>
-                        <td>{{ $orderkendaraan->finishDatetime}}</td>
+                        <td><a href="/todoreimbursement/{{ $orderreimbursement->id }}" class="btn btn-light">{{ $orderreimbursement->id }}</a></td>
+                        <td>{{ $orderreimbursement->uName}}</td>
+                        <td>{{ $orderreimbursement->orderDate}}</td>
+                        <td>{{ $orderreimbursement->namaRek}}</td>
                         <td>
-                            @if ($orderkendaraan->status == "PENDING")
-                                <label style="color:red"><b>{{ $orderkendaraan->status}}</b></label>
-                            @elseif ($orderkendaraan->status == "IN PROGRESS")
-                                <label style="color:#CCCC00"><b>{{ $orderkendaraan->status}}</b></label>
+                            @if ($orderreimbursement->status == "PENDING")
+                                <label style="color:red"><b>{{ $orderreimbursement->status}}</b></label>
+                            @elseif ($orderreimbursement->status == "IN PROGRESS")
+                                <label style="color:#CCCC00"><b>{{ $orderreimbursement->status}}</b></label>
                             @else
-                                <label style="color:lime"><b>{{ $orderkendaraan->status}}</b></label>
+                                <label style="color:lime"><b>{{ $orderreimbursement->status}}</b></label>
                             @endif
                         </td>
                     </tr>
@@ -62,7 +62,7 @@
 
     <div class='row'>
         <label style="width: 15px"></label>
-        {{ $orderkendaraans->links('pagination::bootstrap-4') }}
+        {{ $orderreimbursements->links('pagination::bootstrap-4') }}
     </div>
    
     

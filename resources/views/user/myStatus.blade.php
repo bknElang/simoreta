@@ -25,7 +25,7 @@
         </div>
 
         <div class="col-sm-2">
-            <a href="#" class="btn btn-dark">Reimbursement</a>
+            <a href="/myreimbursement" class="btn btn-dark">Reimbursement</a>
         </div>
 
         <div class="col-sm-2">

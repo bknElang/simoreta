@@ -46,5 +46,17 @@ Route::post('/todocar/{orderKendaraan}', '\App\Http\Controllers\AssignKendaraans
 Route::patch('/todocar/{orderKendaraan}', '\App\Http\Controllers\OrderKendaraansController@update')->middleware('auth');
 Route::patch('/todocar/{orderKendaraan}/finish', '\App\Http\Controllers\OrderKendaraansController@finish')->middleware('auth');
 
+//reimbursement
+Route::get('/reimbursement', '\App\Http\Controllers\OrderReimbursementsController@create')->middleware('auth');
+Route::post('/reimbursement', '\App\Http\Controllers\OrderReimbursementsController@store')->middleware('auth')->name('reimbursement');
+route::get('/myreimbursement', '\App\Http\Controllers\OrderReimbursementsController@myindex')->middleware('auth');
+Route::get('/myreimbursement/{orderReimbursement}', '\App\Http\Controllers\OrderReimbursementsController@show')->middleware('auth')->name('Order\'s Detail');
+Route::get('/todoreimbursement', '\App\Http\Controllers\OrderReimbursementsController@todoindex')->middleware('auth');
+Route::get('/todoreimbursement/{orderReimbursement}', '\App\Http\Controllers\OrderReimbursementsController@edit')->middleware('auth')->name('Order\'s Detail');
+Route::patch('/todoreimbursement/{orderReimbursement}', '\App\Http\Controllers\OrderReimbursementsController@update')->middleware('auth');
+Route::patch('/todoreimbursement/{orderReimbursement}/finish', '\App\Http\Controllers\OrderReimbursementsController@finish')->middleware('auth');
+
+//requestjob
+
 //myorder
 Route::get('/myorder', '\App\Http\Controllers\PagesController@myorder')->middleware('auth')->name('myorder');

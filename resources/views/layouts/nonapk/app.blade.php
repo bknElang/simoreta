@@ -29,7 +29,7 @@
             <div class="sidebar-header">
                 <div class="row">
                     <div class="col-m-1">
-                        <a href="/users/{{auth()->user()->id}}" id="imgAva"><img src="{{asset('images/'.auth()->user()->avatar)}}" alt="" style="border-radius:50%; width:75px"></a>
+                        <a href="/users/{{auth()->user()->id}}" id="imgAva"><img src="{{asset('images/'.auth()->user()->avatar)}}" class="rounded mx-auto d-block" style="width:75px; height:75px"></a>
                     </div>
                     
                     <div class="col" id="profile">
@@ -39,7 +39,7 @@
                     </div>
                 </div>
 
-                <a href="/users/{{auth()->user()->id}}"><strong><img src="{{asset('images/'.auth()->user()->avatar)}}" alt="" style="border-radius:50%; width:50px"></strong></a>
+                <a href="/users/{{auth()->user()->id}}"><strong><img src="{{asset('images/'.auth()->user()->avatar)}}" class="rounded mx-auto d-block" style="width:50px; height:50px"></strong></a>
             </div>
 
             <ul class="list-unstyled components">
@@ -65,7 +65,7 @@
                             <a href="/ordercar">Kendaraan</a>
                         </li>
                         <li>
-                            <a href="#">Reimbursement</a>
+                            <a href="/reimbursement">Reimbursement</a>
                         </li>
                     </ul>
                 </li>
@@ -76,10 +76,22 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="#sicSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-desktop"></i>
                         Sist. Info. Cabang
                     </a>
+                    <ul class="collapse list-unstyled" id="sicSubmenu">
+                        <li>
+                            <a href="#">Komputer</a>
+                        </li>
+                        <li>
+                            <a href="#">Aplikasi</a>
+                        </li>
+                        <li>
+                            <a href="#">Hardware Lainnya</a>
+                        </li>
+                    </ul>
+
                 </li>
                 <li>
                     <a href="#">

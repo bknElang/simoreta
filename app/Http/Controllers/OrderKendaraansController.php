@@ -75,8 +75,6 @@ class OrderKendaraansController extends Controller
     public function store(Request $request)
     {
         //
-        date_default_timezone_set('Asia/Jakarta');
-
         $currUser = Auth::user();
 
         $validatedData = $request->validate([

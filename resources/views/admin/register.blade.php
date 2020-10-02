@@ -7,6 +7,15 @@
     
     <form action="{{route('register')}}" method="POST">
         {{csrf_field()}}
+
+        <label for="nameID">Name</label>
+        <div class='form-inline'>
+            <input type="text" id="login" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Name" style="width:320px"  value="{{old('name')}}">
+            @error('name') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
+        </div>
+
+        <br>
+        
         <label for="NIPID">NIP</label>
         <div class='form-inline'>
             <input type="text" id="NIPID" class="form-control @error('nip') is-invalid @enderror" name="nip" placeholder="NIP" style="width:320px" value="{{old('nip')}}">
@@ -29,14 +38,6 @@
             @error('nohp') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
         </div>
         
-        <br>
-
-        <label for="nameID">Name</label>
-        <div class='form-inline'>
-            <input type="text" id="login" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Name" style="width:320px"  value="{{old('name')}}">
-            @error('name') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
-        </div>
-
         <br>
     
         <label for="passwordID">Password</label>

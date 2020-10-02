@@ -32,12 +32,12 @@
 
     <div class="row">
         <div class="col-sm-4">
-            <label for="dateofuseID">Tanggal Pemakaian
+            <label for="dateofuseID">Tanggal Pemakaian</label>
             <input id="dateofuseID" type="datetime-local" class="form-control" style="width:320px" value="{{$useDate}}" min="{{$orderDate}}" readonly>
         </div>
 
          <div class="col-sm-4">
-            <label for="datefinishedID">Tanggal Selesai
+            <label for="datefinishedID">Tanggal Selesai</label>
             <input id="datefinishedID" type="datetime-local" class="form-control" style="width:320px" name="datefinished" value="{{$finishDate}}" min="{{$orderDate}}" readonly>  
         </div>
     </div>
@@ -46,17 +46,17 @@
 
     <div class="row">
         <div class="col-sm-4">
-            <label for="pickuplocationID">Lokasi Pick Up
+            <label for="pickuplocationID">Lokasi Pick Up</label>
             <textarea id="pickuplocationID" class="form-control" name="pickuplocation" cols="40" rows="4" readonly>{{$orderkendaraan->pickupAddress}}</textarea>
         </div>
 
         <div class="col-sm-4">
-            <label for="destinationID">Destinasi
+            <label for="destinationID">Destinasi</label>
             <textarea id="destinationID" class="form-control" name="destination" cols="40" rows="4" readonly>{{$orderkendaraan->destinationAddress}}</textarea>
         </div>
 
         <div class="col-sm-4">
-            <label for="needsID">Keperluan
+            <label for="needsID">Keperluan</label>
             <select name="needs" id="needsID" class="form-control" style="width:320px" disabled>
                 <option value="Lembur">Lembur</option>
                 <option value="Meeting / Kunjungan Nasabah">Meeting / Kunjungan Nasabah</option>
@@ -73,7 +73,7 @@
 
     <div class="row">
         <div class="col-sm-4">
-            <label for="jumlahID">Jumlah Penumpang
+            <label for="jumlahID">Jumlah Penumpang</label>
             <input id="jumlahID" type="number" class="form-control" style="width:320px" name="jumlah" placeholder="Jumlah penumpang" value="{{$orderkendaraan->totalPassanger}}" readonly>  
         </div>
     </div>

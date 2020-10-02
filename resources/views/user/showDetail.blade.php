@@ -91,11 +91,13 @@
             <form action="{{$user->id}}" enctype="multipart/form-data" method="POST">
                 @csrf
                 <div class="col-sm-4">
-                    <a href="#" class="btn btn-dark" style="border-radius:50%"><img src="{{asset('images/'.$user->avatar)}}" alt="" style="border-radius:50%; width:400px;"></a>
+                    <center>
+                        <img src="{{asset('images/'.$user->avatar)}}" class="rounded mx-auto d-block" style="width:400px">
+                    </center>
                     <br><br>
                     <div class="form-inline">
-                        <input type="file" class="btn btn-dark" name="image" style="margin-left: 30px">
-                        <button type="submit" class="btn btn-dark" style="margin-left: 30px">Change Avatar</button>
+                        <input type="file" class="btn btn-dark" name="image">
+                        <button type="submit" class="btn btn-dark">Change Avatar</button>
                     </div>
                     
                     <br>

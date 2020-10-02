@@ -29,7 +29,7 @@
             <div class="sidebar-header">
                 <div class="row">
                     <div class="col-m-1">
-                        <a href="/users/{{auth()->user()->id}}" id="imgAva"><img src="{{asset('images/'.auth()->user()->avatar)}}" alt="" style="border-radius:50%; width:75px"></a>
+                        <a href="/users/{{auth()->user()->id}}" id="imgAva"><img src="{{asset('images/'.auth()->user()->avatar)}}" class="rounded mx-auto d-block" style="width:75px; height:75px"></a>
                     </div>
                     
                     <div class="col" id="profile">
@@ -39,7 +39,7 @@
                     </div>
                 </div>
 
-                <a href="/users/{{auth()->user()->id}}"><strong><img src="{{asset('images/'.auth()->user()->avatar)}}" alt="" style="border-radius:50%; width:50px"></strong></a>
+                <a href="/users/{{auth()->user()->id}}"><strong><img src="{{asset('images/'.auth()->user()->avatar)}}" class="rounded mx-auto d-block" style="width:50px; height:50px"></strong></a>
             </div>
 
             <ul class="list-unstyled components">
@@ -66,9 +66,9 @@
 
         <!-- Menu Bar di Atas  -->
         <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed" >
+            <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed" >
                 <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="btn btn-dark">
+                    <button type="button" id="sidebarCollapse" class="btn btn-light">
                         <i class="fas fa-align-left"></i>
                         <span></span>
                     </button>

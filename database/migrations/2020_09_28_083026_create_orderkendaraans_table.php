@@ -16,7 +16,7 @@ class CreateOrderkendaraansTable extends Migration
     {
         Schema::create('orderkendaraans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('assign_id')->constrained('assignkendaraans')->nullable();
+            $table->foreignId('assign_id')->nullable()->constrained('assignkendaraans');
             $table->string('status')->default('PENDING');
             $table->foreignId('user_id')->constrained('users');
             $table->dateTime('orderDate')->useCurrent();
