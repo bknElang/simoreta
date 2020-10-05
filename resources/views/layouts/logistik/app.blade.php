@@ -29,7 +29,7 @@
             <div class="sidebar-header">
                 <div class="row">
                     <div class="col-m-1">
-                        <a href="/users/{{auth()->user()->id}}" id="imgAva"><img src="{{asset('images/'.auth()->user()->avatar)}}" alt="" style="border-radius:50%; width:75px"></a>
+                        <a href="/users/{{auth()->user()->id}}" id="imgAva"><img src="{{asset('images/'.auth()->user()->avatar)}}" class="rounded mx-auto d-block" style="width:75px; height:75px"></a>
                     </div>
                     
                     <div class="col" id="profile">
@@ -39,7 +39,7 @@
                     </div>
                 </div>
 
-                <a href="/users/{{auth()->user()->id}}"><strong><img src="{{asset('images/'.auth()->user()->avatar)}}" alt="" style="border-radius:50%; width:50px"></strong></a>
+                <a href="/users/{{auth()->user()->id}}"><strong><img src="{{asset('images/'.auth()->user()->avatar)}}" class="rounded mx-auto d-block" style="width:50px; height:50px"></strong></a>
             </div>
 
             <ul class="list-unstyled components">
@@ -50,10 +50,27 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="#todolist" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-clipboard-list" style="margin-left:3px; margin-right:4px"></i>
                         To Do List
                     </a>
+                    <ul class="collapse list-unstyled" id="todolist">
+                        <li>
+                            <a href="#">Data Aktiva</a>
+                        </li>
+                        <li>
+                            <a href="#">Kebutuhan APK</a>
+                        </li>
+                        <li>
+                            <a href="/todocar">Kendaraan</a>
+                        </li>
+                        <li>
+                            <a href="/todoreimbursement">Reimbursement</a>
+                        </li>
+                        <li>
+                            <a href="#">Requested Job</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="#">
@@ -68,7 +85,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/myorder">
                         <i class="fas fa-id-badge" style="margin-left:3px; margin-right:4px"></i>
                         My Status
                     </a>

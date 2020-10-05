@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'password', 'role_id', 'avatar'
+        'NIP','name', 'email', 'password', 'nohp', 'role_id', 'cabang_id', 'avatar'
     ];
 
     /**
@@ -38,8 +38,11 @@ class User extends Authenticatable
         
     ];
 
-
     public function role(){
         return $this->belongsTo('App\Models\Role');
+    }
+
+    public function cabang(){
+        return $this->belongsTo('App\Models\Cabang');
     }
 }

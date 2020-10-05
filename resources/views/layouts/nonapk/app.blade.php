@@ -50,10 +50,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="fas fa-clipboard-list" style="margin-left:3px; margin-right:4px"></i>
-                        To Do List
-                    </a>
                     <a href="#logistikSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-dolly-flatbed"></i>
                         Logistik
@@ -66,21 +62,46 @@
                             <a href="#">Kebutuhan APK</a>
                         </li>
                         <li>
-                            <a href="#">Kendaraan</a>
+                            <a href="/ordercar">Kendaraan</a>
                         </li>
                         <li>
-                            <a href="#">Reimbursement</a>
+                            <a href="/reimbursement">Reimbursement</a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fas fa-desktop"></i>
-                        Sist. Info. Cabang
+                        <i class="fas fa-book" style="margin-left:3px; margin-right:3px"></i>
+                        Pembukuan
                     </a>
                 </li>
                 <li>
+                    <a href="#sicSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-desktop"></i>
+                        Sist. Info. Cabang
+                    </a>
+                    <ul class="collapse list-unstyled" id="sicSubmenu">
+                        <li>
+                            <a href="#">Komputer</a>
+                        </li>
+                        <li>
+                            <a href="#">Aplikasi</a>
+                        </li>
+                        <li>
+                            <a href="#">Hardware Lainnya</a>
+                        </li>
+                    </ul>
+
+                </li>
+                <li>
                     <a href="#">
+                        <i class="fas fa-hand-holding"></i>
+                        Request Job
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/myorder">
                         <i class="fas fa-id-badge" style="margin-left:3px; margin-right:4px"></i>
                         My Status
                     </a>

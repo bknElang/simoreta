@@ -39,14 +39,21 @@
                 
                 <form class="form-signin" method="POST" action="{{route('login')}}">
                     {{csrf_field()}}
-                    <input type="text" id="login" class="fadeIn second form-control" name="username" placeholder="Username">
+                    <input type="text" id="login" class="fadeIn second form-control" name="email" placeholder="Email">
                     <input type="password" id="login" class="fadeIn third form-control" name="password" placeholder="Password">
-                    <input type="submit" class="fadeIn fourth" value="Log In">
+                    <input type="submit" class="fadeIn fourth" value="Log In">           
                 </form>
 
-                <!-- Remind Passowrd -->
+                <!-- Alert -->
                 <div id="formFooter">
-
+                    @if (Session::has('error'))
+                        <div class="alert alert-danger fadeIn fourth alert-dismissible" role="alert">
+                            {{ Session::get('error') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                 </div>
 
             </div>

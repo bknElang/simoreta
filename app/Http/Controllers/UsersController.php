@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +19,11 @@ class UsersController extends Controller
     {
         //
 
-        $users = User::with(array('role'))->paginate(10);
+        $users = DB::table('users')
+                ->join('roles', 'users.role_id', '=', 'roles.id')
+                ->join('cabangs', 'users.cabang_id', '=', 'cabangs.id')
+                ->select('users.*', 'roles.name AS rName', 'cabangs.name AS cName')
+                ->paginate(10);
 
         return view('admin.viewUser', ['users' => $users]);
     }
@@ -28,7 +32,12 @@ class UsersController extends Controller
     {
         //
         $search = $request->get('search');
-        $users = User::with(array('role'))->where('name', 'LIKE', '%'.$search.'%')->paginate(10);
+        $users = DB::table('users')
+                    ->join('roles', 'users.role_id', '=', 'roles.id')
+                    ->join('cabangs', 'users.cabang_id', '=', 'cabangs.id')
+                    ->where('users.name', 'LIKE', '%'.$search.'%')
+                    ->select('users.*', 'roles.name AS rName', 'cabangs.name AS cName')
+                    ->paginate(10);
 
         return view('admin.viewUser', ['users' => $users]);
     }
@@ -64,25 +73,21 @@ class UsersController extends Controller
     {
         //
         $roles = DB::table('roles')->get();
+        $cabangs = DB::table('cabangs')->get();
         $currUser = Auth::user();
 
         //admin full edit
         if($currUser->role_id == 1){
-            return view('admin.showUser', ['user'=>$user, 'roles'=>$roles]);
+            return view('admin.showUser', ['user'=>$user, 'roles'=>$roles, 'cabangs' => $cabangs]);
         }
-        //other users only update password
-        elseif($currUser->role_id == 2){
-            return view('apk.logistik.showDetail', ['user'=>$user, 'roles'=>$roles]);
+        //other users only update password & avatar
+        else{
+            $pagesController = new PagesController();
+            $layout = $pagesController->getLayout();
+
+            return view('user.showDetail', ['user'=>$user, 'roles'=>$roles, 'cabangs' => $cabangs, 'layout' => $layout]);
         }
-        elseif($currUser->role_id == 3){
-            return view('apk.pembukuan.showDetail', ['user'=>$user, 'roles'=>$roles]);
-        }
-        elseif($currUser->role_id == 4){
-            return view('apk.sic.showDetail', ['user'=>$user, 'roles'=>$roles]);
-        }
-        elseif($currUser->role_id == 5){
-            return view('user.showDetail', ['user'=>$user, 'roles'=>$roles]);
-        }
+
     }
 
     /**
@@ -107,20 +112,25 @@ class UsersController extends Controller
     {
         //
         $validatedData = $request->validate([
+            'nip' => 'required|numeric',
+            'nohp' => 'required|numeric',
             'name' => 'required|max:255',
-            'username' => 'required',
+            'email' => 'required',
             'password' => 'required|alpha_num|confirmed'
         ]);
 
         User::where('id', $user->id)
             ->update([
+                'NIP' => $request->nip,
+                'nohp' => $request->nohp,
                 'name' => $request->name,
-                'username' => $request->username,
+                'email' => $request->email,
+                'cabang_id' => $request->cabang,
                 'role_id' => $request->role,
                 'password' => bcrypt($request->password)
             ]);
 
-        return redirect('/users/'.$user->id)->with('User Updated!');
+        return redirect()->back()->with('updateSuccess', 'Details Updated');
 
     }
 
@@ -139,8 +149,9 @@ class UsersController extends Controller
             ->update([
                 'avatar' => $uploadName
             ]);
-    
-        return redirect('/users/'.$user->id)->with('Avatar Updated!');
+
+        return redirect()->back()->with('updateAvaSuccess', 'Avatar Updated');
+
     }
 
     /**
