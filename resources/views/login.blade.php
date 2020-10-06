@@ -39,7 +39,7 @@
                 
                 <form class="form-signin" method="POST" action="{{route('login')}}">
                     {{csrf_field()}}
-                    <input type="text" id="login" class="fadeIn second form-control" name="email" placeholder="Email">
+                    <input type="text" id="login" class="fadeIn second form-control" name="email" placeholder="NIP">
                     <input type="password" id="login" class="fadeIn third form-control" name="password" placeholder="Password">
                     <input type="submit" class="fadeIn fourth" value="Log In">           
                 </form>

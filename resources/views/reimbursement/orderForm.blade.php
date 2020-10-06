@@ -67,7 +67,7 @@
         <div class="row">
             <div class="col-sm-3">
                 <label for="ketID">Keterangan<label style="color: red">*</label>
-                <textarea id="ketID" class="form-control @error('keterangan') is-invalid @enderror" name="keterangan" cols="40" rows="5"></textarea>
+                <textarea id="ketID" class="form-control @error('keterangan') is-invalid @enderror" name="keterangan" cols="40" rows="5">{{old('keterangan')}}</textarea>
                 @error('keterangan') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
             </div>
 
@@ -75,19 +75,19 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <label for="namaRekID">Nama Rekening</label><label style="color: red">*</label></label>
-                        <input type="text" id="namaRekID" class="form-control @error('namarekening') is-invalid @enderror" name="namarekening" placeholder="Nama Rekening" style="width:200px">
+                        <input type="text" id="namaRekID" class="form-control @error('namarekening') is-invalid @enderror" name="namarekening" placeholder="Nama Rekening" style="width:200px" value="{{old('namarekening')}}">
                         @error('namarekening') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror    
                     </div>
 
                     <div class="col-sm-3">
                         <label for="nomorekID">Nomor Rekening</label><label style="color: red">*</label></label>
-                        <input type="text" id="nomorekID" class="form-control @error('nomorrekening') is-invalid @enderror" name="nomorrekening" placeholder="Nomor Rekening" style="width:200px">
+                        <input type="text" id="nomorekID" class="form-control @error('nomorrekening') is-invalid @enderror" name="nomorrekening" placeholder="Nomor Rekening" style="width:200px" value="{{old('nomorrekening')}}">
                         @error('nomorrekening') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror    
                     </div>
 
                     <div class="col-sm-3">
                         <label for="bankrekID">Bank Rekening</label><label style="color: red">*</label></label>
-                        <input type="text" id="bankrekID" class="form-control @error('bankrekening') is-invalid @enderror" name="bankrekening" placeholder="Bank Rekening" style="width:200px">
+                        <input type="text" id="bankrekID" class="form-control @error('bankrekening') is-invalid @enderror" name="bankrekening" placeholder="Bank Rekening" style="width:200px" value="{{old('bankrekening')}}">
                         @error('bankrekening') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror    
                     </div>
                 </div>
@@ -95,12 +95,20 @@
                 <br>
 
                 <div class="row">
-                    <div class="col-sm-3">
-                        <label for="nominalID">Nominal</label><label style="color: red">*</label></label>
-                        <input type="text" id="nominalID" class="form-control  @error('nominal') is-invalid @enderror" name="nominal" placeholder="Rp." style="width:200px">
-                        @error('nominal') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror    
+                    <div class="col-sm-9">
+                        <div class="input-group sm-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Rp. </span>
+                            </div>
+                            <input type="text" id="basic-url" class="form-control @error('nominal') is-invalid @enderror" aria-describedby="basic-addon3"name="nominal" value="{{old('nominal')}}" style="text-align: right">
+                        </div>    
+                    </div>
+
+                    <div class="col-sm-9">
+                        @error('nominal') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
                     </div>
                 </div>
+
             </div>
             
         </div>

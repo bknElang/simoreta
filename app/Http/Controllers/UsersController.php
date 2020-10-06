@@ -18,7 +18,6 @@ class UsersController extends Controller
     public function index()
     {
         //
-
         $users = DB::table('users')
                 ->join('roles', 'users.role_id', '=', 'roles.id')
                 ->join('cabangs', 'users.cabang_id', '=', 'cabangs.id')

@@ -56,7 +56,21 @@ Route::get('/todoreimbursement/{orderReimbursement}', '\App\Http\Controllers\Ord
 Route::patch('/todoreimbursement/{orderReimbursement}', '\App\Http\Controllers\OrderReimbursementsController@update')->middleware('auth');
 Route::patch('/todoreimbursement/{orderReimbursement}/finish', '\App\Http\Controllers\OrderReimbursementsController@finish')->middleware('auth');
 
+//atk
+Route::get('/atk', '\App\Http\Controllers\OrderATKsController@create')->middleware('auth');
+Route::post('/atk', '\App\Http\Controllers\OrderATKsController@store')->middleware('auth')->name('atk');
+route::get('/myatk', '\App\Http\Controllers\OrderATKsController@myindex')->middleware('auth');
+route::get('/myatk/{orderATK}', '\App\Http\Controllers\OrderATKsController@show')->middleware('auth')->name('Order\'s Detail');
+Route::get('/todoatk', '\App\Http\Controllers\OrderATKsController@todoindex')->middleware('auth');
+Route::get('/todoatk/{orderATK}', '\App\Http\Controllers\OrderATKsController@edit')->middleware('auth')->name('Order\'s Detail');
+Route::patch('/todoatk/{orderATK}', '\App\Http\Controllers\OrderATKsController@update')->middleware('auth');
+Route::patch('/todoatk/{orderATK}/finish', '\App\Http\Controllers\OrderATKsController@finish')->middleware('auth');
+
 //requestjob
+Route::get('/requestjob', '\App\Http\Controllers\OrderRequestJobsController@create')->middleware('auth');
+Route::post('/requestjob', '\App\Http\Controllers\OrderRequestJobsController@store')->middleware('auth')->name('requestjob');
+route::get('/myjoblogistik', '\App\Http\Controllers\OrderRequestJobsController@myindex')->middleware('auth');
+Route::get('/myjoblogistik/{kebutuhanApk}', '\App\Http\Controllers\OrderRequestJobsController@show')->middleware('auth')->name('Order\'s Detail');
 
 //myorder
 Route::get('/myorder', '\App\Http\Controllers\PagesController@myorder')->middleware('auth')->name('myorder');

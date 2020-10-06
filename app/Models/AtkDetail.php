@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OrderRequestJob extends Model
+class AtkDetail extends Model
 {
     use HasFactory;
 
-    protected $table = 'requestjobs';
+    protected $table = 'atkdetails';
 
     /**
      * The attributes that are mass assignable.
@@ -17,12 +17,12 @@ class OrderRequestJob extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'jenis', 'roles_to_id', 'statusDetail', 'keterangan'
+        'atk_id', 'name', 'spesifikasi', 'jumlah'
     ];
 
-    public function user()
+    public function orderatk()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\OrderAtk');
     }
-
+    
 }

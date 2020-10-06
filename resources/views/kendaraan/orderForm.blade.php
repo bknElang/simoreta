@@ -51,13 +51,13 @@
         <div class="row">
             <div class="col-sm-4">
                 <label for="pickuplocationID">Lokasi Pick Up <label style="color: red">*</label></label>
-                <textarea id="pickuplocationID" class="form-control @error('pickuplocation') is-invalid @enderror" name="pickuplocation" cols="40" rows="4"></textarea>
+                <textarea id="pickuplocationID" class="form-control @error('pickuplocation') is-invalid @enderror" name="pickuplocation" cols="40" rows="4">{{old('pickuplocation')}}</textarea>
                 @error('pickuplocation') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
             </div>
 
             <div class="col-sm-4">
                 <label for="destinationID">Destinasi <label style="color: red">*</label></label>
-                <textarea id="destinationID" class="form-control @error('destination') is-invalid @enderror" name="destination" cols="40" rows="4"></textarea>
+                <textarea id="destinationID" class="form-control @error('destination') is-invalid @enderror" name="destination" cols="40" rows="4">{{old('destination')}}</textarea>
                 @error('destination') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
             </div>
 
@@ -80,7 +80,7 @@
         <div class="row">
             <div class="col-sm-4">
                 <label for="jumlahID">Jumlah Penumpang <label style="color: red">*</label></label>
-                <input id="jumlahID" type="number" class="form-control @error('jumlah') is-invalid @enderror" style="width:320px" name="jumlah" placeholder="Jumlah penumpang">  
+                <input id="jumlahID" type="number" class="form-control @error('jumlah') is-invalid @enderror" style="width:320px" name="jumlah" placeholder="Jumlah penumpang" value="{{old('jumlah')}}">  
                 @error('jumlah') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
             </div>
         </div>
@@ -90,7 +90,7 @@
         <div class="row">
             <div class="col-sm-4">
                 <label for="ketID">Keterangan</label>
-                <input id="ketID" type="text" class="form-control" style="width:320px" name="keterangan" placeholder="Keterangan">  
+                <textarea id="ketID" class="form-control" name="keterangan" cols="40" rows="4">{{old('keterangan')}}</textarea>
             </div>
         </div>
         

@@ -86,11 +86,16 @@
                 <br>
 
                 <div class="row">
-                    <div class="col-sm-3">
-                        <label for="nominalID">Nominal</label>
-                        <input type="text" id="nominalID" class="form-control" name="nominal" placeholder="Rp." style="width:200px" value="{{$orderreimbursement->nominal}}" readonly>
+                    <div class="col-sm-9">
+                        <div class="input-group sm-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Rp.</span>
+                            </div>
+                            <input type="text" id="basic-url" class="form-control" aria-describedby="basic-addon3"name="nominal" value="{{$orderreimbursement->nominal}}" readonly style="text-align: right">
+                        </div>    
                     </div>
                 </div>
+
             </div>
             
         </div>

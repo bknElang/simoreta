@@ -80,7 +80,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/requestjob">
+                        <i class="fas fa-hand-holding"></i>
+                        Request Job
+                    </a>
+                </li>
+                <li>
+                    <a href="/myorder">
                         <i class="fas fa-id-badge" style="margin-left:3px; margin-right:4px"></i>
                         My Status
                     </a>

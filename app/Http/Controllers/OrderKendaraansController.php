@@ -109,14 +109,12 @@ class OrderKendaraansController extends Controller
         //
         $currUser = Auth::user();
 
-        $assign = DB::table('assignkendaraans')
-                    ->where('id', '=', $orderKendaraan->assign_id)
-                    ->get();
+        $assign = AssignKendaraan::find($orderKendaraan->assign_id);
 
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
 
-        return view('kendaraan.showKendaraan', ['orderkendaraan' => $orderKendaraan, 'layout' => $layout, 'currUser' => $currUser, 'assignKendaraan' => $assign]);
+        return view('kendaraan.showKendaraan', ['orderkendaraan' => $orderKendaraan, 'layout' => $layout, 'currUser' => $currUser, 'assign' => $assign]);
     }
 
     /**

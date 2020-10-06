@@ -169,7 +169,7 @@ class OrderReimbursementsController extends Controller
         return redirect()->back()->with('successDetail', 'Details Updated!');
     }
 
-    public function finish(Request $request, OrderReimbursement $orderReimbursement)
+    public function finish(OrderReimbursement $orderReimbursement)
     {
         //
         OrderReimbursement::where('id', $orderReimbursement->id)

@@ -25,7 +25,15 @@
                         <td>{{ $orderkendaraan->orderDate}}</td>
                         <td>{{ $orderkendaraan->useDatetime}}</td>
                         <td>{{ $orderkendaraan->finishDatetime}}</td>
-                        <td><label style="color:red"><b>{{ $orderkendaraan->status}}</b></label></td>
+                        <td>
+                            @if ($orderkendaraan->status == 'PENDING')
+                                <label style="color:red"><b>{{ $orderkendaraan->status}}</b></label>
+                            @elseif ($orderkendaraan->status == 'IN PROGRESS')
+                                <label style="color:yellow"><b>{{ $orderkendaraan->status}}</b></label>
+                            @elseif ($orderkendaraan->status == 'FINISHED')
+                                <label style="color:lime"><b>{{ $orderkendaraan->status}}</b></label>
+                            @endif
+                        </td>
                         <td>{{ $orderkendaraan->necessity}}</td>
                     </tr>
                 @endforeach   

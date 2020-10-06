@@ -17,7 +17,7 @@
         </div>
 
         <div class="col-sm-2">
-            <a href="#" class="btn btn-dark">Kebutuhan APK</a>
+            <a href="/myatk" class="btn btn-dark">Kebutuhan APK</a>
         </div>
 
         <div class="col-sm-2">
@@ -29,7 +29,7 @@
         </div>
 
         <div class="col-sm-2">
-            <a href="#" class="btn btn-dark">Request Job</a>
+            <a href="/myjoblogistik" class="btn btn-dark">Requested Job</a>
         </div>
     </div>
     <br>

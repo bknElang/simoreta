@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cabang;
 use App\Models\OrderRequestJob;
+use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderRequestJobsController extends Controller
 {
@@ -17,6 +21,22 @@ class OrderRequestJobsController extends Controller
         //
     }
 
+    public function myindex()
+    {
+        //
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $requestjobs = DB::table('requestjobs')
+        ->where('user_id', '=', $currUser->id)
+            ->orderByRaw('orderDate DESC')
+            ->paginate(10);
+        
+        return view('requestjob.myStatus', ['requestjobs' => $requestjobs, 'layout' => $layout]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -25,6 +45,19 @@ class OrderRequestJobsController extends Controller
     public function create()
     {
         //
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $cabang = Cabang::find($currUser->cabang_id);
+        $role = Role::find($currUser->role_id);
+
+        $roles = DB::table('roles')->get();
+
+        $jenis = DB::table('jenisreimbursements')->get();
+
+        return view('requestjob.orderForm', ['layout' => $layout, 'currUser' => $currUser, 'cabang' => $cabang, 'role' => $role, 'jenis' => $jenis, 'roles' => $roles]);
     }
 
     /**
@@ -36,6 +69,22 @@ class OrderRequestJobsController extends Controller
     public function store(Request $request)
     {
         //
+
+        $currUser = Auth::user();
+
+        $validatedData = $request->validate([
+            'jenis' => 'required',
+            'keterangan' => 'required'
+        ]);
+
+        OrderRequestJob::create([
+            'user_id' => $currUser->id,
+            'roles_to_id' => $request->unitAPK,
+            'jenis' => $request->jenis,
+            'keterangan' => $request->keterangan,
+        ]);
+
+        return redirect()->back()->with('successOrder', 'Order Successfull!');
     }
 
     /**

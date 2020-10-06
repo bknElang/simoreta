@@ -59,7 +59,7 @@
                             <a href="#">Data Aktiva</a>
                         </li>
                         <li>
-                            <a href="#">Kebutuhan APK</a>
+                            <a href="/todoatk">Kebutuhan APK</a>
                         </li>
                         <li>
                             <a href="/todocar">Kendaraan</a>
@@ -82,6 +82,12 @@
                     <a href="#">
                         <i class="fas fa-desktop"></i>
                         Sist. Info. Cabang
+                    </a>
+                </li>
+                <li>
+                    <a href="/requestjob">
+                        <i class="fas fa-hand-holding"></i>
+                        Request Job
                     </a>
                 </li>
                 <li>
