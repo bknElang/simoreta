@@ -163,6 +163,7 @@ class OrderReimbursementsController extends Controller
         //
         OrderReimbursement::where('id', $orderReimbursement->id)
             ->update([
+                'status' => 'IN PROGRESS',
                 'statusDetail' => $request->statusDetail
             ]);
 

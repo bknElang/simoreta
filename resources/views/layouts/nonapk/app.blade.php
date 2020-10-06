@@ -122,9 +122,6 @@
                                 <li>
                                     <a href="/myreimbursement">Reimbursement</a>
                                 </li>
-                                <li>
-                                    <a href="/myjoblogistik">Requested Job</a>
-                                </li>
                             </ul>
                         </li>
                         <li>
@@ -151,10 +148,10 @@
                                 <li>
                                     <a href="#">Hardware Lainnya</a>
                                 </li>
-                                <li>
-                                    <a href="/myjobsic">Requested Job</a>
-                                </li>
                             </ul>
+                        </li>
+                        <li>
+                            <a href="/myjob">Requested Jobs</a>
                         </li>
                     </ul>
                 </li>

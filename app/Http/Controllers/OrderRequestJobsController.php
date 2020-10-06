@@ -29,12 +29,32 @@ class OrderRequestJobsController extends Controller
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
 
+
         $requestjobs = DB::table('requestjobs')
-        ->where('user_id', '=', $currUser->id)
+            ->join('roles', 'requestjobs.roles_to_id', '=', 'roles.id')
+            ->select('requestjobs.*', 'roles.name AS rName')
+            ->where('user_id', '=', $currUser->id)
             ->orderByRaw('orderDate DESC')
             ->paginate(10);
         
         return view('requestjob.myStatus', ['requestjobs' => $requestjobs, 'layout' => $layout]);
+    }
+
+    public function todoindex(){
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $requestjobs = DB::table('requestjobs')
+            ->join('users', 'requestjobs.user_id', '=', 'users.id')
+            ->select('requestjobs.*', 'users.name AS uName')
+            ->where('requestjobs.roles_to_id', '=', $currUser->role_id)
+            ->orderByRaw('orderDate DESC')
+            ->paginate(10);
+
+        return view('requestjob.todo', ['requestjobs' => $requestjobs, 'layout' => $layout]);
+    
     }
 
     /**
@@ -96,6 +116,14 @@ class OrderRequestJobsController extends Controller
     public function show(OrderRequestJob $orderRequestJob)
     {
         //
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+        $roleto = Role::find($orderRequestJob->roles_to_id);
+        $role = Role::find($currUser->role_id);
+
+        return view('requestjob.showJob', ['layout' => $layout, 'currUser' => $currUser, 'orderRequestJob' => $orderRequestJob, 'roleto' => $roleto, 'role' => $role]);
     }
 
     /**
@@ -107,6 +135,14 @@ class OrderRequestJobsController extends Controller
     public function edit(OrderRequestJob $orderRequestJob)
     {
         //
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+        $roleto = Role::find($orderRequestJob->roles_to_id);
+        $role = Role::find($currUser->role_id);
+
+        return view('requestjob.editForm', ['layout' => $layout, 'currUser' => $currUser, 'orderRequestJob' => $orderRequestJob, 'roleto' => $roleto, 'role' => $role]);
     }
 
     /**
@@ -119,6 +155,25 @@ class OrderRequestJobsController extends Controller
     public function update(Request $request, OrderRequestJob $orderRequestJob)
     {
         //
+
+        OrderRequestJob::where('id', $orderRequestJob->id)
+            ->update([
+                'status' => 'IN PROGRESS',
+                'statusDetail' => $request->statusDetail
+            ]);
+
+        return redirect()->back()->with('successDetail', 'Details Updated!');
+    }
+
+    public function finish(OrderRequestJob $orderRequestJob)
+    {
+        //
+        OrderRequestJob::where('id', $orderRequestJob->id)
+            ->update([
+                'status' => 'FINISHED'
+            ]);
+
+        return redirect()->back()->with('success', 'Order Finished');
     }
 
     /**

@@ -49,11 +49,18 @@
                         Home
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                 <li>
+                    <a href="#todolist" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-clipboard-list" style="margin-left:3px; margin-right:4px"></i>
                         To Do List
                     </a>
+                    <ul class="collapse list-unstyled" id="todolist">
+                        <li>
+                            <a href="/todojob">Requested Job</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
                     <a href="#logistikSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-dolly-flatbed"></i>
                         Logistik
@@ -63,13 +70,13 @@
                             <a href="#">Data Aktiva</a>
                         </li>
                         <li>
-                            <a href="#">Kebutuhan APK</a>
+                            <a href="/atk">Kebutuhan APK</a>
                         </li>
                         <li>
-                            <a href="#">Kendaraan</a>
+                            <a href="/ordercar">Kendaraan</a>
                         </li>
                         <li>
-                            <a href="#">Reimbursement</a>
+                            <a href="/reimbursement">Reimbursement</a>
                         </li>
                     </ul>
                 </li>
@@ -86,10 +93,44 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/myorder">
+                    <a href="#myStatus" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-id-badge" style="margin-left:3px; margin-right:4px"></i>
                         My Status
                     </a>
+                    <ul class="collapse list-unstyled" id="myStatus">
+                        <li>
+                            <a href="#myStatusLogistik" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                Logistik
+                            </a>
+                            <ul class="collapse list-unstyled" id="myStatusLogistik">
+                                <li>
+                                    <a href="#">Data Aktiva</a>
+                                </li>
+                                <li>
+                                    <a href="/myatk">Kebutuhan APK</a>
+                                </li>
+                                <li>
+                                    <a href="/myordercar">Kendaraan</a>
+                                </li>
+                                <li>
+                                    <a href="/myreimbursement">Reimbursement</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#myStatusBuku" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                Pembukuan
+                            </a>
+                            <ul class="collapse list-unstyled" id="myStatusBuku">
+                                <li>
+                                    <a href="#">Coming Soon</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/myjob">Requested Jobs</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="#">

@@ -68,7 +68,7 @@
                             <a href="/todoreimbursement">Reimbursement</a>
                         </li>
                         <li>
-                            <a href="#">Requested Job</a>
+                            <a href="/todojob">Requested Job</a>
                         </li>
                     </ul>
                 </li>
@@ -91,10 +91,41 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/myorder">
+                    <a href="#myStatus" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-id-badge" style="margin-left:3px; margin-right:4px"></i>
                         My Status
                     </a>
+                    <ul class="collapse list-unstyled" id="myStatus">
+                        <li>
+                            <a href="#myStatusBuku" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                Pembukuan
+                            </a>
+                            <ul class="collapse list-unstyled" id="myStatusBuku">
+                                <li>
+                                    <a href="#">Coming Soon</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#myStatusSIC" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                Sistem Informasi Cabang
+                            </a>
+                            <ul class="collapse list-unstyled" id="myStatusSIC">
+                                <li>
+                                    <a href="#">Komputer</a>
+                                </li>
+                                <li>
+                                    <a href="#">Aplikasi</a>
+                                </li>
+                                <li>
+                                    <a href="#">Hardware Lainnya</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/myjob">Requested Jobs</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="#">

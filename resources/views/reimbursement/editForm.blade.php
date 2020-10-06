@@ -101,6 +101,7 @@
     </div>
         
     <hr>
+    
     @if(Session::has('successDetail'))
         <div class="alert alert-success">{{ Session::get('successDetail') }}</div>
     @endif

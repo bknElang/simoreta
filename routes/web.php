@@ -69,8 +69,12 @@ Route::patch('/todoatk/{orderATK}/finish', '\App\Http\Controllers\OrderATKsContr
 //requestjob
 Route::get('/requestjob', '\App\Http\Controllers\OrderRequestJobsController@create')->middleware('auth');
 Route::post('/requestjob', '\App\Http\Controllers\OrderRequestJobsController@store')->middleware('auth')->name('requestjob');
-route::get('/myjoblogistik', '\App\Http\Controllers\OrderRequestJobsController@myindex')->middleware('auth');
-Route::get('/myjoblogistik/{kebutuhanApk}', '\App\Http\Controllers\OrderRequestJobsController@show')->middleware('auth')->name('Order\'s Detail');
+route::get('/myjob', '\App\Http\Controllers\OrderRequestJobsController@myindex')->middleware('auth');
+Route::get('/myjob/{orderRequestJob}', '\App\Http\Controllers\OrderRequestJobsController@show')->middleware('auth')->name('Order\'s Detail');
+Route::get('/todojob', '\App\Http\Controllers\OrderRequestJobsController@todoindex')->middleware('auth');
+Route::get('/todojob/{orderRequestJob}', '\App\Http\Controllers\OrderRequestJobsController@edit')->middleware('auth')->name('Order\'s Detail');
+Route::patch('/todojob/{orderRequestJob}', '\App\Http\Controllers\OrderRequestJobsController@update')->middleware('auth');
+Route::patch('/todojob/{orderRequestJob}/finish', '\App\Http\Controllers\OrderRequestJobsController@finish')->middleware('auth');
 
 //myorder
 Route::get('/myorder', '\App\Http\Controllers\PagesController@myorder')->middleware('auth')->name('myorder');

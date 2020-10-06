@@ -102,15 +102,17 @@
         
         <hr>
 
-        <div class="row">
-            <div class="col-sm-12">
-                <label for="">Status Detail</label>
-                <textarea class="form-control" name="statusDetail" id="" cols="30" rows="5" @if ($orderreimbursement->status == 'FINISHED') readonly @endif >{{$orderreimbursement->statusDetail}}</textarea>
+        @if ($orderreimbursement->status != 'PENDING')
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="">Status Detail</label>
+                    <textarea class="form-control" name="statusDetail" id="" cols="30" rows="5" readonly>{{$orderreimbursement->statusDetail}}</textarea>
+                </div>
             </div>
-        </div>
 
-        <hr>
-        
+            <hr>
+        @endif
+    
         <a href="/myreimbursement" class="btn btn-dark">Back</a>   
 
         <br><br>
