@@ -2,7 +2,7 @@
 
 @section('content')
   
-    <h1>Home APK - Logisitik</h1>
+    <h1>Home APK - Logistik</h1>
     <hr>
     
 @endsection

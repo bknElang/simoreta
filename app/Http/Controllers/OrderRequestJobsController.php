@@ -40,6 +40,26 @@ class OrderRequestJobsController extends Controller
         return view('requestjob.myStatus', ['requestjobs' => $requestjobs, 'layout' => $layout]);
     }
 
+    public function mysearch(Request $request)
+    {
+        //
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+
+        $requestjobs = DB::table('requestjobs')
+            ->join('roles', 'requestjobs.roles_to_id', '=', 'roles.id')
+            ->select('requestjobs.*', 'roles.name AS rName')
+            ->where('user_id', '=', $currUser->id)
+            ->whereBetween('orderDate', [$request->from, $request->to])
+            ->orderByRaw('orderDate DESC')
+            ->paginate(10);
+        
+        return view('requestjob.myStatus', ['requestjobs' => $requestjobs, 'layout' => $layout]);
+    }
+
     public function todoindex(){
         $currUser = Auth::user();
 
@@ -47,14 +67,30 @@ class OrderRequestJobsController extends Controller
         $layout = $pagesController->getLayout();
 
         $requestjobs = DB::table('requestjobs')
-            ->join('users', 'requestjobs.user_id', '=', 'users.id')
-            ->select('requestjobs.*', 'users.name AS uName')
-            ->where('requestjobs.roles_to_id', '=', $currUser->role_id)
-            ->orderByRaw('orderDate DESC')
-            ->paginate(10);
+                    ->join('users', 'requestjobs.user_id', '=', 'users.id')
+                    ->select('requestjobs.*', 'users.name AS uName')
+                    ->where('requestjobs.roles_to_id', '=', $currUser->role_id)
+                    ->orderByRaw('orderDate DESC')
+                    ->paginate(10);
 
         return view('requestjob.todo', ['requestjobs' => $requestjobs, 'layout' => $layout]);
-    
+    }
+
+    public function todosearch(Request $request){
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $requestjobs = DB::table('requestjobs')
+                    ->join('users', 'requestjobs.user_id', '=', 'users.id')
+                    ->select('requestjobs.*', 'users.name AS uName')
+                    ->where('requestjobs.roles_to_id', '=', $currUser->role_id)
+                    ->whereBetween('orderDate', [$request->from, $request->to])
+                    ->orderByRaw('orderDate DESC')
+                    ->paginate(10);
+
+        return view('requestjob.todo', ['requestjobs' => $requestjobs, 'layout' => $layout]);
     }
 
     /**

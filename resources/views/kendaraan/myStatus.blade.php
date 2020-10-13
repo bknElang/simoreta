@@ -5,7 +5,27 @@
     <h1>Order List</h1>
     <hr>
 
-    <br>
+    <form action="/searchmyordercar" method="get">
+        <div class="row">
+            <div class="col-sm-4 form-inline">
+                <label for="">From:</label>
+                <input type="datetime-local" class="form-control" name="from">
+            </div>
+            <div class="col-sm-4 form-inline">
+                <label for="">To:</label>
+                <input type="datetime-local" class="form-control" name="to">
+            </div>
+
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-success">Search by Order Date</button>
+                <a href="/myordercar" class="btn btn-dark">Clear Filter</a>
+            </div>
+        </div>
+    </form>
+
+    <hr>
+
+    <p>Click ID for details</p>
 
     <div class="row">
         <div class="col-sm-12">

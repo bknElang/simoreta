@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/customhover.css')}}">
+
     <!-- Font Awesome CCS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
@@ -35,7 +37,7 @@
                     <div class="col" id="profile">
                         <label>{{auth()->user()->name}}</label>
                         <br>
-                        {{auth()->user()->id}}
+                        {{auth()->user()->NIP}}
                     </div>
                 </div>
 
@@ -67,7 +69,10 @@
                     </a>
                     <ul class="collapse list-unstyled" id="logistikSubmenu">
                         <li>
-                            <a href="#">Data Aktiva</a>
+                            <a href="/aktiva">Kebutuhan Aktiva</a>
+                        </li>
+                        <li>
+                            <a href="#">Kebutuhan Aktiva</a>
                         </li>
                         <li>
                             <a href="/atk">Kebutuhan APK</a>
@@ -104,7 +109,7 @@
                             </a>
                             <ul class="collapse list-unstyled" id="myStatusLogistik">
                                 <li>
-                                    <a href="#">Data Aktiva</a>
+                                    <a href="/myaktiva">Kebutuhan Aktiva</a>
                                 </li>
                                 <li>
                                     <a href="/myatk">Kebutuhan APK</a>
@@ -123,7 +128,10 @@
                             </a>
                             <ul class="collapse list-unstyled" id="myStatusBuku">
                                 <li>
-                                    <a href="#">Coming Soon</a>
+                                    <a href="/myjurnalmanual">Jurnal Manual</a>
+                                </li>
+                                <li>
+                                    <a href="/myjurnalaak">Jurnal AAK</a>
                                 </li>
                             </ul>
                         </li>
@@ -144,19 +152,22 @@
 
         <!-- Menu Bar di Atas  -->
         <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
 
-                    <button type="button" id="sidebarCollapse" class="btn btn-dark">
+                    <button type="button" id="sidebarCollapse" class="btn btn-light">
                         <i class="fas fa-align-left"></i>
                         <span></span>
                     </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="btn btn-light d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
                     <a href="/home"><img src="{{asset('assets/simoreta.png')}}" width="200px" height="50px" style="margin-left:50px;" alt=""></a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/changepassword/{{auth()->user()->id}}"> Change Password</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                             </li>

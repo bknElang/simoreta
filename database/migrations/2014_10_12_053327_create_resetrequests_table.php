@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateRequestjobsTable extends Migration
+class CreateResetrequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class UpdateRequestjobsTable extends Migration
      */
     public function up()
     {
-        //
-        Schema::table('requestjobs', function (Blueprint $table) {
-            $table->dateTime('orderDate')->useCurrent();
+        Schema::create('resetrequests', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +27,6 @@ class UpdateRequestjobsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('resetrequests');
     }
 }

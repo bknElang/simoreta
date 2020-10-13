@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateKebutuhanapkske2Table extends Migration
+class CreateAktivasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,16 @@ class UpdateKebutuhanapkske2Table extends Migration
      */
     public function up()
     {
-        //
-        Schema::table('kebutuhanapks', function (Blueprint $table) {
+        Schema::create('aktivas', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->dateTime('orderDate')->useCurrent();
+            $table->string('jenisBarang');
+            $table->string('spesifikasi');
+            $table->string('keterangan')->nullable();
             $table->string('status')->default('PENDING');
             $table->string('statusDetail')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -27,6 +33,6 @@ class UpdateKebutuhanapkske2Table extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('aktivas');
     }
 }

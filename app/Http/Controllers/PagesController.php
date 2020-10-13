@@ -19,7 +19,9 @@ class PagesController extends Controller
             $layout = 'layouts.pembukuan.app';
         } elseif ($currUser->role_id == 4) {
             $layout = 'layouts.sic.app';
-        } else {
+        } elseif ($currUser->role_id == 5) {
+            $layout = 'layouts.nonapkhc.app';
+        } elseif ($currUser->role_id == 6) {
             $layout = 'layouts.nonapk.app';
         }
 
@@ -38,20 +40,9 @@ class PagesController extends Controller
         }else if($user->role_id == 4){
             return view('apk.sic.homeAPK');
         }else if($user->role_id == 5){
+            return view('nonapkhc.homeNonAPKHC');
+        }else if ($user->role_id == 6) {
             return view('nonapk.homeNonAPK');
         }
     }
-
-    public function myorder(){
-        $layout = $this->getLayout();
-        $currUser = Auth::user();
-        return view('user.myStatus', ['layout' => $layout, 'currUser' => $currUser]);
-    }
-
-    public function todolist(){
-        $layout = $this->getLayout();
-        $currUser = Auth::user();
-        return view('user.todo', ['layout' => $layout, 'currUser' => $currUser]);
-    }
-
 }

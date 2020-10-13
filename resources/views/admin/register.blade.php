@@ -4,7 +4,12 @@
 
     <h1>Register</h1>
     <hr>
-    
+
+    @if(Session::has('registerSuccess'))
+        <div class="alert alert-success">{{ Session::get('registerSuccess') }}</div>
+        <br>
+    @endif
+
     <form action="{{route('register')}}" method="POST">
         {{csrf_field()}}
 
@@ -39,19 +44,6 @@
         </div>
         
         <br>
-    
-        <label for="passwordID">Password</label>
-        <div class='form-inline'>
-            <input type="password" id="passwordID" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" style="width:320px">
-            @error('password') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
-        </div>
-        
-        <br>
-
-        <label for="passwordID">Password</label>
-        <input type="password" id="login" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" placeholder="Confirm Password" style="width:320px">
-        
-        <br>
 
         <label for="CabangID">Cabang</label>
         <select id="cabangID" class="form-control roles-select" name="cabang" style="width:320px">
@@ -72,10 +64,6 @@
         </select>
 
         <br>
-
-        @if(Session::has('registerSuccess'))
-            <div class="alert alert-success" style="width:320px">{{ Session::get('registerSuccess') }}</div>
-        @endif
 
         <input type="submit" class="btn btn-success" value="Register">      
     </form>

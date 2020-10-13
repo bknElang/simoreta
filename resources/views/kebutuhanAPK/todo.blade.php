@@ -2,23 +2,26 @@
 
 @section('content')
 
-    <h1>Order List</h1>
+    <h1>Kebutuhan ATK</h1>
     <hr>
 
-    
-    <div class="row">
-        <div class="col-sm-4">
-            <input type="datetime-local" class="form-control">
-        </div>
+    <form action="/searchtodoatk" method="get">
+        <div class="row">
+            <div class="col-sm-4 form-inline">
+                <label for="">From:</label>
+                <input type="datetime-local" class="form-control" name="from">
+            </div>
+            <div class="col-sm-4 form-inline">
+                <label for="">To:</label>
+                <input type="datetime-local" class="form-control" name="to">
+            </div>
 
-        <div class="col-sm-4">
-            <input type="datetime-local" class="form-control">
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-success">Search by Order Date</button>
+                <a href="/todoatk" class="btn btn-dark">Clear Filter</a>
+            </div>
         </div>
-
-        <div class="col-sm-2">
-            <button type="submit" class="btn btn-success">Search By Order Date</button>
-        </div>
-    </div>
+    </form>
 
     <hr>
 

@@ -22,7 +22,6 @@ class OrderATKsController extends Controller
 
     public function myindex()
     {
-
         $currUser = Auth::user();
 
         $pagesController = new PagesController();
@@ -36,12 +35,43 @@ class OrderATKsController extends Controller
         return view('kebutuhanAPK.myStatus', ['orderatks' => $orderatk, 'layout' => $layout]);
     }
 
+    public function mysearch(Request $request)
+    {
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $orderatk = DB::table('kebutuhanapks')
+                    ->where('user_id', '=', $currUser->id)
+                    ->whereBetween('orderDate', [$request->from, $request->to])
+                    ->orderByRaw('orderDate DESC')
+                    ->paginate(10);
+
+        return view('kebutuhanAPK.myStatus', ['orderatks' => $orderatk, 'layout' => $layout]);
+    }
+
     public function todoindex(){
-        $layout = 'layouts.logistik.app';
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
 
         $orderatks = DB::table('kebutuhanapks')
                         ->join('users', 'kebutuhanapks.user_id', '=', 'users.id')
                         ->select('kebutuhanapks.*', 'users.name AS uName')
+                        ->orderByRaw('orderDate DESC')
+                        ->paginate(10);
+
+        return view('kebutuhanAPK.todo', ['orderatks' => $orderatks, 'layout' => $layout]);
+    }
+
+    public function todosearch(Request $request){
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $orderatks = DB::table('kebutuhanapks')
+                        ->join('users', 'kebutuhanapks.user_id', '=', 'users.id')
+                        ->select('kebutuhanapks.*', 'users.name AS uName')
+                        -> whereBetween('orderDate', [$request->from, $request->to])
                         ->orderByRaw('orderDate DESC')
                         ->paginate(10);
 
@@ -61,7 +91,6 @@ class OrderATKsController extends Controller
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
 
-        
         return view('kebutuhanAPK.orderForm', ['layout' => $layout, 'currUser' => $currUser]);
     }
 
@@ -119,7 +148,6 @@ class OrderATKsController extends Controller
             ->get();
 
         return view('kebutuhanAPK.showAPK', ['layout' => $layout, 'currUser' => $currUser, 'orderatk' => $orderATK, 'detailatks' => $detailatks]);
-
     }
 
     /**
@@ -155,6 +183,7 @@ class OrderATKsController extends Controller
         //
         OrderATK::where('id', $orderATK->id)
             ->update([
+                'status' => 'IN PROGRESS',
                 'statusDetail' => $request->statusDetail
             ]);
 

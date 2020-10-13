@@ -23,7 +23,6 @@
         <title>Login Page</title>
     </head>
     <body>
-
         <div class="wrapper fadeInDown">
             <div id="formContent">
             <!-- Tabs Titles -->
@@ -39,13 +38,14 @@
                 
                 <form class="form-signin" method="POST" action="{{route('login')}}">
                     {{csrf_field()}}
-                    <input type="text" id="login" class="fadeIn second form-control" name="email" placeholder="NIP">
+                    <input type="text" id="login" class="fadeIn second form-control" name="nip" placeholder="NIP">
                     <input type="password" id="login" class="fadeIn third form-control" name="password" placeholder="Password">
                     <input type="submit" class="fadeIn fourth" value="Log In">           
                 </form>
 
                 <!-- Alert -->
                 <div id="formFooter">
+                    Forgot your password? Reset <a href="/forgotpassword">here</a>!
                     @if (Session::has('error'))
                         <div class="alert alert-danger fadeIn fourth alert-dismissible" role="alert">
                             {{ Session::get('error') }}

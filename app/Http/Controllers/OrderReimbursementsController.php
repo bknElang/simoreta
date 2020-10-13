@@ -33,14 +33,48 @@ class OrderReimbursementsController extends Controller
         return view('reimbursement.myStatus', ['orderreimbursements' => $orderreimbursements, 'layout' => $layout]);
     }
 
+    public function mysearch(Request $request)
+    {
+        //
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $orderreimbursements = DB::table('orderreimbursements')
+            ->where('user_id', '=', $currUser->id)
+            ->whereBetween('orderDate', [$request->from, $request->to])
+            ->orderByRaw('orderDate DESC')
+            ->paginate(10);
+
+        return view('reimbursement.myStatus', ['orderreimbursements' => $orderreimbursements, 'layout' => $layout]);
+    }
+
     public function todoindex()
     {
         //
-        $layout = 'layouts.logistik.app';
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
 
         $orderreimbursements = DB::table('orderreimbursements')
             ->join('users', 'orderreimbursements.user_id', '=', 'users.id')
             ->select('orderreimbursements.*', 'users.name AS uName')
+            ->orderByRaw('orderDate DESC')
+            ->paginate(10);
+
+        return view('reimbursement.todo', ['orderreimbursements' => $orderreimbursements, 'layout' => $layout]);
+    }
+
+    public function todosearch(Request $request)
+    {
+        //
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $orderreimbursements = DB::table('orderreimbursements')
+            ->join('users', 'orderreimbursements.user_id', '=', 'users.id')
+            ->select('orderreimbursements.*', 'users.name AS uName')
+            ->whereBetween('orderDate', [$request->from, $request->to])
             ->orderByRaw('orderDate DESC')
             ->paginate(10);
 

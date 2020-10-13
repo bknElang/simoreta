@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateOrderreimbursementsTable extends Migration
+class CreateManualsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,14 @@ class UpdateOrderreimbursementsTable extends Migration
      */
     public function up()
     {
-        //
-        Schema::table('orderreimbursements', function (Blueprint $table) {
+        Schema::create('manuals', function (Blueprint $table) {
+            $table->id();
+            $table->dateTime('orderDate')->useCurrent();
+            $table->foreignId('user_id')->constrained('users');
+            $table->string('filename');
+            $table->string('status')->default('PENDING');
             $table->string('statusDetail')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -26,6 +31,6 @@ class UpdateOrderreimbursementsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('manuals');
     }
 }

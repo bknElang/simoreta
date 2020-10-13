@@ -2,8 +2,34 @@
 
 @section('content')
     
-    <h1>Order List</h1>
+    <h1>Requested Job</h1>
     <hr>
+
+    <form action="/searchtodojob" method="get">
+        <div class="row">
+            <div class="col-sm-4 form-inline">
+                <label for="">From:</label>
+                <input type="datetime-local" class="form-control" name="from">
+            </div>
+            <div class="col-sm-4 form-inline">
+                <label for="">To:</label>
+                <input type="datetime-local" class="form-control" name="to">
+            </div>
+
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-success">Search by Order Date</button>
+                <a href="/todojob" class="btn btn-dark">Clear Filter</a>
+            </div>
+        </div>
+    </form>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <p>Click ID for details</p>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-sm-12">
@@ -25,7 +51,7 @@
                         <td>
                             @if ($requestjob->status == 'PENDING')
                                 <label style="color:red"><b>{{ $requestjob->status}}</b></label>
-                            @elseif ($requestjob->status == 'IN PROGRESS')requestjob
+                            @elseif ($requestjob->status == 'IN PROGRESS')
                                 <label style="color:yellow"><b>{{ $requestjob->status}}</b></label>
                             @elseif ($requestjob->status == 'FINISHED')
                                 <label style="color:lime"><b>{{ $requestjob->status}}</b></label>

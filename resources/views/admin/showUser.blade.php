@@ -13,47 +13,30 @@
                 
                 <label for="NIPID">NIP</label>
                 <div class='form-inline'>
-                    <input type="text" id="NIPID" class="form-control @error('nip') is-invalid @enderror" name="nip" placeholder="NIP" style="width:320px" value="{{$user->NIP}}">
-                    @error('nip') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
+                    <input type="text" id="NIPID" class="form-control" name="nip" placeholder="NIP" style="width:320px" value="{{$user->NIP}}" readonly>
                 </div>
 
                 <br>
 
                 <label for="emailID">Email</label>
                 <div class='form-inline'>
-                    <input type="text" id="emailID" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email" style="width:320px" value="{{$user->email}}">
-                    @error('email') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
+                    <input type="text" id="emailID" class="form-control" name="email" placeholder="Email" style="width:320px" value="{{$user->email}}" readonly>
                 </div>
                 
                 <br>
 
                 <label for="nohpID">No. HP</label>
                 <div class='form-inline'>
-                    <input type="text" id="nohpID" class="form-control @error('nohp') is-invalid @enderror" name="nohp" placeholder="No. HP" style="width:320px" value="{{$user->nohp}}">
-                    @error('nohp') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
+                    <input type="text" id="nohpID" class="form-control" name="nohp" placeholder="No. HP" style="width:320px" value="{{$user->nohp}}" readonly>
                 </div>
                 
                 <br>
         
                 <label for="nameID">Name</label>
                 <div class='form-inline'>
-                    <input type="text" id="login" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Name" style="width:320px" value="{{$user->name}}">
-                    @error('name') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
+                    <input type="text" id="login" class="form-control" name="name" placeholder="Name" style="width:320px" value="{{$user->name}}" readonly>
                 </div>
         
-                <br>
-            
-                <label for="passwordID">Password</label>
-                <div class='form-inline'>
-                    <input type="password" id="passwordID" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" style="width:320px">
-                    @error('password') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
-                </div>
-                
-                <br>
-        
-                <label for="passwordID">Confirm Password</label>
-                <input type="password" id="login" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" placeholder="Confirm Password" style="width:320px">
-                
                 <br>
 
                 <label for="cabangID">Cabang</label>
@@ -78,36 +61,22 @@
                     <input type="submit" class="btn btn-success" value="Update">
             </form>
            
-                    <label for="" style="width: 5px"></label>
+            <label for="" style="width: 5px"></label>
                     
-                    <form action="{{$user->id}}" method="POST">
-                        @method('delete')
-                        @csrf
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </div>
-            <br>
-            
-            
+            <form action="{{$user->id}}" method="POST">
+                @method('delete')
+                @csrf
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    <br>
+                    
             </div>
 
-            <form action="{{$user->id}}" enctype="multipart/form-data" method="POST">
-                @csrf
-                <div class="col-sm-4">
-                    <img src="{{asset('images/'.$user->avatar)}}" class="rounded mx-auto d-block" style="width:400px">
-                    <br><br>
-                    <div class="form-inline">
-                        <input type="file" class="btn btn-dark" name="image">
-                        <button type="submit" class="btn btn-dark">Change Avatar</button>
-                    </div>
-                    
-                    <br>
-                    
-                    @if(Session::has('updateAvaSuccess'))
-                        <div class="alert alert-success" style="width:320px">{{ Session::get('updateAvaSuccess') }}</div>
-                    @endif
-                </div>
-            </form>
+            <div class="col-sm-4">
+                <img src="{{asset('images/'.$user->avatar)}}" class="rounded mx-auto d-block" style="max-width:400px">
+                <br>         
+            </div>
         </div>
 
         @if(Session::has('updateSuccess'))

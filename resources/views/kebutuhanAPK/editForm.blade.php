@@ -96,25 +96,29 @@
         <hr>
 
         <div class="row">
-        <div class="col-sm-1">
-            <a href="/todoatk" class="btn btn-dark">Back</a>        
-        </div>
-
-        @if ($orderatk->status == 'ON PROGRESS')
             <div class="col-sm-1">
-                <form action="{{$orderatk->id}}/finish" method="post" class="form-inline">
-                    @method('patch')
-                    @csrf
-                    <button type="submit" class="btn btn-success">Finish</button>
-                </form>
+                <a href="/todoatk" class="btn btn-dark">Back</a>        
             </div>
-        @endif
+
+            @if ($orderatk->status == 'IN PROGRESS')
+                <div class="col-sm-1">
+                    <form action="{{$orderatk->id}}/finish" method="post" class="form-inline">
+                        @method('patch')
+                        @csrf
+                        <button type="submit" class="btn btn-success">Finish</button>
+                    </form>
+                </div>
+            @endif
+        </div>
 
         <br>
 
         @if(Session::has('success'))
-            <div class="alert alert-success">{{ Session::get('success') }}</div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="alert alert-success">{{ Session::get('success') }}</div>
+                </div>
+            </div>
         @endif
 
-    </div>
 @endsection

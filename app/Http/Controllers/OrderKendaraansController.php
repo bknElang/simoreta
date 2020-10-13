@@ -27,13 +27,43 @@ class OrderKendaraansController extends Controller
         return view('kendaraan.myStatus', ['orderkendaraans' => $orderkendaraans, 'layout' => $layout]);
     }
 
-    public function todoindex(){
+    public function mysearch(Request $request){
 
-        $layout = 'layouts.logistik.app';
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $orderkendaraans = DB::table('orderkendaraans')
+                            ->where('user_id', '=', $currUser->id)
+                            ->whereBetween('orderDate', [$request->from, $request->to])
+                            ->orderByRaw('orderDate DESC')
+                            ->paginate(10);
+
+        return view('kendaraan.myStatus', ['orderkendaraans' => $orderkendaraans, 'layout' => $layout]);
+    }
+
+    public function todoindex(){
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
 
         $orderkendaraans = DB::table('orderkendaraans')
                             ->join('users', 'orderkendaraans.user_id', '=', 'users.id')
                             ->select('orderkendaraans.*', 'users.name AS uName')
+                            ->orderByRaw('orderDate DESC')
+                            ->paginate(10);
+
+        return view('kendaraan.todo', ['orderkendaraans' => $orderkendaraans, 'layout' => $layout]);
+    }
+
+    public function searchtodo(Request $request){
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $orderkendaraans = DB::table('orderkendaraans')
+                            ->join('users', 'orderkendaraans.user_id', '=', 'users.id')
+                            ->select('orderkendaraans.*', 'users.name AS uName')
+                            ->whereBetween('orderDate', [$request->from, $request->to])
                             ->orderByRaw('orderDate DESC')
                             ->paginate(10);
 

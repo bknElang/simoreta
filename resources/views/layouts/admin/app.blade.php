@@ -35,7 +35,7 @@
                     <div class="col" id="profile">
                         <label>{{auth()->user()->name}}</label>
                         <br>
-                        {{auth()->user()->id}}
+                        {{auth()->user()->NIP}}
                     </div>
                 </div>
 
@@ -61,6 +61,12 @@
                         View User
                     </a>
                 </li>
+                <li>
+                    <a href="/viewforgot">
+                        <i class="fas fa-key" style="margin-left: 4px"></i>
+                        Password Resets
+                    </a>
+                </li>
             </ul>
         </nav>
 
@@ -72,7 +78,7 @@
                         <i class="fas fa-align-left"></i>
                         <span></span>
                     </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="btn btn-light d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
                     <a href="/home"><img src="{{asset('assets/simoreta.png')}}" width="200px" height="50px" style="margin-left:50px;" alt=""></a>

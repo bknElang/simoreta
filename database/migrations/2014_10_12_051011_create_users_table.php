@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->foreignId('role_id')->constrained('roles');
             $table->foreignId('cabang_id')->constrained('cabangs');
             $table->string('password');
+            $table->dateTime('lastLogin')->nullable();
+            $table->dateTime('lastChangedPassword')->useCurrent();
             $table->rememberToken();
             $table->timestamps();
         });
