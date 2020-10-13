@@ -17,7 +17,7 @@ class OrderRequestJob extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'jenis', 'roles_to_id', 'statusDetail', 'keterangan'
+        'user_id', 'jenis', 'roles_to_id', 'statusDetail', 'keterangan', 'hcname'
     ];
 
     public function user()

@@ -20,8 +20,9 @@ class CreateAktivasTable extends Migration
             $table->string('jenisBarang');
             $table->string('spesifikasi');
             $table->string('keterangan')->nullable();
-            $table->string('status')->default('PENDING');
+            $table->string('status')->default('Waiting for Approval');
             $table->string('statusDetail')->nullable();
+            $table->foreignId('hc_id')->constrained('users');
             $table->timestamps();
         });
     }

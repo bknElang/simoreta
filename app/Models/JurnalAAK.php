@@ -9,7 +9,6 @@ class JurnalAAK extends Model
 {
     use HasFactory;
 
-
     protected $table = 'aaks';
 
     /**
@@ -18,6 +17,6 @@ class JurnalAAK extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'filename'
+        'user_id', 'filename', 'hcname'
     ];
 }

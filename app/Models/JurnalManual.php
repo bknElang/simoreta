@@ -17,7 +17,7 @@ class JurnalManual extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'filename'
+        'user_id', 'filename', 'hcname'
     ];
 
 }

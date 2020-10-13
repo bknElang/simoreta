@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\OrderAktiva;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -94,7 +95,9 @@ class OrderAktivasController extends Controller
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
 
-        return view('aktiva.orderForm', ['layout' => $layout, 'currUser' => $currUser]);
+        $hcs = User::where('role_id', 5)->get();
+
+        return view('aktiva.orderForm', ['layout' => $layout, 'currUser' => $currUser, 'hcs' => $hcs]);
     }
 
     /**
@@ -118,7 +121,8 @@ class OrderAktivasController extends Controller
             'user_id' => $currUser->id,
             'jenisBarang' => $request->jenis,
             'spesifikasi' => $request->spesifikasi,
-            'keterangan' => $request->keterangan
+            'keterangan' => $request->keterangan,
+            'hcname' => $request->hcname
         ]);
 
         return redirect()->back()->with('successOrder', 'Order Success');
@@ -171,10 +175,10 @@ class OrderAktivasController extends Controller
     {
         //
         OrderAktiva::where('id', $orderAktiva->id)
-        ->update([
-            'status' => 'IN PROGRESS',
-            'statusDetail' => $request->statusDetail
-        ]);
+                    ->update([
+                        'status' => 'IN PROGRESS',
+                        'statusDetail' => $request->statusDetail
+                    ]);
 
         return redirect()->back()->with('successDetail', 'Details Updated!');
     }

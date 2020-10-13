@@ -17,6 +17,6 @@ class OrderKiriman extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'jenisKiriman', 'asuransi', 'pertanggungan', 'namaDebitur', 'namaPIC', 'alamat', 'noPenerima', 'statusDetail', 'dokumen'
+        'user_id', 'jenisKiriman', 'asuransi', 'pertanggungan', 'namaDebitur', 'namaPIC', 'alamat', 'noPenerima', 'statusDetail', 'dokumen', 'hcname'
     ];
 }

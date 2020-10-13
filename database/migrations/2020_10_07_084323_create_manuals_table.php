@@ -18,8 +18,9 @@ class CreateManualsTable extends Migration
             $table->dateTime('orderDate')->useCurrent();
             $table->foreignId('user_id')->constrained('users');
             $table->string('filename');
-            $table->string('status')->default('PENDING');
+            $table->string('status')->default('Waiting for Approval');
             $table->string('statusDetail')->nullable();
+            $table->foreignId('hc_id')->constrained('users');
             $table->timestamps();
         });
     }
