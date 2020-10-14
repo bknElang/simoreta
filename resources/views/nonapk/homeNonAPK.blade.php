@@ -17,16 +17,19 @@
                     </a>
                     <ul class="collapse list-unstyled" id="pendingLogis">
                         <li>
-                            Aktiva
+                            Aktiva: {{$pendinglogistik[0]}}
                         </li>
                         <li>
-                            Kebutuhan ATK
+                            Kebutuhan ATK: {{$pendinglogistik[1]}}
                         </li>
                         <li>
-                            Kendaraan
+                            Kendaraan: {{$pendinglogistik[2]}}
                         </li>
                         <li>
-                            Reimbursement
+                            Reimbursement: {{$pendinglogistik[3]}}
+                        </li>
+                        <li>
+                            Kiriman: {{$pendinglogistik[4]}}
                         </li>
                     </ul>
                 </li>
@@ -36,10 +39,10 @@
                     </a>
                     <ul class="collapse list-unstyled" id="pendingBuku">
                         <li>
-                            Jurnal AAK
+                            Jurnal AAK: {{$pendingbuku[0]}}
                         </li>
                         <li>
-                            Jurnal Manual
+                            Jurnal Manual: {{$pendingbuku[1]}}
                         </li>
                     </ul>
                 </li>
@@ -73,16 +76,19 @@
                     </a>
                     <ul class="collapse list-unstyled" id="progressLogis">
                         <li>
-                            Aktiva
+                            Aktiva: {{$progresslogistik[0]}}
                         </li>
                         <li>
-                            Kebutuhan ATK
+                            Kebutuhan ATK: {{$progresslogistik[0]}}
                         </li>
                         <li>
-                            Kendaraan
+                            Kendaraan: {{$progresslogistik[0]}}
                         </li>
                         <li>
-                            Reimbursement
+                            Reimbursement: {{$progresslogistik[0]}}
+                        </li>
+                        <li>
+                            Kiriman: {{$progresslogistik[0]}}
                         </li>
                     </ul>
                 </li>
@@ -92,10 +98,10 @@
                     </a>
                     <ul class="collapse list-unstyled" id="progressBuku">
                         <li>
-                            Jurnal AAK
+                            Jurnal AAK: {{$progressbuku[0]}}
                         </li>
                         <li>
-                            Jurnal Manual
+                            Jurnal Manual: {{$progressbuku[1]}}
                         </li>
                     </ul>
                 </li>
@@ -129,16 +135,19 @@
                     </a>
                     <ul class="collapse list-unstyled" id="finishLogis">
                         <li>
-                            Aktiva
+                            Aktiva: {{$finishedlogistik[0]}}
                         </li>
                         <li>
-                            Kebutuhan AT
+                            Kebutuhan ATK: {{$finishedlogistik[1]}}
                         </li>
                         <li>
-                            Kendaraan
+                            Kendaraan: {{$finishedlogistik[2]}}
                         </li>
                         <li>
-                            Reimbursemen
+                            Reimbursemen: {{$finishedlogistik[3]}}
+                        </li>
+                        <li>
+                            Kiriman: {{$finishedlogistik[4]}}
                         </li>
                     </ul>
                 </li>
@@ -148,10 +157,10 @@
                     </a>
                     <ul class="collapse list-unstyled" id="finishBuku">
                         <li>
-                            Jurnal AAK
+                            Jurnal AAK: {{$finishedbuku[0]}}
                         </li>
                         <li>
-                            Jurnal Manual
+                            Jurnal Manual: {{$finishedbuku[1]}}
                         </li>
                     </ul>
                 </li>
