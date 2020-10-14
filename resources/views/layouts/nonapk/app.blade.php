@@ -208,6 +208,7 @@
             
             <!-- Content -->
             @yield('content')
+            
         </div>
     </div>
 

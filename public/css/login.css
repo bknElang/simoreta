@@ -9,7 +9,14 @@ html {
     font-family: "Poppins", sans-serif;
     height: 100vh;
     background-color: rgb(247, 247, 247);
+  }
 
+  .bg {
+    background-image: url('/assets/bg.jpeg');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   
   a {
@@ -44,7 +51,7 @@ html {
   #formContent {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
-    background: rgb(42, 42, 43);
+    background: #003A75;
     padding: 30px;
     width: 90%;
     max-width: 450px;
@@ -56,8 +63,8 @@ html {
   }
   
   #formFooter {
-    background-color: rgb(37, 37, 39);;
-    border-top: 1px solid #dce8f1;
+    background-color: #003A75;
+    border-top: 1px solid #004C99;
     padding: 25px;
     text-align: center;
     -webkit-border-radius: 0 0 10px 10px;
@@ -90,7 +97,7 @@ html {
     background-color: #56baed;
     border: none;
     color: white;
-    padding: 15px 80px;
+    padding: 10px 45px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -124,7 +131,7 @@ html {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
-    padding: 15px 32px;
+    /* padding: 15px 32px; */
     text-align: center;
     text-decoration: none;
     display: inline-block;
