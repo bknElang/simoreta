@@ -234,7 +234,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="/myjob">Requested Jobs</a>
+                            <a href="/authjob">Requested Jobs</a>
                         </li>
                     </ul>
                 </li>
@@ -243,10 +243,9 @@
         </nav>
 
         <!-- Menu Bar di Atas  -->
-        <div id="content">
+        <div id="content" class="bg">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-
                     <button type="button" id="sidebarCollapse" class="btn btn-light">
                         <i class="fas fa-align-left"></i>
                         <span></span>

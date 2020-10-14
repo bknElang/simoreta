@@ -40,19 +40,21 @@
 
                 @foreach ($aktivas as $aktiva)
                     <tr>
-                        <td><a href="/myaktiva/{{ $aktiva->id }}" class="btn btn-light">{{ $aktiva->id }}</a></td>
-                        <td>{{ $aktiva->orderDate}}</td>
-                        <td>{{ $aktiva->jenisBarang}}</td>
-                        <td>{{ $aktiva->spesifikasi}}</td>
-                        <td>
-                            @if ($aktiva->status == "PENDING")
-                                <label style="color:red"><b>{{ $aktiva->status}}</b></label>
+                        <td style="vertical-align: middle"><a href="/myaktiva/{{ $aktiva->id }}" class="btn btn-light">{{ $aktiva->id }}</a></td>
+                        <td style="vertical-align: middle">{{ $aktiva->orderDate}}</td>
+                        <td style="vertical-align: middle">{{ $aktiva->jenisBarang}}</td>
+                        <td style="vertical-align: middle">{{ $aktiva->spesifikasi}}</td>
+                        <td style="vertical-align: middle">
+                            @if ($aktiva->status == "Waiting for Approval")
+                                <label style="color:#606060"><b>{{ $aktiva->status}}</b></label>
+                            @elseif ($aktiva->status == "REJECTED")
+                                <label style="color:#CC0000"><b>{{ $aktiva->status}}</b></label>
+                            @elseif ($aktiva->status == "PENDING")
+                                <label style="color:#CC6600"><b>{{ $aktiva->status}}</b></label>
                             @elseif ($aktiva->status == "IN PROGRESS")
                                 <label style="color:blue"><b>{{ $aktiva->status}}</b></label>
                             @elseif ($aktiva->status == "IN PROGRESS")
                                 <label style="color:green"><b>{{ $aktiva->status}}</b></label>
-                            @else
-                                <label>{{ $aktiva->status}}</label>
                             @endif
                         </td>
                     </tr>

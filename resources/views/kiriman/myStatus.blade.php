@@ -45,14 +45,16 @@
                         <td style="vertical-align: middle">{{ $kiriman->namaDebitur}}</td>
                         <td style="vertical-align: middle">{{ $kiriman->namaPIC}}</td>
                         <td style="vertical-align: middle">
-                            @if ($kiriman->status == "PENDING")
-                                <label style="color:red"><b>{{ $kiriman->status}}</b></label>
+                            @if ($kiriman->status == "Waiting for Approval")
+                                <label style="color:#606060"><b>{{ $kiriman->status}}</b></label>
+                            @elseif ($kiriman->status == "REJECTED")
+                                <label style="color:#CC0000"><b>{{ $kiriman->status}}</b></label>
+                            @elseif ($kiriman->status == "PENDING")
+                                <label style="color:#CC6600"><b>{{ $kiriman->status}}</b></label>
                             @elseif ($kiriman->status == "IN PROGRESS")
                                 <label style="color:blue"><b>{{ $kiriman->status}}</b></label>
                             @elseif ($kiriman->status == "IN PROGRESS")
                                 <label style="color:green"><b>{{ $kiriman->status}}</b></label>
-                            @else
-                                <label>{{ $kiriman->status}}</label>
                             @endif
                         </td>
                     </tr>

@@ -45,14 +45,16 @@
                         <td style="vertical-align: middle">{{ $orderreimbursement->namaRek}}</td>
                         <td style="vertical-align: middle">{{ $orderreimbursement->keterangan}}</td>
                         <td style="vertical-align: middle">
-                            @if ($orderreimbursement->status == "PENDING")
-                                <label style="color:red"><b>{{ $orderreimbursement->status}}</b></label>
+                            @if ($orderreimbursement->status == "Waiting for Approval")
+                                <label style="color:#606060"><b>{{ $orderreimbursement->status}}</b></label>
+                            @elseif ($orderreimbursement->status == "REJECTED")
+                                <label style="color:#CC0000"><b>{{ $orderreimbursement->status}}</b></label>
+                            @elseif ($orderreimbursement->status == "PENDING")
+                                <label style="color:#CC6600"><b>{{ $orderreimbursement->status}}</b></label>
                             @elseif ($orderreimbursement->status == "IN PROGRESS")
                                 <label style="color:blue"><b>{{ $orderreimbursement->status}}</b></label>
                             @elseif ($orderreimbursement->status == "IN PROGRESS")
                                 <label style="color:green"><b>{{ $orderreimbursement->status}}</b></label>
-                            @else
-                                <label>{{ $orderreimbursement->status}}</label>
                             @endif
                         </td>
                     </tr>

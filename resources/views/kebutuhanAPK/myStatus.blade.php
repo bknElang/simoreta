@@ -43,14 +43,16 @@
                         <td style="vertical-align: middle">{{ $orderatk->orderDate}}</td>
                         <td style="vertical-align: middle">{{ $orderatk->keterangan}}</td>
                         <td style="vertical-align: middle">
-                            @if ($orderatk->status == "PENDING")
-                                <label style="color:red"><b>{{ $orderatk->status}}</b></label>
+                            @if ($orderatk->status == "Waiting for Approval")
+                                <label style="color:#606060"><b>{{ $orderatk->status}}</b></label>
+                            @elseif ($orderatk->status == "REJECTED")
+                                <label style="color:#CC0000"><b>{{ $orderatk->status}}</b></label>
+                            @elseif ($orderatk->status == "PENDING")
+                                <label style="color:#CC6600"><b>{{ $orderatk->status}}</b></label>
                             @elseif ($orderatk->status == "IN PROGRESS")
                                 <label style="color:blue"><b>{{ $orderatk->status}}</b></label>
                             @elseif ($orderatk->status == "IN PROGRESS")
                                 <label style="color:green"><b>{{ $orderatk->status}}</b></label>
-                            @else
-                                <label>{{ $orderatk->status}}</label>
                             @endif
                         </td>
                     </tr>

@@ -168,6 +168,11 @@ Route::post('/requestjob', '\App\Http\Controllers\OrderRequestJobsController@sto
 route::get('/myjob', '\App\Http\Controllers\OrderRequestJobsController@myindex')->middleware('auth');
 route::get('/searchmyjob', '\App\Http\Controllers\OrderRequestJobsController@mysearch')->middleware('auth');
 Route::get('/myjob/{orderRequestJob}', '\App\Http\Controllers\OrderRequestJobsController@show')->middleware('auth')->name('Order\'s Detail');
+route::get('/authjob', '\App\Http\Controllers\OrderRequestJobsController@authindex')->middleware('auth');
+route::get('/searchauthjob', '\App\Http\Controllers\OrderRequestJobsController@authsearch')->middleware('auth');
+Route::get('/authjob/{orderRequestJob}', '\App\Http\Controllers\OrderRequestJobsController@authdetail')->middleware('auth')->name('Order\'s Detail');
+Route::patch('/authjob/{orderRequestJob}/approve', '\App\Http\Controllers\OrderRequestJobsController@approve')->middleware('auth');
+Route::patch('/authjob/{orderRequestJob}/reject', '\App\Http\Controllers\OrderRequestJobsController@reject')->middleware('auth');
 Route::get('/todojob', '\App\Http\Controllers\OrderRequestJobsController@todoindex')->middleware('auth');
 Route::get('/searchtodojob', '\App\Http\Controllers\OrderRequestJobsController@todosearch')->middleware('auth');
 Route::get('/todojob/{orderRequestJob}', '\App\Http\Controllers\OrderRequestJobsController@edit')->middleware('auth')->name('Order\'s Detail');

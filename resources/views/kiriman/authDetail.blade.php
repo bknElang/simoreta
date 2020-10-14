@@ -10,6 +10,10 @@
     <h1>Kiriman Dokumen</h1>
     <hr>
 
+    @if(Session::has('success'))
+            <div class="alert alert-success">{{ Session::get('success') }}</div>
+    @endif
+
     <div class="row">
         <div class="col-sm-4">
             <label for="requesterID">Requester</label>

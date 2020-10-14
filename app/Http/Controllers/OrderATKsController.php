@@ -95,6 +95,8 @@ class OrderATKsController extends Controller
         $orderatks = DB::table('kebutuhanapks')
                         ->join('users', 'kebutuhanapks.user_id', '=', 'users.id')
                         ->select('kebutuhanapks.*', 'users.name AS uName')
+                        ->where('kebutuhanapks.status', '!=', 'Waiting for Approval')
+                        ->where('kebutuhanapks.status', '!=', 'REJECTED')
                         ->orderByRaw('orderDate DESC')
                         ->paginate(10);
 
@@ -108,6 +110,8 @@ class OrderATKsController extends Controller
         $orderatks = DB::table('kebutuhanapks')
                         ->join('users', 'kebutuhanapks.user_id', '=', 'users.id')
                         ->select('kebutuhanapks.*', 'users.name AS uName')
+                        ->where('kebutuhanapks.status', '!=', 'Waiting for Approval')
+                        ->where('kebutuhanapks.status', '!=', 'REJECTED')
                         -> whereBetween('orderDate', [$request->from, $request->to])
                         ->orderByRaw('orderDate DESC')
                         ->paginate(10);

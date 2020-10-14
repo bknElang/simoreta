@@ -5,7 +5,14 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {
     font-family: 'Poppins', sans-serif;
-    background: rgb(248, 248, 248);
+}
+
+.bg{
+    background-image: url('/assets/whitebg.jpg');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 p {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cabang;
 use App\Models\OrderRequestJob;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -60,6 +61,41 @@ class OrderRequestJobsController extends Controller
         return view('requestjob.myStatus', ['requestjobs' => $requestjobs, 'layout' => $layout]);
     }
 
+    public function authindex(){
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $requestjobs = DB::table('requestjobs')
+                    ->join('users', 'requestjobs.user_id', '=', 'users.id')
+                    ->select('requestjobs.*', 'users.name AS uName')
+                    ->where('hc_id', '=', $currUser->id)
+                    ->where('status', '=', 'Waiting for Approval')
+                    ->orderByRaw('orderDate DESC')
+                    ->paginate(10);
+
+        return view('requestjob.auth', ['requestjobs' => $requestjobs, 'layout' => $layout]);
+    }
+
+    public function authsearch(Request $request){
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $requestjobs = DB::table('requestjobs')
+                    ->join('users', 'requestjobs.user_id', '=', 'users.id')
+                    ->select('requestjobs.*', 'users.name AS uName')
+                    ->where('hc_id', '=', $currUser->id)
+                    ->where('status', '=', 'Waiting for Approval')
+                    ->whereBetween('orderDate', [$request->from, $request->to])
+                    ->orderByRaw('orderDate DESC')
+                    ->paginate(10);
+
+        return view('requestjob.auth', ['requestjobs' => $requestjobs, 'layout' => $layout]);
+    }
+
     public function todoindex(){
         $currUser = Auth::user();
 
@@ -69,6 +105,8 @@ class OrderRequestJobsController extends Controller
         $requestjobs = DB::table('requestjobs')
                     ->join('users', 'requestjobs.user_id', '=', 'users.id')
                     ->select('requestjobs.*', 'users.name AS uName')
+                    ->where('requestjobs.status', '!=', 'Waiting for Approval')
+                    ->where('requestjobs.status', '!=', 'REJECTED')
                     ->where('requestjobs.roles_to_id', '=', $currUser->role_id)
                     ->orderByRaw('orderDate DESC')
                     ->paginate(10);
@@ -85,6 +123,8 @@ class OrderRequestJobsController extends Controller
         $requestjobs = DB::table('requestjobs')
                     ->join('users', 'requestjobs.user_id', '=', 'users.id')
                     ->select('requestjobs.*', 'users.name AS uName')
+                    ->where('requestjobs.status', '!=', 'Waiting for Approval')
+                    ->where('requestjobs.status', '!=', 'REJECTED')
                     ->where('requestjobs.roles_to_id', '=', $currUser->role_id)
                     ->whereBetween('orderDate', [$request->from, $request->to])
                     ->orderByRaw('orderDate DESC')
@@ -113,7 +153,9 @@ class OrderRequestJobsController extends Controller
 
         $jenis = DB::table('jenisreimbursements')->get();
 
-        return view('requestjob.orderForm', ['layout' => $layout, 'currUser' => $currUser, 'cabang' => $cabang, 'role' => $role, 'jenis' => $jenis, 'roles' => $roles]);
+        $hcs = User::where('role_id', 5)->get();
+
+        return view('requestjob.orderForm', ['layout' => $layout, 'currUser' => $currUser, 'cabang' => $cabang, 'role' => $role, 'jenis' => $jenis, 'roles' => $roles, 'hcs' => $hcs]);
     }
 
     /**
@@ -138,6 +180,7 @@ class OrderRequestJobsController extends Controller
             'roles_to_id' => $request->unitAPK,
             'jenis' => $request->jenis,
             'keterangan' => $request->keterangan,
+            'hc_id' => $request->hcname,
         ]);
 
         return redirect()->back()->with('successOrder', 'Order Successfull!');
@@ -179,6 +222,41 @@ class OrderRequestJobsController extends Controller
         $role = Role::find($currUser->role_id);
 
         return view('requestjob.editForm', ['layout' => $layout, 'currUser' => $currUser, 'orderRequestJob' => $orderRequestJob, 'roleto' => $roleto, 'role' => $role]);
+    }
+
+    public function authdetail(OrderRequestJob $orderRequestJob)
+    {
+        //
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+        $roleto = Role::find($orderRequestJob->roles_to_id);
+        $role = Role::find($currUser->role_id);
+
+        return view('requestjob.authDetail', ['layout' => $layout, 'currUser' => $currUser, 'orderRequestJob' => $orderRequestJob, 'roleto' => $roleto, 'role' => $role]);
+    }
+
+    public function approve(OrderRequestJob $orderRequestJob)
+    {
+        //
+        OrderRequestJob::where('id', $orderRequestJob->id)
+            ->update([
+                'status' => 'PENDING'
+            ]);
+
+        return redirect()->back()->with('success', 'Order Approved');
+    }
+
+    public function reject(OrderRequestJob $orderRequestJob)
+    {
+        //
+        OrderRequestJob::where('id', $orderRequestJob->id)
+            ->update([
+                'status' => 'REJECTED'
+            ]);
+
+        return redirect()->back()->with('success', 'Order Rejected');
     }
 
     /**
