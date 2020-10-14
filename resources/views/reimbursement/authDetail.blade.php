@@ -50,14 +50,17 @@
         <br>
 
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-4">
                 <label for="">Jenis Reimbursement</label>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="jenisDescID">{{$jenis->name}}</label>
                     </div>
-                    <input id="jenisDescID" type="text" class="form-control" value="{{$jenis->deskripsi}}" style="color:gray" readonly>
                 </div>
+            </div>
+
+            <div class="col-sm-6">
+                <a href="{{asset('file_reimburse/'.$orderreimbursement->file)}}" class="btn btn-primary">Download File</a>
             </div>
         </div>
 

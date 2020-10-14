@@ -22,10 +22,11 @@ class CreateOrderreimbursementsTable extends Migration
             $table->string('nomorRek');
             $table->string('bankRek');
             $table->string('nominal');
+            $table->string('file');
+            $table->foreignId('hc_id')->constrained('users');
             $table->foreignId('jenis_id')->nullable()->constrained('jenisreimbursements');
             $table->string('status')->default('Waiting for Approval');
             $table->string('statusDetail')->nullable();
-            $table->foreignId('hc_id')->constrained('users');
             $table->timestamps();
         });
     }

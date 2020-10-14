@@ -171,7 +171,14 @@ class OrderReimbursementsController extends Controller
             'nomorrekening' => 'required',
             'bankrekening' =>' required',
             'nominal' => 'required|Numeric',
+            'upload' => 'required',
+            'jenis' => 'required'
         ]);
+
+        $file = $request->file('upload');
+        $fileName = $file->getClientOriginalName();
+        $uploadName = time() . '-' . $fileName;
+        $request->file('upload')->move('file_reimburse', $uploadName);
 
         OrderReimbursement::create([
             'user_id' => $currUser->id,
@@ -181,6 +188,7 @@ class OrderReimbursementsController extends Controller
             'bankRek' => $request->bankrekening,
             'nominal' => $request->nominal,
             'jenis_id' => $request->jenis,
+            'file' => $uploadName,
             'hc_id' => $request->hcname
         ]);
 

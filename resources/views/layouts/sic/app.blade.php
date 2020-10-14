@@ -151,7 +151,7 @@
         </nav>
 
         <!-- Menu Bar di Atas  -->
-        <div id="content" class="bg">
+        <div id="content" class="bg fade-in">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <button type="button" id="sidebarCollapse" class="btn btn-light">

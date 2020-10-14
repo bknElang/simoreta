@@ -13,7 +13,7 @@
         <div class="alert alert-success">{{ Session::get('successOrder') }}</div>
     @endif
 
-    <form action="{{route('reimbursement')}}" method="POST">
+    <form action="{{route('reimbursement')}}" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
 
         <div class="row">
@@ -51,7 +51,7 @@
         <br>
 
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-4">
                 <label for="jenisreimburseID">Jenis Reimburse</label><label style="color: red">*</label>
                 <br>
                 @foreach ($jenis as $jenis)
@@ -59,6 +59,13 @@
                     {{$jenis->name}}
                     <br>
                 @endforeach
+                @error('jenis') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
+            </div>
+
+            <div class="col-sm-6">
+                <label for="fileID">File</label><label style="color: red">*</label>
+                <input type="file" class="form-control-file" style="width:270px" name="upload">
+                @error('upload') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
             </div>
         </div>
         

@@ -5,6 +5,7 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {
     font-family: 'Poppins', sans-serif;
+    background-color: #eeeeee ; 
 }
 
 .bg{
@@ -13,6 +14,38 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.fade-in {
+animation: fadeIn ease 1.7s;
+-webkit-animation: fadeIn ease 1.7s;
+-moz-animation: fadeIn ease 1.7s;
+-o-animation: fadeIn ease 1.7s;
+-ms-animation: fadeIn ease 1.7s;
+}
+@keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
 }
 
 p {
