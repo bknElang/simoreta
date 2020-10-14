@@ -28,6 +28,13 @@ class AuthController extends Controller
                     Auth::logout();
                     return redirect()->back()->with('error', 'User inactive');
                 }
+
+                $lastPass= new Datetime($user->lastChangedPassword);
+                $intervalpassword = $lastPass->diff($current);
+
+                if ($intervalpassword->days > 27){
+                    return redirect()->route('changepassword', ['user' => $user->id]);
+                }
             }
            
             User::where('NIP', $request->nip)
