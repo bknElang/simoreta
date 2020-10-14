@@ -2,7 +2,7 @@
 
 @section('content')
     
-    <h1>Jurnal Manual</h1>
+    <h1>Jurnal AAK</h1>
     <hr>
 
     <form action="/searchtodoaak" method="get">
@@ -52,9 +52,11 @@
                             @if ($aak->status == "PENDING")
                                 <label style="color:red"><b>{{ $aak->status}}</b></label>
                             @elseif ($aak->status == "IN PROGRESS")
-                                <label style="color:#CCCC00"><b>{{ $aak->status}}</b></label>
-                            @else
-                                <label style="color:lime"><b>{{ $aak->status}}</b></label>
+                                <label style="color:blue"><b>{{ $aak->status}}</b></label>
+                            @elseif ($aak->status == "IN PROGRESS")
+                                <label style="color:green"><b>{{ $aak->status}}</b></label>
+                            @else 
+                                <label>{{ $aak->status}}</label>
                             @endif
                         </td>
                     </tr>

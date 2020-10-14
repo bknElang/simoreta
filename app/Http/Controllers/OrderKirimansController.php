@@ -203,7 +203,7 @@ class OrderKirimansController extends Controller
     public function show(OrderKiriman $orderKiriman)
     {
         //
-        $currUser = Auth::user();
+        $currUser = User::firstWhere('id', '=', $orderKiriman->user_id);
 
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
@@ -220,7 +220,7 @@ class OrderKirimansController extends Controller
     public function edit(OrderKiriman $orderKiriman)
     {
         //
-        $currUser = Auth::user();
+        $currUser = User::firstWhere('id', '=', $orderKiriman->user_id);
 
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
@@ -231,7 +231,7 @@ class OrderKirimansController extends Controller
     public function authdetail(OrderKiriman $orderKiriman)
     {
         //
-        $currUser = Auth::user();
+        $currUser = User::firstWhere('id', '=', $orderKiriman->user_id);
 
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();

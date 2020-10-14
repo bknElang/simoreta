@@ -39,10 +39,10 @@
 
                 @foreach ($orderatks as $orderatk)
                     <tr>
-                        <td><a href="/myatk/{{ $orderatk->id }}" class="btn btn-light">{{ $orderatk->id }}</a></td>
-                        <td>{{ $orderatk->orderDate}}</td>
-                        <td>{{ $orderatk->keterangan}}</td>
-                        <td>
+                        <td style="vertical-align: middle"><a href="/myatk/{{ $orderatk->id }}" class="btn btn-light">{{ $orderatk->id }}</a></td>
+                        <td style="vertical-align: middle">{{ $orderatk->orderDate}}</td>
+                        <td style="vertical-align: middle">{{ $orderatk->keterangan}}</td>
+                        <td style="vertical-align: middle">
                             @if ($orderatk->status == "PENDING")
                                 <label style="color:red"><b>{{ $orderatk->status}}</b></label>
                             @elseif ($orderatk->status == "IN PROGRESS")

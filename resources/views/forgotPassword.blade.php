@@ -23,6 +23,7 @@
         <title>Reset Password</title>
     </head>
     <body>
+        <div class="bg">
         <div class="wrapper fadeInDown">
             <div id="formContent">
             <!-- Tabs Titles -->
@@ -57,6 +58,7 @@
                 </div>
 
             </div>
+        </div>
         </div>
 
     </body>

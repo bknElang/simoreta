@@ -53,6 +53,45 @@ class JurnalManualsController extends Controller
         return view('jurnalManual.myStatus', ['manuals' => $manuals, 'layout' => $layout]);
     }
 
+    public function authindex()
+    {
+        //
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $manuals = DB::table('manuals')
+                ->join('users', 'manuals.user_id', '=', 'users.id')
+                ->select('manuals.*', 'users.name AS uName')
+                ->where('hc_id', '=', $currUser->id)
+                ->where('manuals.status', '=', 'Waiting for Approval')
+                ->orderByRaw('orderDate DESC')
+                ->paginate(10);
+
+        return view('jurnalManual.auth', ['manuals' => $manuals, 'layout' => $layout]);
+    }
+
+    public function authsearch(Request $request)
+    {
+        //
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $manuals = DB::table('manuals')
+                ->join('users', 'manuals.user_id', '=', 'users.id')
+                ->select('manuals.*', 'users.name AS uName')
+                ->where('hc_id', '=', $currUser->id)
+                ->where('manuals.status', '=', 'Waiting for Approval')
+                ->whereBetween('orderDate', [$request->from, $request->to])
+                ->orderByRaw('orderDate DESC')
+                ->paginate(10);
+
+        return view('jurnalManual.auth', ['manuals' => $manuals, 'layout' => $layout]);
+    }
+
     public function todoindex()
     {
         //
@@ -140,7 +179,7 @@ class JurnalManualsController extends Controller
     public function show(JurnalManual $jurnalManual)
     {
         //
-        $currUser = Auth::user();
+        $currUser = User::firstWhere('id', '=', $jurnalManual->user_id);
 
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
@@ -157,12 +196,45 @@ class JurnalManualsController extends Controller
     public function edit(JurnalManual $jurnalManual)
     {
         //
-        $currUser = Auth::user();
+        $currUser = User::firstWhere('id', '=', $jurnalManual->user_id);
 
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
 
         return view('jurnalManual.editForm', ['layout' => $layout, 'currUser' => $currUser, 'jurnalManual' => $jurnalManual]);
+    }
+
+    public function authdetail(JurnalManual $jurnalManual)
+    {
+        //
+        $currUser = User::firstWhere('id', '=', $jurnalManual->user_id);
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        return view('jurnalManual.authDetail', ['layout' => $layout, 'currUser' => $currUser, 'jurnalManual' => $jurnalManual]);
+    }
+
+    public function approve(JurnalManual $jurnalManual)
+    {
+        //
+        JurnalManual::where('id', $jurnalManual->id)
+            ->update([
+                'status' => 'PENDING'
+            ]);
+
+        return redirect()->back()->with('success', 'Order Approved');
+    }
+
+    public function reject(JurnalManual $jurnalManual)
+    {
+        //
+        JurnalManual::where('id', $jurnalManual->id)
+            ->update([
+                'status' => 'REJECTED'
+            ]);
+
+        return redirect()->back()->with('success', 'Order Rejected');
     }
 
     /**

@@ -53,6 +53,45 @@ class JurnalAAKsController extends Controller
         return view('jurnalAAK.myStatus', ['aaks' => $aaks, 'layout' => $layout]);
     }
 
+    public function authindex()
+    {
+        //
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $aaks = DB::table('aaks')
+                ->join('users', 'aaks.user_id', '=', 'users.id')
+                ->select('aaks.*', 'users.name AS uName')
+                ->where('hc_id', '=', $currUser->id)
+                ->where('aaks.status', '=', 'Waiting for Approval')
+                ->orderByRaw('orderDate DESC')
+                ->paginate(10);
+
+        return view('jurnalAAK.auth', ['aaks' => $aaks, 'layout' => $layout]);
+    }
+    
+    public function authsearch(Request $request)
+    {
+        //
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $aaks = DB::table('aaks')
+                ->join('users', 'aaks.user_id', '=', 'users.id')
+                ->select('aaks.*', 'users.name AS uName')
+                ->where('hc_id', '=', $currUser->id)
+                ->where('aaks.status', '=', 'Waiting for Approval')
+                ->whereBetween('orderDate', [$request->from, $request->to])
+                ->orderByRaw('orderDate DESC')
+                ->paginate(10);
+
+        return view('jurnalAAK.auth', ['aaks' => $aaks, 'layout' => $layout]);
+    }
+
     public function todoindex()
     {
         //
@@ -140,7 +179,7 @@ class JurnalAAKsController extends Controller
     public function show(JurnalAAK $jurnalAAK)
     {
         //
-        $currUser = Auth::user();
+        $currUser = User::firstWhere('id', '=', $jurnalAAK->user_id);
 
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
@@ -157,12 +196,45 @@ class JurnalAAKsController extends Controller
     public function edit(JurnalAAK $jurnalAAK)
     {
         //
-        $currUser = Auth::user();
+        $currUser = User::firstWhere('id', '=', $jurnalAAK->user_id);
 
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
 
         return view('jurnalAAK.editForm', ['layout' => $layout, 'currUser' => $currUser, 'jurnalAAK' => $jurnalAAK]);
+    }
+
+    public function authdetail(JurnalAAK $jurnalAAK)
+    {
+        //
+        $currUser = User::firstWhere('id', '=', $jurnalAAK->user_id);
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        return view('jurnalAAK.authDetail', ['layout' => $layout, 'currUser' => $currUser, 'jurnalAAK' => $jurnalAAK]);
+    }
+
+    public function approve(JurnalAAK $jurnalAAK)
+    {
+        //
+        JurnalAAK::where('id', $jurnalAAK->id)
+            ->update([
+                'status' => 'PENDING'
+            ]);
+
+        return redirect()->back()->with('success', 'Order Approved');
+    }
+
+    public function reject(JurnalAAK $jurnalAAK)
+    {
+        //
+        JurnalAAK::where('id', $jurnalAAK->id)
+            ->update([
+                'status' => 'REJECTED'
+            ]);
+
+        return redirect()->back()->with('success', 'Order Rejected');
     }
 
     /**

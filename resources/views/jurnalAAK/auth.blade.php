@@ -2,10 +2,10 @@
 
 @section('content')
     
-    <h1>Jurnal Manual</h1>
+    <h1>Jurnal AAK</h1>
     <hr>
 
-    <form action="/searchtodomanual" method="get">
+    <form action="/searchauthjurnalaak" method="get">
         <div class="row">
             <div class="col-sm-4 form-inline">
                 <label for="">From:</label>
@@ -18,7 +18,7 @@
 
             <div class="col-sm-4">
                 <button type="submit" class="btn btn-success">Search by Order Date</button>
-                <a href="/todomanual" class="btn btn-dark">Clear Filter</a>
+                <a href="/authjurnalaak" class="btn btn-dark">Clear Filter</a>
             </div>
         </div>
     </form>
@@ -39,26 +39,14 @@
                     <th class="col-sm-2" style="width: 200px"><b>Tanggal Order</b></th>
                     <th class="col-sm-2" style="width: 200px"><b>Requested by</b></th>
                     <th class="col-sm-2" style="width: 300px"><b>File Name</b></th>
-                    <th class="col-sm-2" style="width: 100px"><b>Status</b></th>
                 </thead>
 
-                @foreach ($manuals as $manual)
+                @foreach ($aaks as $aak)
                     <tr>
-                        <td style="vertical-align: middle"><a href="/todomanual/{{ $manual->id }}" class="btn btn-light">{{ $manual->id }}</a></td>
-                        <td style="vertical-align: middle">{{ $manual->orderDate}}</td>
-                        <td style="vertical-align: middle">{{ $manual->uName}}</td>
-                        <td style="vertical-align: middle">{{ $manual->filename}}</td>
-                        <td style="vertical-align: middle">
-                            @if ($manual->status == "PENDING")
-                                <label style="color:red"><b>{{ $manual->status}}</b></label>
-                            @elseif ($manual->status == "IN PROGRESS")
-                                <label style="color:blue"><b>{{ $manual->status}}</b></label>
-                            @elseif ($manual->status == "IN PROGRESS")
-                                <label style="color:green"><b>{{ $manual->status}}</b></label>
-                            @else 
-                                <label>{{ $manual->status}}</label>
-                            @endif
-                        </td>
+                        <td style="vertical-align: middle"><a href="/authjurnalaak/{{ $aak->id }}" class="btn btn-light">{{ $aak->id }}</a></td>
+                        <td style="vertical-align: middle">{{ $aak->orderDate}}</td>
+                        <td style="vertical-align: middle">{{ $aak->uName}}</td>
+                        <td style="vertical-align: middle">{{ $aak->filename}}</td>
                     </tr>
                 @endforeach   
             </table>
@@ -68,7 +56,7 @@
 
     <div class='row'>
         <label style="width: 15px"></label>
-        {{ $manuals->links('pagination::bootstrap-4') }}
+        {{ $aaks->links('pagination::bootstrap-4') }}
     </div>
    
     

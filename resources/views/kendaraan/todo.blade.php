@@ -45,18 +45,20 @@
 
                 @foreach ($orderkendaraans as $orderkendaraan)
                     <tr>
-                        <td><a href="/todocar/{{ $orderkendaraan->id }}" class="btn btn-light">{{ $orderkendaraan->id }}</a></td>
-                        <td>{{ $orderkendaraan->uName}}</td>
-                        <td>{{ $orderkendaraan->orderDate}}</td>
-                        <td>{{ $orderkendaraan->useDatetime}}</td>
-                        <td>{{ $orderkendaraan->finishDatetime}}</td>
-                        <td>
+                        <td style="vertical-align: middle"><a href="/todocar/{{ $orderkendaraan->id }}" class="btn btn-light">{{ $orderkendaraan->id }}</a></td>
+                        <td style="vertical-align: middle">{{ $orderkendaraan->uName}}</td>
+                        <td style="vertical-align: middle">{{ $orderkendaraan->orderDate}}</td>
+                        <td style="vertical-align: middle">{{ $orderkendaraan->useDatetime}}</td>
+                        <td style="vertical-align: middle">{{ $orderkendaraan->finishDatetime}}</td>
+                        <td style="vertical-align: middle">
                             @if ($orderkendaraan->status == "PENDING")
                                 <label style="color:red"><b>{{ $orderkendaraan->status}}</b></label>
                             @elseif ($orderkendaraan->status == "IN PROGRESS")
-                                <label style="color:#CCCC00"><b>{{ $orderkendaraan->status}}</b></label>
+                                <label style="color:blue"><b>{{ $orderkendaraan->status}}</b></label>
+                            @elseif ($orderkendaraan->status == "IN PROGRESS")
+                                <label style="color:green"><b>{{ $orderkendaraan->status}}</b></label>
                             @else
-                                <label style="color:lime"><b>{{ $orderkendaraan->status}}</b></label>
+                                <label>{{ $orderkendaraan->status}}</label>
                             @endif
                         </td>
                     </tr>

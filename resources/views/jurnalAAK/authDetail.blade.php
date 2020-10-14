@@ -46,17 +46,29 @@
 
     <hr>
 
-    @if ($jurnalAAK->status != 'PENDING')
+    @if ($jurnalAAK->status == "Waiting for Approval")
         <div class="row">
-            <div class="col-sm-12">
-                <label for="">Status Detail</label>
-                <textarea class="form-control" name="statusDetail" id="" cols="30" rows="5" readonly>{{$jurnalAAK->statusDetail}}</textarea>
-            </div>
+            <form action="/authjurnalaak/{{$jurnalAAK->id}}/approve" method="post">
+                @method('patch')
+                @csrf
+                <div class="col-sm-1">
+                    <button type="submit" class="btn btn-success">Authorize</button>
+                </div>
+            </form>
+
+            <form action="/authjurnalaak/{{$jurnalAAK->id}}/reject" method="post">
+                @method('patch')
+                @csrf
+                <div class="col-sm-1">
+                    <button type="submit" class="btn btn-danger">Reject</button>
+                </div>
+            </form>
         </div>
 
-        <hr>
+    <hr>
+
     @endif
 
-    <a href="/myjurnalaak" class="btn btn-dark">Back</a>
+    <a href="/authjurnalaak" class="btn btn-dark">Back</a>
 
 @endsection

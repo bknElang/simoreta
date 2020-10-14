@@ -134,6 +134,11 @@ Route::post('/jurnalmanual', '\App\Http\Controllers\JurnalManualsController@stor
 route::get('/myjurnalmanual', '\App\Http\Controllers\JurnalManualsController@myindex')->middleware('auth');
 route::get('/searchmyjurnalmanual', '\App\Http\Controllers\JurnalManualsController@mysearch')->middleware('auth');
 Route::get('/myjurnalmanual/{jurnalManual}', '\App\Http\Controllers\JurnalManualsController@show')->middleware('auth')->name('Order\'s Detail');
+route::get('/authjurnalmanual', '\App\Http\Controllers\JurnalManualsController@authindex')->middleware('auth');
+route::get('/searchauthjurnalmanual', '\App\Http\Controllers\JurnalManualsController@authsearch')->middleware('auth');
+Route::get('/authjurnalmanual/{jurnalManual}', '\App\Http\Controllers\JurnalManualsController@authdetail')->middleware('auth')->name('Order\'s Detail');
+Route::patch('/authjurnalmanual/{jurnalManual}/approve', '\App\Http\Controllers\JurnalManualsController@approve')->middleware('auth');
+Route::patch('/authjurnalmanual/{jurnalManual}/reject', '\App\Http\Controllers\JurnalManualsController@reject')->middleware('auth');
 Route::get('/todomanual', '\App\Http\Controllers\JurnalManualsController@todoindex')->middleware('auth');
 route::get('/searchtodomanual', '\App\Http\Controllers\JurnalManualsController@todosearch')->middleware('auth');
 Route::get('/todomanual/{jurnalManual}', '\App\Http\Controllers\JurnalManualsController@edit')->middleware('auth')->name('Order\'s Detail');
@@ -146,6 +151,11 @@ Route::post('/jurnalaak', '\App\Http\Controllers\JurnalAAKsController@store')->m
 route::get('/myjurnalaak', '\App\Http\Controllers\JurnalAAKsController@myindex')->middleware('auth');
 route::get('/searchmyjurnalaak', '\App\Http\Controllers\JurnalAAKsController@mysearch')->middleware('auth');
 Route::get('/myjurnalaak/{jurnalAAK}', '\App\Http\Controllers\JurnalAAKsController@show')->middleware('auth')->name('Order\'s Detail');
+route::get('/authjurnalaak', '\App\Http\Controllers\JurnalAAKsController@authindex')->middleware('auth');
+route::get('/searchauthjurnalaak', '\App\Http\Controllers\JurnalAAKsController@authsearch')->middleware('auth');
+Route::get('/authjurnalaak/{jurnalAAK}', '\App\Http\Controllers\JurnalAAKsController@authdetail')->middleware('auth')->name('Order\'s Detail');
+Route::patch('/authjurnalaak/{jurnalAAK}/approve', '\App\Http\Controllers\JurnalAAKsController@approve')->middleware('auth');
+Route::patch('/authjurnalaak/{jurnalAAK}/reject', '\App\Http\Controllers\JurnalAAKsController@reject')->middleware('auth');
 Route::get('/todoaak', '\App\Http\Controllers\JurnalAAKsController@todoindex')->middleware('auth');
 route::get('/searchtodoaak', '\App\Http\Controllers\JurnalAAKsController@todosearch')->middleware('auth');
 Route::get('/todoaak/{jurnalAAK}', '\App\Http\Controllers\JurnalAAKsController@edit')->middleware('auth')->name('Order\'s Detail');

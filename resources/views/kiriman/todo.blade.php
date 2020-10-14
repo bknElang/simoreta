@@ -41,18 +41,20 @@
 
                 @foreach ($kirimans as $kiriman)
                     <tr>
-                        <td><a href="/todokiriman/{{ $kiriman->id }}" class="btn btn-light">{{ $kiriman->id }}</a></td>
-                        <td>{{ $kiriman->uName}}</td>
-                        <td>{{ $kiriman->orderDate}}</td>
-                        <td>{{ $kiriman->namaDebitur}}</td>
-                        <td>{{ $kiriman->namaPIC}}</td>
-                        <td>
+                        <td style="vertical-align: middle"><a href="/todokiriman/{{ $kiriman->id }}" class="btn btn-light">{{ $kiriman->id }}</a></td>
+                        <td style="vertical-align: middle">{{ $kiriman->uName}}</td>
+                        <td style="vertical-align: middle">{{ $kiriman->orderDate}}</td>
+                        <td style="vertical-align: middle">{{ $kiriman->namaDebitur}}</td>
+                        <td style="vertical-align: middle">{{ $kiriman->namaPIC}}</td>
+                        <td style="vertical-align: middle">
                             @if ($kiriman->status == "PENDING")
                                 <label style="color:red"><b>{{ $kiriman->status}}</b></label>
                             @elseif ($kiriman->status == "IN PROGRESS")
                                 <label style="color:blue"><b>{{ $kiriman->status}}</b></label>
-                            @else
+                            @elseif ($kiriman->status == "IN PROGRESS")
                                 <label style="color:green"><b>{{ $kiriman->status}}</b></label>
+                            @else
+                                <label>{{ $kiriman->status}}</label>
                             @endif
                         </td>
                     </tr>

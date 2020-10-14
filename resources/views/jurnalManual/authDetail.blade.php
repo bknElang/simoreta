@@ -3,11 +3,11 @@
 @php
     $date = new Datetime();
 
-    $orderDate = strftime('%Y-%m-%dT%H:%M:%S', strtotime($jurnalAAK->orderDate));
+    $orderDate = strftime('%Y-%m-%dT%H:%M:%S', strtotime($jurnalManual->orderDate));
 @endphp
 
 @section('content')
-    <h1>Input Jurnal AAK</h1>
+    <h1>Input Jurnal Manual</h1>
     <hr>
 
     <div class="row">
@@ -40,23 +40,35 @@
 
     <div class="row">
         <div class="col-sm-4">
-            <a href="{{asset('jurnal_AAK/'.$jurnalAAK->filename)}}" class="btn btn-primary">Download File</a>
+            <a href="{{asset('jurnal_Manual/'.$jurnalManual->filename)}}" class="btn btn-primary">Download File</a>
         </div>
     </div>
 
     <hr>
 
-    @if ($jurnalAAK->status != 'PENDING')
+    @if ($jurnalManual->status == "Waiting for Approval")
         <div class="row">
-            <div class="col-sm-12">
-                <label for="">Status Detail</label>
-                <textarea class="form-control" name="statusDetail" id="" cols="30" rows="5" readonly>{{$jurnalAAK->statusDetail}}</textarea>
-            </div>
+            <form action="/authjurnalmanual/{{$jurnalManual->id}}/approve" method="post">
+                @method('patch')
+                @csrf
+                <div class="col-sm-1">
+                    <button type="submit" class="btn btn-success">Authorize</button>
+                </div>
+            </form>
+
+            <form action="/authjurnalmanual/{{$jurnalManual->id}}/reject" method="post">
+                @method('patch')
+                @csrf
+                <div class="col-sm-1">
+                    <button type="submit" class="btn btn-danger">Reject</button>
+                </div>
+            </form>
         </div>
 
-        <hr>
+    <hr>
+
     @endif
 
-    <a href="/myjurnalaak" class="btn btn-dark">Back</a>
+    <a href="/authjurnalmanual" class="btn btn-dark">Back</a>
 
 @endsection
