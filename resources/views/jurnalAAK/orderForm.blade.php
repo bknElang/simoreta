@@ -5,7 +5,7 @@
 @endphp
 
 @section('content')
-    <h1>Input Jurnal Manual</h1>
+    <h1>Input Jurnal AAK</h1>
     <hr>
 
     @if(Session::has('successOrder'))
@@ -49,6 +49,19 @@
                 <label for="fileID">File <label style="color: red">*</label></label>
                 <input type="file" id="fileID" class="form-control @error('fileUpload') is-invalid @enderror" name="fileUpload" style="width:320px">
                 @error('fileUpload') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <label for="supervisorID">Supervisor <label style="color: red">*</label></label>
+                <select name="hcname" id="supervisorID" class="form-control" style="width:320px">
+                    @foreach ($hcs as $hc)
+                        <option value="{{$hc->id}}">{{$hc->name}}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
 

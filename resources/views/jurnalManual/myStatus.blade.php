@@ -31,24 +31,26 @@
         <div class="col-sm-12">
             <table class="table table-hover table-responsive-sm">
                 <thead>
-                    <td class="col-sm-1" style="width: 30px"><b>ID</b></td>
-                    <td class="col-sm-2" style="width: 100px"><b>Tanggal Order</b></td>
-                    <td class="col-sm-2" style="width: 100px"><b>File Name</b></td>
-                    <td class="col-sm-2" style="width: 100px"><b>Status</b></td>
+                    <th class="col-sm-1" style="width: 30px"><b>ID</b></th>
+                    <th class="col-sm-2" style="width: 100px"><b>Tanggal Order</b></th>
+                    <th class="col-sm-2" style="width: 100px"><b>File Name</b></th>
+                    <th class="col-sm-2" style="width: 100px"><b>Status</b></th>
                 </thead>
 
                 @foreach ($manuals as $manual)
                     <tr>
-                        <td><a href="/myjurnalmanual/{{ $manual->id }}" class="btn btn-light">{{ $manual->id }}</a></td>
-                        <td>{{ $manual->orderDate}}</td>
-                        <td>{{ $manual->filename}}</td>
-                        <td>
+                        <td style="vertical-align: middle"><a href="/myjurnalmanual/{{ $manual->id }}" class="btn btn-light">{{ $manual->id }}</a></td>
+                        <td style="vertical-align: middle">{{ $manual->orderDate}}</td>
+                        <td style="vertical-align: middle">{{ $manual->filename}}</td>
+                        <td style="vertical-align: middle">
                             @if ($manual->status == "PENDING")
                                 <label style="color:red"><b>{{ $manual->status}}</b></label>
                             @elseif ($manual->status == "IN PROGRESS")
-                                <label style="color:#CCCC00"><b>{{ $manual->status}}</b></label>
-                            @else
-                                <label style="color:lime"><b>{{ $manual->status}}</b></label>
+                                <label style="color:blue"><b>{{ $manual->status}}</b></label>
+                            @elseif ($manual->status == "IN PROGRESS")
+                                <label style="color:green"><b>{{ $manual->status}}</b></label>
+                            @else 
+                                <label>{{ $manual->status}}</label>
                             @endif
                         </td>
                     </tr>

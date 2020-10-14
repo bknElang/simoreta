@@ -27,31 +27,32 @@
 
     <p>Click ID for details</p>
 
-
     <div class="row">
         <div class="col-sm-12">
             <table class="table table-hover table-responsive-sm">
                 <thead>
-                    <td class="col-sm-1" style="width: 30px"><b>ID</b></td>
-                    <td class="col-sm-2" style="width: 100px"><b>Tanggal Order</b></td>
-                    <td class="col-sm-2" style="width: 100px"><b>Atas Nama</b></td>
-                    <td class="col-sm-1" style="width: 30px"><b>Keterangan</b></td>
-                    <td class="col-sm-2" style="width: 100px"><b>Status</b></td>
+                    <th class="col-sm-1" style="width: 30px"><b>ID</b></th>
+                    <th class="col-sm-2" style="width: 100px"><b>Tanggal Order</b></th>
+                    <th class="col-sm-2" style="width: 100px"><b>Atas Nama</b></th>
+                    <th class="col-sm-1" style="width: 30px"><b>Keterangan</b></th>
+                    <th class="col-sm-2" style="width: 100px"><b>Status</b></th>
                 </thead>
 
                 @foreach ($orderreimbursements as $orderreimbursement)
                     <tr>
-                        <td><a href="/myreimbursement/{{ $orderreimbursement->id }}" class="btn btn-light">{{ $orderreimbursement->id }}</a></td>
-                        <td>{{ $orderreimbursement->orderDate}}</td>
-                        <td>{{ $orderreimbursement->namaRek}}</td>
-                        <td>{{ $orderreimbursement->keterangan}}</td>
-                        <td>
-                            @if ($orderreimbursement->status == 'PENDING')
+                        <td style="vertical-align: middle"><a href="/myreimbursement/{{ $orderreimbursement->id }}" class="btn btn-light">{{ $orderreimbursement->id }}</a></td>
+                        <td style="vertical-align: middle">{{ $orderreimbursement->orderDate}}</td>
+                        <td style="vertical-align: middle">{{ $orderreimbursement->namaRek}}</td>
+                        <td style="vertical-align: middle">{{ $orderreimbursement->keterangan}}</td>
+                        <td style="vertical-align: middle">
+                            @if ($orderreimbursement->status == "PENDING")
                                 <label style="color:red"><b>{{ $orderreimbursement->status}}</b></label>
-                            @elseif ($orderreimbursement->status == 'IN PROGRESS')
-                                <label style="color:yellow"><b>{{ $orderreimbursement->status}}</b></label>
-                            @elseif ($orderreimbursement->status == 'FINISHED')
-                                <label style="color:lime"><b>{{ $orderreimbursement->status}}</b></label>
+                            @elseif ($orderreimbursement->status == "IN PROGRESS")
+                                <label style="color:blue"><b>{{ $orderreimbursement->status}}</b></label>
+                            @elseif ($orderreimbursement->status == "IN PROGRESS")
+                                <label style="color:green"><b>{{ $orderreimbursement->status}}</b></label>
+                            @else
+                                <label>{{ $orderreimbursement->status}}</label>
                             @endif
                         </td>
                     </tr>

@@ -72,16 +72,28 @@
 
     <hr>
 
-    @if ($orderatk->status != 'PENDING' && $orderatk->status != 'Waiting for Approval' && $orderatk->status != 'REJECTED')
+    @if ($orderatk->status == "Waiting for Approval")
         <div class="row">
-            <div class="col-sm-12">
-                <label for="">Status Detail</label>
-                <textarea class="form-control" name="statusDetail" id="" cols="30" rows="5" readonly>{{$orderatk->statusDetail}}</textarea>
-            </div>
+            <form action="/authatk/{{$orderatk->id}}/approve" method="post">
+                @method('patch')
+                @csrf
+                <div class="col-sm-1">
+                    <button type="submit" class="btn btn-success">Authorize</button>
+                </div>
+            </form>
+
+            <form action="/authatk/{{$orderatk->id}}/reject" method="post">
+                @method('patch')
+                @csrf
+                <div class="col-sm-1">
+                    <button type="submit" class="btn btn-danger">Reject</button>
+                </div>
+            </form>
         </div>
 
-        <hr>
+    <hr>
+
     @endif
 
-    <a href="/myatk" class="btn btn-dark">Back</a>
+    <a href="/authatk" class="btn btn-dark">Back</a>
 @endsection

@@ -17,6 +17,6 @@ class JurnalAAK extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'filename', 'hcname'
+        'user_id', 'filename', 'hc_id'
     ];
 }

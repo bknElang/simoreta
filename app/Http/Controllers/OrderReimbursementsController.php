@@ -6,6 +6,7 @@ use App\Models\Cabang;
 use App\Models\JenisReimbursement;
 use App\Models\OrderReimbursement;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -50,6 +51,45 @@ class OrderReimbursementsController extends Controller
         return view('reimbursement.myStatus', ['orderreimbursements' => $orderreimbursements, 'layout' => $layout]);
     }
 
+    public function authindex()
+    {
+        //
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $orderreimbursements = DB::table('orderreimbursements')
+                            ->join('users', 'orderreimbursements.user_id', '=', 'users.id')
+                            ->select('orderreimbursements.*', 'users.name AS uName')
+                            ->where('hc_id', '=', $currUser->id)
+                            ->where('status', '=', 'Waiting for Approval')
+                            ->orderByRaw('orderDate DESC')
+                            ->paginate(10);
+
+        return view('reimbursement.auth', ['orderreimbursements' => $orderreimbursements, 'layout' => $layout]);
+    }
+
+    public function authsearch(Request $request)
+    {
+        //
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $orderreimbursements = DB::table('orderreimbursements')
+                            ->join('users', 'orderreimbursements.user_id', '=', 'users.id')
+                            ->select('orderreimbursements.*', 'users.name AS uName')
+                            ->where('hc_id', '=', $currUser->id)
+                            ->where('status', '=', 'Waiting for Approval')
+                            ->whereBetween('orderDate', [$request->from, $request->to])
+                            ->orderByRaw('orderDate DESC')
+                            ->paginate(10);
+
+        return view('reimbursement.auth', ['orderreimbursements' => $orderreimbursements, 'layout' => $layout]);
+    }
+
     public function todoindex()
     {
         //
@@ -59,6 +99,8 @@ class OrderReimbursementsController extends Controller
         $orderreimbursements = DB::table('orderreimbursements')
             ->join('users', 'orderreimbursements.user_id', '=', 'users.id')
             ->select('orderreimbursements.*', 'users.name AS uName')
+            ->where('orderreimbursements.status', '!=', 'Waiting for Approval')
+            ->where('orderreimbursements.status', '!=', 'REJECTED')
             ->orderByRaw('orderDate DESC')
             ->paginate(10);
 
@@ -74,6 +116,8 @@ class OrderReimbursementsController extends Controller
         $orderreimbursements = DB::table('orderreimbursements')
             ->join('users', 'orderreimbursements.user_id', '=', 'users.id')
             ->select('orderreimbursements.*', 'users.name AS uName')
+            ->where('orderreimbursements.status', '!=', 'Waiting for Approval')
+            ->where('orderreimbursements.status', '!=', 'REJECTED')
             ->whereBetween('orderDate', [$request->from, $request->to])
             ->orderByRaw('orderDate DESC')
             ->paginate(10);
@@ -105,7 +149,9 @@ class OrderReimbursementsController extends Controller
 
         $jenis = DB::table('jenisreimbursements')->get();
 
-        return view('reimbursement.orderForm', ['layout' => $layout, 'currUser' => $currUser, 'cabang' => $cabang, 'role' => $role, 'jenis' => $jenis]);
+        $hcs = User::where('role_id', 5)->get();
+
+        return view('reimbursement.orderForm', ['layout' => $layout, 'currUser' => $currUser, 'cabang' => $cabang, 'role' => $role, 'jenis' => $jenis, 'hcs' => $hcs]);
     }
 
     /**
@@ -134,7 +180,8 @@ class OrderReimbursementsController extends Controller
             'nomorRek' => $request->nomorrekening,
             'bankRek' => $request->bankrekening,
             'nominal' => $request->nominal,
-            'jenis_id' => $request->jenis
+            'jenis_id' => $request->jenis,
+            'hc_id' => $request->hcname
         ]);
 
         return redirect()->back()->with('successOrder', 'Order Successfull!');
@@ -150,7 +197,7 @@ class OrderReimbursementsController extends Controller
     public function show(OrderReimbursement $orderReimbursement)
     {
         //
-        $currUser = Auth::user();
+        $currUser = User::firstWhere('id', '=', $orderReimbursement->user_id);
 
         $jenis = JenisReimbursement::find($orderReimbursement->jenis_id);
 
@@ -172,7 +219,7 @@ class OrderReimbursementsController extends Controller
     public function edit(OrderReimbursement $orderReimbursement)
     {
         //
-        $currUser = Auth::user();
+        $currUser = User::firstWhere('id', '=', $orderReimbursement->user_id);
 
         $jenis = JenisReimbursement::find($orderReimbursement->jenis_id);
 
@@ -183,6 +230,44 @@ class OrderReimbursementsController extends Controller
         $role = Role::find($currUser->role_id);
 
         return view('reimbursement.editForm', ['orderreimbursement' => $orderReimbursement, 'layout' => $layout, 'currUser' => $currUser, 'cabang' => $cabang, 'jenis' => $jenis, 'role' => $role]);
+    }
+
+    public function authdetail(OrderReimbursement $orderReimbursement)
+    {
+        //
+        $currUser = User::firstWhere('id', '=', $orderReimbursement->user_id);
+
+        $jenis = JenisReimbursement::find($orderReimbursement->jenis_id);
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $cabang = Cabang::find($currUser->cabang_id);
+        $role = Role::find($currUser->role_id);
+
+        return view('reimbursement.authDetail', ['orderreimbursement' => $orderReimbursement, 'layout' => $layout, 'currUser' => $currUser, 'cabang' => $cabang, 'jenis' => $jenis, 'role' => $role]);
+    }
+
+    public function approve(OrderReimbursement $orderReimbursement)
+    {
+        //
+        OrderReimbursement::where('id', $orderReimbursement->id)
+            ->update([
+                'status' => 'PENDING'
+            ]);
+
+        return redirect()->back()->with('success', 'Order Approved');
+    }
+
+    public function reject(OrderReimbursement $orderReimbursement)
+    {
+        //
+        OrderReimbursement::where('id', $orderReimbursement->id)
+            ->update([
+                'status' => 'REJECTED'
+            ]);
+
+        return redirect()->back()->with('success', 'Order Rejected');
     }
 
     /**

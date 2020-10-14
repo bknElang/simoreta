@@ -103,6 +103,26 @@ class Prepare extends Migration
             )
         );
 
+        DB::table('jenisreimbursements')->insert(
+            array(
+                array(
+                    'name' => 'Meeting/QG/QM'
+                ),
+                array(
+                    'name' => 'Pembelian Barang'
+                ),
+                array(
+                    'name' => 'Biaya Kendaraan'
+                ),
+                array(
+                    'name' => 'Biaya Perbaikan Barang'
+                ),
+                array(
+                    'name' => 'Lainnya'
+                ),
+            )
+        );
+
     }
 
     /**

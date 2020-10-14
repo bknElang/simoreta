@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\JurnalAAK;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -96,7 +97,9 @@ class JurnalAAKsController extends Controller
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
 
-        return view('jurnalAAK.orderForm', ['layout' => $layout, 'currUser' => $currUser]);
+        $hcs = User::where('role_id', 5)->get();
+
+        return view('jurnalAAK.orderForm', ['layout' => $layout, 'currUser' =>$currUser, 'hcs' => $hcs]);
     }
 
     /**
@@ -122,6 +125,7 @@ class JurnalAAKsController extends Controller
         JurnalAAK::create([
             'user_id' => $currUser->id,
             'filename' => $uploadName,
+            'hc_id' => $request->hcname,
         ]);
 
         return redirect()->back()->with('successOrder', 'Order Success');

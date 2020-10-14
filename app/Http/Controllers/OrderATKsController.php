@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AtkDetail;
 use App\Models\OrderATK;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -51,6 +52,42 @@ class OrderATKsController extends Controller
         return view('kebutuhanAPK.myStatus', ['orderatks' => $orderatk, 'layout' => $layout]);
     }
 
+    public function authindex(){
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $orderatks = DB::table('kebutuhanapks')
+                        ->join('users', 'kebutuhanapks.user_id', '=', 'users.id')
+                        ->select('kebutuhanapks.*', 'users.name AS uName')
+                        ->where('hc_id', '=', $currUser->id)
+                        ->where('kebutuhanapks.status', '=', 'Waiting for Approval')
+                        ->orderByRaw('orderDate DESC')
+                        ->paginate(10);
+
+        return view('kebutuhanAPK.auth', ['orderatks' => $orderatks, 'layout' => $layout]);
+    }
+
+    public function authsearch(Request $request){
+        $currUser = Auth::user();
+
+        
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $orderatks = DB::table('kebutuhanapks')
+                        ->join('users', 'kebutuhanapks.user_id', '=', 'users.id')
+                        ->select('kebutuhanapks.*', 'users.name AS uName')
+                        ->where('kebutuhanapks.hc_id', '=', $currUser->id)
+                        ->where('kebutuhanapks.status', '=', 'Waiting for Approval')
+                        ->whereBetween('orderDate', [$request->from, $request->to])
+                        ->orderByRaw('orderDate DESC')
+                        ->paginate(10);
+
+        return view('kebutuhanAPK.auth', ['orderatks' => $orderatks, 'layout' => $layout]);
+    }
+
     public function todoindex(){
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
@@ -91,7 +128,9 @@ class OrderATKsController extends Controller
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
 
-        return view('kebutuhanAPK.orderForm', ['layout' => $layout, 'currUser' => $currUser]);
+        $hcs = User::where('role_id', 5)->get();
+
+        return view('kebutuhanAPK.orderForm', ['layout' => $layout, 'currUser' =>$currUser, 'hcs' => $hcs]);
     }
 
     /**
@@ -112,6 +151,7 @@ class OrderATKsController extends Controller
         $orderATK = OrderATK::create([
             'user_id' => $currUser->id,
             'keterangan' => $request->keterangan,
+            'hc_id' => $request->hcname,
         ]);
 
         $orderID = $orderATK->id;
@@ -138,7 +178,7 @@ class OrderATKsController extends Controller
     public function show(OrderATK $orderATK)
     {
         //
-        $currUser = Auth::user();
+        $currUser = User::firstWhere('id', '=', $orderATK->user_id);
 
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
@@ -159,16 +199,53 @@ class OrderATKsController extends Controller
     public function edit(OrderATK $orderATK)
     {
         //
-        $currUser = Auth::user();
+        $currUser = User::firstWhere('id', '=', $orderATK->user_id);
 
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
 
         $detailatks = DB::table('atkdetails')
-        ->where('atk_id', '=', $orderATK->id)
+            ->where('atk_id', '=', $orderATK->id)
             ->get();
 
         return view('kebutuhanAPK.editForm', ['layout' => $layout, 'currUser' => $currUser, 'orderatk' => $orderATK, 'detailatks' => $detailatks]);
+    }
+
+    public function authdetail(OrderATK $orderATK)
+    {
+        //
+        $currUser = User::firstWhere('id', '=', $orderATK->user_id);
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $detailatks = DB::table('atkdetails')
+                    ->where('atk_id', '=', $orderATK->id)
+                    ->get();
+
+        return view('kebutuhanAPK.authDetail', ['layout' => $layout, 'currUser' => $currUser, 'orderatk' =>$orderATK, 'detailatks' => $detailatks]);
+    }
+
+    public function approve(OrderATK $orderATK)
+    {
+        //
+        OrderATK::where('id', $orderATK->id)
+            ->update([
+                'status' => 'PENDING'
+            ]);
+
+        return redirect()->back()->with('success', 'Order Approved');
+    }
+
+    public function reject(OrderATK $orderATK)
+    {
+        //
+        OrderATK::where('id', $orderATK->id)
+            ->update([
+                'status' => 'REJECTED'
+            ]);
+
+        return redirect()->back()->with('success', 'Order Rejected');
     }
 
     /**

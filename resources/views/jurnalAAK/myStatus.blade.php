@@ -39,16 +39,18 @@
 
                 @foreach ($aaks as $aak)
                     <tr>
-                        <td><a href="/myjurnalaak/{{ $aak->id }}" class="btn btn-light">{{ $aak->id }}</a></td>
-                        <td>{{ $aak->orderDate}}</td>
-                        <td>{{ $aak->filename}}</td>
-                        <td>
+                        <td style="vertical-align: middle"><a href="/myjurnalaak/{{ $aak->id }}" class="btn btn-light">{{ $aak->id }}</a></td>
+                        <td style="vertical-align: middle">{{ $aak->orderDate}}</td>
+                        <td style="vertical-align: middle">{{ $aak->filename}}</td>
+                        <td style="vertical-align: middle">
                             @if ($aak->status == "PENDING")
                                 <label style="color:red"><b>{{ $aak->status}}</b></label>
                             @elseif ($aak->status == "IN PROGRESS")
-                                <label style="color:#CCCC00"><b>{{ $aak->status}}</b></label>
-                            @else
-                                <label style="color:lime"><b>{{ $aak->status}}</b></label>
+                                <label style="color:blue"><b>{{ $aak->status}}</b></label>
+                            @elseif ($aak->status == "IN PROGRESS")
+                                <label style="color:green"><b>{{ $aak->status}}</b></label>
+                            @else 
+                                <label>{{ $aak->status}}</label>
                             @endif
                         </td>
                     </tr>

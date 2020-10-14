@@ -31,10 +31,10 @@
         <div class="col-sm-12">
             <table class="table table-hover table-responsive-sm">
                 <thead>
-                    <td class="col-sm-1" style="width: 30px"><b>ID</b></td>
-                    <td class="col-sm-2" style="width: 100px"><b>Tanggal Order</b></td>
-                    <td class="col-sm-2" style="width: 100px"><b>Keterangan</b></td>
-                    <td class="col-sm-2" style="width: 100px"><b>Status</b></td>
+                    <th class="col-sm-1" style="width: 30px"><b>ID</b></th>
+                    <th class="col-sm-2" style="width: 100px"><b>Tanggal Order</b></th>
+                    <th class="col-sm-2" style="width: 100px"><b>Keterangan</b></th>
+                    <th class="col-sm-2" style="width: 100px"><b>Status</b></th>
                 </thead>
 
                 @foreach ($orderatks as $orderatk)
@@ -46,9 +46,11 @@
                             @if ($orderatk->status == "PENDING")
                                 <label style="color:red"><b>{{ $orderatk->status}}</b></label>
                             @elseif ($orderatk->status == "IN PROGRESS")
-                                <label style="color:#CCCC00"><b>{{ $orderatk->status}}</b></label>
+                                <label style="color:blue"><b>{{ $orderatk->status}}</b></label>
+                            @elseif ($orderatk->status == "IN PROGRESS")
+                                <label style="color:green"><b>{{ $orderatk->status}}</b></label>
                             @else
-                                <label style="color:lime"><b>{{ $orderatk->status}}</b></label>
+                                <label>{{ $orderatk->status}}</label>
                             @endif
                         </td>
                     </tr>

@@ -89,50 +89,30 @@
         
     <hr>
 
-    @if ($orderkendaraan->status != "PENDING" && $orderkendaraan->status != "Waiting for Approval")
-            <input type="hidden" name="orderID" value="{{$orderkendaraan->id}}">
+        @if ($orderkendaraan->status == "Waiting for Approval")
             <div class="row">
-                <div class="col-sm-4">
-                    <label for="namadriverID">Nama Driver</label>
-                    <input id="namadriverID" type="text" class="form-control" style="width:320px" value="{{$assign->namaDriver}}" readonly>  
-                </div>
+                <form action="/authcar/{{$orderkendaraan->id}}/approve" method="post">
+                    @method('patch')
+                    @csrf
+                    <div class="col-sm-1">
+                        <button type="submit" class="btn btn-success">Authorize</button>
+                    </div>
+                </form>
 
-                <div class="col-sm-4">
-                    <label for="nomordriverID">Nomor HP Driver</label>
-                    <input id="nomordriverID" type="text" class="form-control" style="width:320px"  value="{{$assign->nohpDriver}}" readonly>  
-                </div>
+                <form action="/authcar/{{$orderkendaraan->id}}/reject" method="post">
+                    @method('patch')
+                    @csrf
+                    <div class="col-sm-1">
+                        <button type="submit" class="btn btn-danger">Reject</button>
+                    </div>
+                </form>
             </div>
 
-            <br>
+        <hr>
 
-            <div class="row">
-                <div class="col-sm-4">
-                    <label for="jeniskendaraanID">Jenis Kendaraan</label>
-                    <input id="jeniskendaraanID" type="text" class="form-control" style="width:320px" value="{{$assign->jenisKendaraan}}" readonly>  
-                </div>
+        @endif
 
-                <div class="col-sm-4">
-                    <label for="platnomorID">Plat Nomor</label>
-                    <input id="platnomorID" type="text" class="form-control" style="width:320px" name="platnomor" placeholder="Plat Nomor" value="{{$assign->plateNumber}}" readonly>   
-                </div>
-            </div>
-
-            <br>
-
-            <div class="row">
-                <div class="col-sm-4">
-                    <label for="pinpenumpangID">PIN Penumpang</label>
-                    <input id="pinpenumpangID" type="text" class="form-control" style="width:320px" value="{{$assign->pinPenumpang}}" readonly>
-                </div>
-            </div>
-    <hr>
-
-    @endif
-
-
-
-
-    <a href="/myordercar" class="btn btn-dark">Back</a>   
+    <a href="/authcar" class="btn btn-dark">Back</a>   
 
     <br><br>
 

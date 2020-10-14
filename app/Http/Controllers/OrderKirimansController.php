@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\OrderKiriman;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -52,6 +53,45 @@ class OrderKirimansController extends Controller
         return view('kiriman.myStatus', ['kirimans' => $kirimans, 'layout' => $layout]);
     }
 
+    public function authindex()
+    {
+        //
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $kirimans = DB::table('kirimans')
+                ->join('users', 'kirimans.user_id', '=', 'users.id')
+                ->where('hc_id', '=', $currUser->id)
+                ->where('kirimans.status', '=', 'Waiting for Approval')
+                ->select('kirimans.*', 'users.name AS uName')
+                ->orderByRaw('orderDate DESC')
+                ->paginate(10);
+
+        return view('kiriman.auth', ['kirimans' => $kirimans, 'layout' => $layout]);
+    }
+
+    public function authsearch(Request $request)
+    {
+        //
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $kirimans = DB::table('kirimans')
+                ->join('users', 'kirimans.user_id', '=', 'users.id')
+                ->select('kirimans.*', 'users.name AS uName')
+                ->where('hc_id', '=', $currUser->id)
+                ->where('kirimans.status', '=', 'Waiting for Approval')
+                ->whereBetween('orderDate', [$request->from, $request->to])
+                ->orderByRaw('orderDate DESC')
+                ->paginate(10);
+
+        return view('kiriman.auth', ['kirimans' => $kirimans, 'layout' => $layout]);
+    }
+
     public function todoindex()
     {
         //
@@ -96,7 +136,9 @@ class OrderKirimansController extends Controller
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
 
-        return view('kiriman.orderForm', ['layout' => $layout, 'currUser' => $currUser]);
+        $hcs = User::where('role_id', 5)->get();
+
+        return view('kiriman.orderForm', ['layout' => $layout, 'currUser' => $currUser, 'hcs' => $hcs]);
     }
 
     /**
@@ -118,7 +160,7 @@ class OrderKirimansController extends Controller
                 'namaPenerima' => 'required',
                 'notelp' => 'required|numeric',
                 'alamat' => 'required',
-                'pertanggungan' => 'required|numeric'
+                'pertanggungan' => 'required|numeric',
             ]);
         }else{
             $request->validate([
@@ -145,7 +187,8 @@ class OrderKirimansController extends Controller
             'namaPIC' => $request->namaPenerima,
             'alamat' => $request->alamat,
             'noPenerima' => $request->notelp,
-            'dokumen' => $uploadName
+            'dokumen' => $uploadName,
+            'hc_id' => $request->hcname
         ]);
 
         return redirect()->back()->with('successOrder', 'Order Success');
@@ -183,6 +226,39 @@ class OrderKirimansController extends Controller
         $layout = $pagesController->getLayout();
 
         return view('kiriman.editForm', ['layout' => $layout, 'currUser' => $currUser, 'orderKiriman' => $orderKiriman]);
+    }
+
+    public function authdetail(OrderKiriman $orderKiriman)
+    {
+        //
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        return view('kiriman.authDetail', ['layout' => $layout, 'currUser' => $currUser, 'orderKiriman' => $orderKiriman]);
+    }
+
+    public function approve(OrderKiriman $orderKiriman)
+    {
+        //
+        OrderKiriman::where('id', $orderKiriman->id)
+            ->update([
+                'status' => 'PENDING'
+            ]);
+
+        return redirect()->back()->with('success', 'Order Approved');
+    }
+
+    public function reject(OrderKiriman $orderKiriman)
+    {
+        //
+        OrderKiriman::where('id', $orderKiriman->id)
+            ->update([
+                'status' => 'REJECTED'
+            ]);
+
+        return redirect()->back()->with('success', 'Order Rejected');
     }
 
     /**

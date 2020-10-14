@@ -17,7 +17,7 @@ class OrderKendaraan extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'useDatetime', 'finishDatetime', 'pickupAddress', 'destinationAddress', 'necessity', 'totalPassanger', 'keterangan', 'assign_id', 'status', 'hcname'
+        'user_id', 'useDatetime', 'finishDatetime', 'pickupAddress', 'destinationAddress', 'necessity', 'totalPassanger', 'keterangan', 'assign_id', 'status', 'hc_id'
     ];
 
     public function assignkendaraan()

@@ -56,7 +56,7 @@
                 <br>
                 @foreach ($jenis as $jenis)
                 <input type="radio" name="jenis" value="{{$jenis->id}}">
-                    {{$jenis->name}} <label for="" style="color:gray">({{$jenis->deskripsi}})</label>
+                    {{$jenis->name}}
                     <br>
                 @endforeach
             </div>
@@ -111,6 +111,19 @@
 
             </div>
             
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <label for="supervisorID">Supervisor <label style="color: red">*</label></label>
+                <select name="hcname" id="supervisorID" class="form-control" style="width:320px">
+                    @foreach ($hcs as $hc)
+                        <option value="{{$hc->id}}">{{$hc->name}}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
         
         <br>

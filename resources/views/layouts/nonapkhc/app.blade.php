@@ -176,6 +176,68 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="#auth" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-clipboard-check" style="margin-left:3px; margin-right:4px"></i>
+                        Authorize
+                    </a>
+                    <ul class="collapse list-unstyled" id="auth">
+                        <li>
+                            <a href="#authLogistik" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                Logistik
+                            </a>
+                            <ul class="collapse list-unstyled" id="authLogistik">
+                                <li>
+                                    <a href="/authaktiva">Data Aktiva</a>
+                                </li>
+                                <li>
+                                    <a href="/authatk">Kebutuhan APK</a>
+                                </li>
+                                <li>
+                                    <a href="/authcar">Kendaraan</a>
+                                </li>
+                                <li>
+                                    <a href="/authreimbursement">Reimbursement</a>
+                                </li>
+                                <li>
+                                    <a href="/authkiriman">Kiriman Dokumen</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#authBuku" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                Pembukuan
+                            </a>
+                            <ul class="collapse list-unstyled" id="authBuku">
+                                <li>
+                                    <a href="/authjurnalmanual">Jurnal Manual</a>
+                                </li>
+                                <li>
+                                    <a href="/authjurnalaak">Jurnal AAK</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#authSIC" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                Sistem Informasi Cabang
+                            </a>
+                            <ul class="collapse list-unstyled" id="authSIC">
+                                <li>
+                                    <a href="#">Komputer</a>
+                                </li>
+                                <li>
+                                    <a href="#">Aplikasi</a>
+                                </li>
+                                <li>
+                                    <a href="#">Hardware Lainnya</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/myjob">Requested Jobs</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
 
         </nav>

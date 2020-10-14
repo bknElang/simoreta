@@ -93,6 +93,19 @@
                 <textarea id="ketID" class="form-control" name="keterangan" cols="40" rows="4">{{old('keterangan')}}</textarea>
             </div>
         </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <label for="supervisorID">Supervisor <label style="color: red">*</label></label>
+                <select name="hcname" id="supervisorID" class="form-control" style="width:320px">
+                    @foreach ($hcs as $hc)
+                        <option value="{{$hc->id}}">{{$hc->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
         
         <br>
 

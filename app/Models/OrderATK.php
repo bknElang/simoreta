@@ -16,7 +16,7 @@ class OrderATK extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'keterangan', 'hcname'
+        'user_id', 'keterangan', 'hc_id'
     ];
 
 }

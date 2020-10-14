@@ -17,7 +17,7 @@ class OrderAktiva extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'jenisBarang', 'spesifikasi', 'statusDetail', 'keterangan', 'hcname'
+        'user_id', 'jenisBarang', 'spesifikasi', 'statusDetail', 'keterangan', 'hc_id'
     ];
 
 }

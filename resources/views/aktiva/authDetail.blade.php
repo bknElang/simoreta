@@ -63,17 +63,36 @@
 
         <hr>
     
-        @if ($orderAktiva->status != 'PENDING' && $orderAktiva->status != 'Waiting for Approval' && $orderAktiva->status != 'REJECTED')
+        @if ($orderAktiva->status == "Waiting for Approval")
             <div class="row">
-                <div class="col-sm-12">
-                    <label for="">Status Detail</label>
-                    <textarea class="form-control" name="statusDetail" id="" cols="30" rows="5" readonly>{{$orderAktiva->statusDetail}}</textarea>
-                </div>
+                <form action="/authaktiva/{{$orderAktiva->id}}/approve" method="post">
+                    @method('patch')
+                    @csrf
+                    <div class="col-sm-1">
+                        <button type="submit" class="btn btn-success">Authorize</button>
+                    </div>
+                </form>
+
+                <form action="/authaktiva/{{$orderAktiva->id}}/reject" method="post">
+                    @method('patch')
+                    @csrf
+                    <div class="col-sm-1">
+                        <button type="submit" class="btn btn-danger">Reject</button>
+                    </div>
+                </form>
             </div>
 
         <hr>
-        @endif
 
-        <a href="/myaktiva" class="btn btn-dark">Back</a>
+        @endif
+        
+
+        <div class="row">
+            <div class="col-sm-1">
+                <a href="/authaktiva" class="btn btn-dark">Back</a>
+            </div>
+        </div>
+
+        
 
 @endsection

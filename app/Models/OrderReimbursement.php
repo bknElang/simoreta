@@ -17,7 +17,7 @@ class OrderReimbursement extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'orderDate', 'keterangan', 'namaRek', 'nomorRek', 'bankRek', 'nominal', 'jenis_id', 'statusDetail', 'hcname'
+        'user_id', 'orderDate', 'keterangan', 'namaRek', 'nomorRek', 'bankRek', 'nominal', 'jenis_id', 'statusDetail', 'hc_id'
     ];
 
     public function jenisreimbursement()

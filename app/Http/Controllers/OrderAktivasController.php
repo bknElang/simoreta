@@ -52,6 +52,44 @@ class OrderAktivasController extends Controller
         return view('aktiva.myStatus', ['aktivas' => $aktivas, 'layout' => $layout]);
     }
 
+    public function authindex()
+    {
+        //
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $aktivas = DB::table('aktivas')
+                ->join('users', 'aktivas.user_id', '=', 'users.id')
+                ->select('aktivas.*', 'users.name AS uName')
+                ->where('aktivas.hc_id', '=', $currUser->id)
+                ->where('aktivas.status', '=', 'Waiting for Approval')
+                ->orderByRaw('orderDate DESC')
+                ->paginate(10);
+
+        return view('aktiva.auth', ['aktivas' => $aktivas, 'layout' => $layout]);
+    }
+
+    public function authsearch(Request $request)
+    {
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $aktivas = DB::table('aktivas')
+                ->join('users', 'aktivas.user_id', '=', 'users.id')
+                ->select('aktivas.*', 'users.name AS uName')
+                ->where('aktivas.hc_id', '=', $currUser->id)
+                ->where('aktivas.status', '=', 'Waiting for Approval')
+                ->whereBetween('orderDate', [$request->from, $request->to])
+                ->orderByRaw('orderDate DESC')
+                ->paginate(10);
+
+        return view('aktiva.auth', ['aktivas' => $aktivas, 'layout' => $layout]);
+    }
+
     public function todoindex()
     {
         //
@@ -61,6 +99,8 @@ class OrderAktivasController extends Controller
         $aktivas = DB::table('aktivas')
                 ->join('users', 'aktivas.user_id', '=', 'users.id')
                 ->select('aktivas.*', 'users.name AS uName')
+                ->where('aktivas.status', '!=', 'Waiting for Approval')
+                ->where('aktivas.status', '!=', 'REJECTED')
                 ->orderByRaw('orderDate DESC')
                 ->paginate(10);
 
@@ -75,6 +115,8 @@ class OrderAktivasController extends Controller
         $aktivas = DB::table('aktivas')
                 ->join('users', 'aktivas.user_id', '=', 'users.id')
                 ->select('aktivas.*', 'users.name AS uName')
+                ->where('aktivas.status', '!=', 'Waiting for Approval')
+                ->where('aktivas.status', '!=', 'REJECTED')
                 ->whereBetween('orderDate', [$request->from, $request->to])
                 ->orderByRaw('orderDate DESC')
                 ->paginate(10);
@@ -122,7 +164,7 @@ class OrderAktivasController extends Controller
             'jenisBarang' => $request->jenis,
             'spesifikasi' => $request->spesifikasi,
             'keterangan' => $request->keterangan,
-            'hcname' => $request->hcname
+            'hc_id' => $request->hcname
         ]);
 
         return redirect()->back()->with('successOrder', 'Order Success');
@@ -137,13 +179,12 @@ class OrderAktivasController extends Controller
     public function show(OrderAktiva $orderAktiva)
     {
         //
-        $currUser = Auth::user();
+        $currUser = User::firstWhere('id', '=', $orderAktiva->user_id);
 
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
 
         return view('aktiva.showAktiva', ['layout' => $layout, 'currUser' => $currUser, 'orderAktiva' => $orderAktiva]);
-   
     }
 
     /**
@@ -155,13 +196,45 @@ class OrderAktivasController extends Controller
     public function edit(OrderAktiva $orderAktiva)
     {
         //
-        $currUser = Auth::user();
+        $currUser = User::firstWhere('id', '=', $orderAktiva->user_id);
 
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
 
         return view('aktiva.editForm', ['layout' => $layout, 'currUser' => $currUser, 'orderAktiva' => $orderAktiva]);
+    }
 
+    public function authdetail(OrderAktiva $orderAktiva)
+    {
+        //
+        $currUser = User::firstWhere('id', '=', $orderAktiva->user_id);
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        return view('aktiva.authDetail', ['layout' => $layout, 'currUser' => $currUser, 'orderAktiva' => $orderAktiva]);
+    }
+
+    public function approve(OrderAktiva $orderAktiva)
+    {
+        //
+        OrderAktiva::where('id', $orderAktiva->id)
+            ->update([
+                'status' => 'PENDING'
+            ]);
+
+        return redirect()->back()->with('success', 'Order Approved');
+    }
+
+    public function reject(OrderAktiva $orderAktiva)
+    {
+        //
+        OrderAktiva::where('id', $orderAktiva->id)
+            ->update([
+                'status' => 'REJECTED'
+            ]);
+
+        return redirect()->back()->with('success', 'Order Rejected');
     }
 
     /**
