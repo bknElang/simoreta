@@ -195,4 +195,8 @@ class UsersController extends Controller
         User::destroy($user->id);
         return redirect('/users')->with('User Deleted!');
     }
+
+    public function test(User $user){
+        dd($user);
+    }
 }

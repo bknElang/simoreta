@@ -15,6 +15,9 @@ use App\Http\Controllers\ImageUploadController;
 |
 */
 
+//test
+Route::get('/test/{user}', '\App\Http\Controllers\UsersController@test')->middleware('guest')->name('User\'s Detail');
+
 //login
 Route::get('/', 'App\Http\Controllers\AuthController@getLogin')->middleware('guest')->name('login');
 Route::post('/', 'App\Http\Controllers\AuthController@postLogin')->middleware('guest');
@@ -179,8 +182,38 @@ Route::get('/todojob/{orderRequestJob}', '\App\Http\Controllers\OrderRequestJobs
 Route::patch('/todojob/{orderRequestJob}', '\App\Http\Controllers\OrderRequestJobsController@update')->middleware('auth');
 Route::patch('/todojob/{orderRequestJob}/finish', '\App\Http\Controllers\OrderRequestJobsController@finish')->middleware('auth');
 
+//fixcomputer
+Route::get('/fixcomputer', '\App\Http\Controllers\OrderFixComputerController@create')->middleware('auth');
+Route::post('/fixcomputer', '\App\Http\Controllers\OrderFixComputerController@store')->middleware('auth')->name('fixcomputer');
+route::get('/myfixcomputer', '\App\Http\Controllers\OrderReimbursementsController@myindex')->middleware('auth');
+route::get('/searchmyfixcomputer', '\App\Http\Controllers\OrderReimbursementsController@mysearch')->middleware('auth');
+Route::get('/myfixcomputer/{orderReimbursement}', '\App\Http\Controllers\OrderReimbursementsController@show')->middleware('auth')->name('Order\'s Detail');
+route::get('/authfixcomputer', '\App\Http\Controllers\OrderReimbursementsController@authindex')->middleware('auth');
+route::get('/searchauthfixcomputer', '\App\Http\Controllers\OrderReimbursementsController@authsearch')->middleware('auth');
+Route::get('/authfixcomputer/{orderReimbursement}', '\App\Http\Controllers\OrderReimbursementsController@authdetail')->middleware('auth')->name('Order\'s Detail');
+Route::patch('/authfixcomputer/{orderReimbursement}/approve', '\App\Http\Controllers\OrderReimbursementsController@approve')->middleware('auth');
+Route::patch('/authfixcomputer/{orderReimbursement}/reject', '\App\Http\Controllers\OrderReimbursementsController@reject')->middleware('auth');
+Route::get('/todofixcomputer', '\App\Http\Controllers\OrderReimbursementsController@todoindex')->middleware('auth');
+route::get('/searchtodofixcomputer', '\App\Http\Controllers\OrderReimbursementsController@todosearch')->middleware('auth');
+Route::get('/todofixcomputer/{orderReimbursement}', '\App\Http\Controllers\OrderReimbursementsController@edit')->middleware('auth')->name('Order\'s Detail');
+Route::patch('/todofixcomputer/{orderReimbursement}', '\App\Http\Controllers\OrderReimbursementsController@update')->middleware('auth');
+Route::patch('/todofixcomputer/{orderReimbursement}/finish', '\App\Http\Controllers\OrderReimbursementsController@finish')->middleware('auth');
 
 
 
 
+Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

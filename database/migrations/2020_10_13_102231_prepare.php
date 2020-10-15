@@ -123,6 +123,69 @@ class Prepare extends Migration
             )
         );
 
+        DB::table('jeniskomponencomputer')->insert(
+            array(
+                array(
+                    'name' => 'Monitor'
+                ),
+                array(
+                    'name' => 'CPU'
+                ),
+                array(
+                    'name' => 'Keyboard'
+                ),
+                array(
+                    'name' => 'Mouse'
+                ),
+            )
+        );
+
+        DB::table('jenishardware')->insert(
+            array(
+                array(
+                    'name' => 'Fingerscan'
+                ),
+                array(
+                    'name' => 'Printer'
+                ),
+                array(
+                    'name' => 'Telepon'
+                ),
+                array(
+                    'name' => 'Scanner-IBS'
+                ),
+                array(
+                    'name' => 'Scanner-Fujitsu'
+                ),
+                array(
+                    'name' => 'Lainnya'
+                ),
+            )
+        );
+
+        DB::table('jenisaplikasi')->insert(
+            array(
+                array(
+                    'name' => 'Email'
+                ),
+                array(
+                    'name' => 'IBS'
+                ),
+                array(
+                    'name' => 'ILS'
+                ),
+                array(
+                    'name' => 'OR'
+                ),
+                array(
+                    'name' => 'Browser(IE,Chrome,Firefox'
+                ),
+                array(
+                    'name' => 'Lainnya'
+                ),
+            )
+        );
+
     }
 
     /**

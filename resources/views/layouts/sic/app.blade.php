@@ -58,9 +58,16 @@
                     </a>
                     <ul class="collapse list-unstyled" id="todolist">
                         <li>
-                            <a href="/todojob">Requested Job</a>
+                            <a href="/todofixcomputer">Perbaikan Komputer</a>
+                        </li>
+                        <li>
+                            <a href="/todofixaplikasi">Perbaikan Aplikasi</a>
+                        </li>
+                        <li>
+                            <a href="/todofixhardware">Perbaikan Hardware Lainnya</a>
                         </li>
                     </ul>
+                </li>
                 </li>
                 <li>
                     <a href="#logistikSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
