@@ -138,7 +138,6 @@ class OrderReimbursementsController extends Controller
     public function create()
     {
         //
-
         $currUser = Auth::user();
 
         $pagesController = new PagesController();

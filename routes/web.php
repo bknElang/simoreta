@@ -175,6 +175,7 @@ Route::patch('/authjob/{orderRequestJob}/reject', '\App\Http\Controllers\OrderRe
 Route::get('/todojob', '\App\Http\Controllers\OrderRequestJobsController@todoindex')->middleware('auth');
 Route::get('/searchtodojob', '\App\Http\Controllers\OrderRequestJobsController@todosearch')->middleware('auth');
 Route::get('/todojob/{orderRequestJob}', '\App\Http\Controllers\OrderRequestJobsController@edit')->middleware('auth')->name('Order\'s Detail');
+Route::patch('/todojob/{orderRequestJob}/change', '\App\Http\Controllers\OrderRequestJobsController@change')->middleware('auth');
 Route::patch('/todojob/{orderRequestJob}', '\App\Http\Controllers\OrderRequestJobsController@update')->middleware('auth');
 Route::patch('/todojob/{orderRequestJob}/finish', '\App\Http\Controllers\OrderRequestJobsController@finish')->middleware('auth');
 

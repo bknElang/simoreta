@@ -50,12 +50,33 @@
                 <label for="requesterID">Jenis Permohonan</label>
                 <input type="text" id="requesterID" class="form-control" name="requester" style="width:300px" value="{{$orderRequestJob->jenis}}" readonly>
             </div>
-
-            <div class="col-sm-4">
-                <label for="requesterID">Assigned to</label>
-                <input type="text" id="requesterID" class="form-control" name="requester" style="width:300px" value="{{$roleto->name}}" readonly>
-            </div>
         </div>
+
+        <hr>
+
+        <form action="/todojob/{{$orderRequestJob->id}}/change" method="post">
+            @method('patch')
+            @csrf
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="assignedID">Assigned to</label>
+                    <select name="unitAPK" id="assignedID" class="form-control">
+                        @foreach ($roles as $row)
+                           <option value="{{$row->id}}" @if ($row->id == $roleto->id) selected @endif @if ($orderRequestJob->status != 'PENDING') readonly @endif>{{$row->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+            @if ($orderRequestJob->status == 'PENDING')
+            <br>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-primary">Change</button>
+                    </div>
+                </div>
+            @endif
+        </form>
         
         <hr>
 

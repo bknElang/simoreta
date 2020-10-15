@@ -58,7 +58,7 @@ class AssignKendaraansController extends Controller
         OrderKendaraan::where('id', $request->orderID)
                     ->update([
                         'assign_id' => $assignID,
-                        'status' => 'IN PROGRESS'
+                        'status' => 'FINISHED'
                     ]);
 
         return redirect()->back()->with('successAssign', 'Assign Driver Success!');

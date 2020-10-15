@@ -195,7 +195,7 @@ class OrderRequestJobsController extends Controller
     public function show(OrderRequestJob $orderRequestJob)
     {
         //
-        $currUser = Auth::user();
+        $currUser = User::firstWhere('id', '=', $orderRequestJob->user_id);
 
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
@@ -214,20 +214,27 @@ class OrderRequestJobsController extends Controller
     public function edit(OrderRequestJob $orderRequestJob)
     {
         //
-        $currUser = Auth::user();
+        $currUser = User::firstWhere('id', '=', $orderRequestJob->user_id);
 
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
         $roleto = Role::find($orderRequestJob->roles_to_id);
         $role = Role::find($currUser->role_id);
+        $roles = DB::table('roles')
+                ->where(function ($query) {
+                 $query ->where('id', 2)
+                        ->orWhere('id', 3)
+                        ->orWhere('id', 4);
+                })
+                ->get();
 
-        return view('requestjob.editForm', ['layout' => $layout, 'currUser' => $currUser, 'orderRequestJob' => $orderRequestJob, 'roleto' => $roleto, 'role' => $role]);
+        return view('requestjob.editForm', ['layout' => $layout, 'currUser' => $currUser, 'orderRequestJob' => $orderRequestJob, 'roleto' => $roleto, 'role' => $role, 'roles' => $roles]);
     }
 
     public function authdetail(OrderRequestJob $orderRequestJob)
     {
         //
-        $currUser = Auth::user();
+        $currUser = User::firstWhere('id', '=', $orderRequestJob->user_id);
 
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
@@ -288,6 +295,17 @@ class OrderRequestJobsController extends Controller
             ]);
 
         return redirect()->back()->with('success', 'Order Finished');
+    }
+
+    public function change(Request $request, OrderRequestJob $orderRequestJob)
+    {
+        //
+        OrderRequestJob::where('id', $orderRequestJob->id)
+            ->update([
+                'roles_to_id' => $request->unitAPK
+            ]);
+
+        return redirect('/todojob')->with('successChange', 'Assigned division changed for Job with ID '. $orderRequestJob->id.'!');
     }
 
     /**

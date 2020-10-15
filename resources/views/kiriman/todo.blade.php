@@ -51,10 +51,8 @@
                                 <label style="color:red"><b>{{ $kiriman->status}}</b></label>
                             @elseif ($kiriman->status == "IN PROGRESS")
                                 <label style="color:blue"><b>{{ $kiriman->status}}</b></label>
-                            @elseif ($kiriman->status == "IN PROGRESS")
-                                <label style="color:green"><b>{{ $kiriman->status}}</b></label>
                             @else
-                                <label>{{ $kiriman->status}}</label>
+                                <label style="color:green"><b>{{ $kiriman->status}}</b></label>
                             @endif
                         </td>
                     </tr>

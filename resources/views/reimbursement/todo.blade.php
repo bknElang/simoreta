@@ -53,10 +53,8 @@
                                 <label style="color:red"><b>{{ $orderreimbursement->status}}</b></label>
                             @elseif ($orderreimbursement->status == "IN PROGRESS")
                                 <label style="color:blue"><b>{{ $orderreimbursement->status}}</b></label>
-                            @elseif ($orderreimbursement->status == "IN PROGRESS")
-                                <label style="color:green"><b>{{ $orderreimbursement->status}}</b></label>
                             @else
-                                <label>{{ $orderreimbursement->status}}</label>
+                                <label style="color:green"><b>{{ $orderreimbursement->status}}</b></label>
                             @endif
                         </td>
                     </tr>

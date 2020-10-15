@@ -25,6 +25,10 @@
 
     <hr>
 
+    @if(Session::has('successChange'))
+            <div class="alert alert-success">{{ Session::get('successChange') }}</div>
+    @endif
+
     <div class="row">
         <div class="col-sm-12">
             <p>Click ID for details</p>
@@ -49,12 +53,12 @@
                         <td>{{ $requestjob->orderDate}}</td>
                         <td>{{ $requestjob->jenis}}</td>
                         <td>
-                            @if ($requestjob->status == 'PENDING')
+                            @if ($requestjob->status == "PENDING")
                                 <label style="color:red"><b>{{ $requestjob->status}}</b></label>
-                            @elseif ($requestjob->status == 'IN PROGRESS')
-                                <label style="color:yellow"><b>{{ $requestjob->status}}</b></label>
-                            @elseif ($requestjob->status == 'FINISHED')
-                                <label style="color:lime"><b>{{ $requestjob->status}}</b></label>
+                            @elseif ($requestjob->status == "IN PROGRESS")
+                                <label style="color:blue"><b>{{ $requestjob->status}}</b></label>
+                            @else
+                                <label style="color:green"><b>{{ $requestjob->status}}</b></label>
                             @endif
                         </td>
                     </tr>

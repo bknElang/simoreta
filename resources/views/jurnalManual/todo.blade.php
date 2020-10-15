@@ -53,10 +53,8 @@
                                 <label style="color:red"><b>{{ $manual->status}}</b></label>
                             @elseif ($manual->status == "IN PROGRESS")
                                 <label style="color:blue"><b>{{ $manual->status}}</b></label>
-                            @elseif ($manual->status == "IN PROGRESS")
+                            @else
                                 <label style="color:green"><b>{{ $manual->status}}</b></label>
-                            @else 
-                                <label>{{ $manual->status}}</label>
                             @endif
                         </td>
                     </tr>
