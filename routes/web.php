@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ImageUploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,6 +92,7 @@ Route::get('/todoreimbursement/{orderReimbursement}', '\App\Http\Controllers\Ord
 Route::patch('/todoreimbursement/{orderReimbursement}', '\App\Http\Controllers\OrderReimbursementsController@update')->middleware('auth');
 Route::patch('/todoreimbursement/{orderReimbursement}/finish', '\App\Http\Controllers\OrderReimbursementsController@finish')->middleware('auth');
 
+
 //atk
 Route::get('/atk', '\App\Http\Controllers\OrderATKsController@create')->middleware('auth');
 Route::post('/atk', '\App\Http\Controllers\OrderATKsController@store')->middleware('auth')->name('atk');
@@ -178,6 +177,10 @@ Route::get('/searchtodojob', '\App\Http\Controllers\OrderRequestJobsController@t
 Route::get('/todojob/{orderRequestJob}', '\App\Http\Controllers\OrderRequestJobsController@edit')->middleware('auth')->name('Order\'s Detail');
 Route::patch('/todojob/{orderRequestJob}', '\App\Http\Controllers\OrderRequestJobsController@update')->middleware('auth');
 Route::patch('/todojob/{orderRequestJob}/finish', '\App\Http\Controllers\OrderRequestJobsController@finish')->middleware('auth');
+
+//laporan
+Route::get('/laporan', '\App\Http\Controllers\LaporansController@getPage')->middleware('auth');
+route::get('/getlaporan', '\App\Http\Controllers\LaporansController@search')->middleware('auth');
 
 
 

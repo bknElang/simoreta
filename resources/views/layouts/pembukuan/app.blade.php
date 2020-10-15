@@ -30,14 +30,14 @@
         <nav id="sidebar">
             <div class="sidebar-header">
                 <div class="row">
-                    <div class="col-m-1">
+                    <div class="col">
                         <a href="/users/{{auth()->user()->id}}" id="imgAva"><img src="{{asset('images/'.auth()->user()->avatar)}}" class="rounded mx-auto d-block" style="width:75px; height:75px"></a>
                     </div>
                     
                     <div class="col" id="profile">
                         <label>{{auth()->user()->name}}</label>
                         <br>
-                        <label>{{auth()->user()->NIP}}}</label>
+                        <label>{{auth()->user()->NIP}}</label>
                     </div>
                 </div>
 
@@ -161,7 +161,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/laporan">
                         <i class="fas fa-folder-open"></i>
                         Laporan
                     </a>

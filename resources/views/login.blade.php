@@ -28,15 +28,14 @@
             <div id="formContent">
             <!-- Tabs Titles -->
             <h1 style="color:white">Login</h1>
-
                 <!-- Icon -->
                 <br>
                 <div class="fadeIn first">
                     <img src="{{asset('assets/simoreta.png')}}" id="icon" alt="" />
                 </div>
                 <br>
-                <!-- Login Form -->
-                
+
+                <!-- Login Form --> 
                 <form class="form-signin" method="POST" action="{{route('login')}}">
                     {{csrf_field()}}
                     <input type="text" id="login" class="fadeIn second form-control" name="nip" placeholder="NIP">

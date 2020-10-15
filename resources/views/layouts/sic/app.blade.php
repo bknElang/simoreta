@@ -30,7 +30,7 @@
         <nav id="sidebar">
             <div class="sidebar-header">
                 <div class="row">
-                    <div class="col-m-1">
+                    <div class="col">
                         <a href="/users/{{auth()->user()->id}}" id="imgAva"><img src="{{asset('images/'.auth()->user()->avatar)}}" class="rounded mx-auto d-block" style="width:75px; height:75px"></a>
                     </div>
                     
