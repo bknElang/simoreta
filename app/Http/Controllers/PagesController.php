@@ -45,12 +45,31 @@ class PagesController extends Controller
 
         if ($user->role_id == 1) {
             return view('admin.homeAdmin');
+
         } else if ($user->role_id == 2) {
-            return view('apk.logistik.homeAPK');
+            return view('apk.logistik.homeAPK', [
+                'pendingbuku' => $mypendingbuku,
+                'progressbuku' => $myprogressbuku,
+                'finishedbuku' => $myfinishbuku
+            ]);
+
         } else if ($user->role_id == 3) {
-            return view('apk.pembukuan.homeAPK');
+            return view('apk.pembukuan.homeAPK', [
+                'pendinglogistik' => $mypendinglogistik,
+                'progresslogistik' => $myprogresslogistik,
+                'finishedlogistik' => $myfinishlogistik,
+            ]);
+
         } else if ($user->role_id == 4) {
-            return view('apk.sic.homeAPK');
+            return view('apk.sic.homeAPK', [
+                'pendinglogistik' => $mypendinglogistik,
+                'progresslogistik' => $myprogresslogistik,
+                'finishedlogistik' => $myfinishlogistik,
+
+                'pendingbuku' => $mypendingbuku,
+                'progressbuku' => $myprogressbuku,
+                'finishedbuku' => $myfinishbuku
+            ]);
         } else if ($user->role_id == 5) {
             return view('nonapkhc.homeNonAPKHC', [
                 'pendinglogistik' => $mypendinglogistik,
