@@ -19,6 +19,7 @@ class CreateAktivasTable extends Migration
             $table->dateTime('orderDate')->useCurrent();
             $table->string('jenisBarang');
             $table->string('spesifikasi');
+            $table->string('jumlah');
             $table->string('keterangan')->nullable();
             $table->string('status')->default('Waiting for Approval');
             $table->string('statusDetail')->nullable();

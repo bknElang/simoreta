@@ -157,6 +157,7 @@ class OrderAktivasController extends Controller
             'jenis' => 'required',
             'spesifikasi' => 'required',
             'keterangan' => 'required',
+            'jumlah' => 'required'
         ]);
 
         OrderAktiva::create([
@@ -164,6 +165,7 @@ class OrderAktivasController extends Controller
             'jenisBarang' => $request->jenis,
             'spesifikasi' => $request->spesifikasi,
             'keterangan' => $request->keterangan,
+            'jumlah' => $request->jumlah,
             'hc_id' => $request->hcname
         ]);
 

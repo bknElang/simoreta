@@ -56,6 +56,12 @@
                 <input type="text" id="spesifikID" class="form-control @error('spesifikasi') is-invalid @enderror" name="spesifikasi" placeholder="Spesifikasi" style="width:320px">
                 @error('spesifikasi') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
             </div>
+
+            <div class="col-sm-4">
+                <label for="jumlahID">Jumlah Barang<label style="color: red">*</label></label>
+                <input type="number" id="jumlahID" class="form-control @error('jumlah') is-invalid @enderror" name="jumlah" placeholder="Spesifikasi" style="width:320px" min=1>
+                @error('jumlah') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
+            </div>
         </div>
 
         <br>

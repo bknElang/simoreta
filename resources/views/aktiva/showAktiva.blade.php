@@ -50,6 +50,11 @@
                 <label for="spesifikID">Spesifikasi</label>
                 <input type="text" id="spesifikID" class="form-control" name="spesifikasi" placeholder="Spesifikasi" style="width:320px" value="{{$orderAktiva->spesifikasi}}" readonly>
             </div>
+
+            <div class="col-sm-4">
+                <label for="jumlahID">Jumlah Barang</label>
+                <input type="text" id="jumlahID" class="form-control" name="jumlah" style="width:320px" value="{{$orderAktiva->jumlah}}" readonly>
+            </div>
         </div>
 
         <br>
