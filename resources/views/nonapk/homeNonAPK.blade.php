@@ -10,7 +10,7 @@
         <div class="card border-danger bg-transparent sm-4">
             <div class="card-header bg-transparent border-danger">Pending</div>
             <div class="card-body text-danger">
-                <h5 class="card-title">Total Pending:</h5>
+                <h5 class="card-title">Total Pending: {{array_sum($pendinglogistik) + array_sum($pendingbuku)}}</h5>
                 <li>
                     <a href="#pendingLogis" data-toggle="collapse" aria-expanded="false">
                         Logistik
@@ -69,7 +69,7 @@
         <div class="card border-primary bg-transparent sm-4">
             <div class="card-header bg-transparent border-primary">In Progress</div>
             <div class="card-body text-primary ">
-                <h5 class="card-title">Total In Progress:</h5>
+                <h5 class="card-title">Total In Progress: {{array_sum($progresslogistik) + array_sum($progressbuku)}}</h5>
                 <li>
                     <a href="#progressLogis" data-toggle="collapse" aria-expanded="false">
                         Logistik
@@ -128,7 +128,7 @@
         <div class="card border-success bg-transparent sm-4">
             <div class="card-header bg-transparent border-success">Finished</div>
             <div class="card-body text-success">
-                <h5 class="card-title">Total Finished:</h5>
+                <h5 class="card-title">Total Finished: {{array_sum($finishedlogistik) + array_sum($finishedbuku)}}</h5>
                 <li>
                     <a href="#finishLogis" data-toggle="collapse" aria-expanded="false">
                         Logistik

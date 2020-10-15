@@ -41,11 +41,11 @@
 
                 @foreach ($orderkendaraans as $orderkendaraan)
                     <tr>
-                        <td style="vertical-align: middle"><a href="/myordercar/{{ $orderkendaraan->id }}" class="btn btn-light">{{ $orderkendaraan->id }}</a></td>
-                        <td style="vertical-align: middle">{{ $orderkendaraan->orderDate}}</td>
-                        <td style="vertical-align: middle">{{ $orderkendaraan->useDatetime}}</td>
-                        <td style="vertical-align: middle">{{ $orderkendaraan->finishDatetime}}</td>
-                        <td style="vertical-align: middle">
+                        <td><a href="/myordercar/{{ $orderkendaraan->id }}" class="btn btn-light">{{ $orderkendaraan->id }}</a></td>
+                        <td>{{ $orderkendaraan->orderDate}}</td>
+                        <td>{{ $orderkendaraan->useDatetime}}</td>
+                        <td>{{ $orderkendaraan->finishDatetime}}</td>
+                        <td>
                             @if ($orderkendaraan->status == "Waiting for Approval")
                                 <label style="color:#606060"><b>{{ $orderkendaraan->status}}</b></label>
                             @elseif ($orderkendaraan->status == "REJECTED")
@@ -58,7 +58,7 @@
                                 <label style="color:green"><b>{{ $orderkendaraan->status}}</b></label>
                             @endif
                         </td>
-                        <td style="vertical-align: middle">{{ $orderkendaraan->necessity}}</td>
+                        <td>{{ $orderkendaraan->necessity}}</td>
                     </tr>
                 @endforeach   
             </table>

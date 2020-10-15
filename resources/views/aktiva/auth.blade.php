@@ -40,11 +40,11 @@
 
                 @foreach ($aktivas as $aktiva)
                     <tr>
-                        <td style="vertical-align:middle"><a href="/authaktiva/{{ $aktiva->id }}" class="btn btn-light">{{ $aktiva->id }}</a></td>
-                        <td style="vertical-align:middle">{{ $aktiva->uName}}</td>
-                        <td style="vertical-align:middle">{{ $aktiva->orderDate}}</td>
-                        <td style="vertical-align:middle">{{ $aktiva->jenisBarang}}</td>
-                        <td style="vertical-align:middle">{{ $aktiva->spesifikasi}}</td>
+                        <td><a href="/authaktiva/{{ $aktiva->id }}" class="btn btn-light">{{ $aktiva->id }}</a></td>
+                        <td>{{ $aktiva->uName}}</td>
+                        <td>{{ $aktiva->orderDate}}</td>
+                        <td>{{ $aktiva->jenisBarang}}</td>
+                        <td>{{ $aktiva->spesifikasi}}</td>
                     </tr>
                 @endforeach   
             </table>

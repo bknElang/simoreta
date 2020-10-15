@@ -44,11 +44,11 @@
 
                 @foreach ($manuals as $manual)
                     <tr>
-                        <td style="vertical-align: middle"><a href="/todomanual/{{ $manual->id }}" class="btn btn-light">{{ $manual->id }}</a></td>
-                        <td style="vertical-align: middle">{{ $manual->orderDate}}</td>
-                        <td style="vertical-align: middle">{{ $manual->uName}}</td>
-                        <td style="vertical-align: middle">{{ $manual->filename}}</td>
-                        <td style="vertical-align: middle">
+                        <td><a href="/todomanual/{{ $manual->id }}" class="btn btn-light">{{ $manual->id }}</a></td>
+                        <td>{{ $manual->orderDate}}</td>
+                        <td>{{ $manual->uName}}</td>
+                        <td>{{ $manual->filename}}</td>
+                        <td>
                             @if ($manual->status == "PENDING")
                                 <label style="color:red"><b>{{ $manual->status}}</b></label>
                             @elseif ($manual->status == "IN PROGRESS")

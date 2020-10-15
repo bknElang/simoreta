@@ -44,11 +44,11 @@
 
                 @foreach ($orderkendaraans as $orderkendaraan)
                     <tr>
-                        <td style="vertical-align: middle"><a href="/authcar/{{ $orderkendaraan->id }}" class="btn btn-light">{{ $orderkendaraan->id }}</a></td>
-                        <td style="vertical-align: middle">{{ $orderkendaraan->uName}}</td>
-                        <td style="vertical-align: middle">{{ $orderkendaraan->orderDate}}</td>
-                        <td style="vertical-align: middle">{{ $orderkendaraan->useDatetime}}</td>
-                        <td style="vertical-align: middle">{{ $orderkendaraan->finishDatetime}}</td>
+                        <td><a href="/authcar/{{ $orderkendaraan->id }}" class="btn btn-light">{{ $orderkendaraan->id }}</a></td>
+                        <td>{{ $orderkendaraan->uName}}</td>
+                        <td>{{ $orderkendaraan->orderDate}}</td>
+                        <td>{{ $orderkendaraan->useDatetime}}</td>
+                        <td>{{ $orderkendaraan->finishDatetime}}</td>
                     </tr>
                 @endforeach   
             </table>

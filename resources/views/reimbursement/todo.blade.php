@@ -44,11 +44,11 @@
 
                 @foreach ($orderreimbursements as $orderreimbursement)
                     <tr>
-                        <td style="vertical-align: middle"><a href="/todoreimbursement/{{ $orderreimbursement->id }}" class="btn btn-light">{{ $orderreimbursement->id }}</a></td>
-                        <td style="vertical-align: middle">{{ $orderreimbursement->uName}}</td>
-                        <td style="vertical-align: middle">{{ $orderreimbursement->orderDate}}</td>
-                        <td style="vertical-align: middle">{{ $orderreimbursement->namaRek}}</td>
-                        <td style="vertical-align: middle">
+                        <td><a href="/todoreimbursement/{{ $orderreimbursement->id }}" class="btn btn-light">{{ $orderreimbursement->id }}</a></td>
+                        <td>{{ $orderreimbursement->uName}}</td>
+                        <td>{{ $orderreimbursement->orderDate}}</td>
+                        <td>{{ $orderreimbursement->namaRek}}</td>
+                        <td>
                             @if ($orderreimbursement->status == "PENDING")
                                 <label style="color:red"><b>{{ $orderreimbursement->status}}</b></label>
                             @elseif ($orderreimbursement->status == "IN PROGRESS")

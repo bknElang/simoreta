@@ -39,10 +39,10 @@
 
                 @foreach ($aaks as $aak)
                     <tr>
-                        <td style="vertical-align: middle"><a href="/myjurnalaak/{{ $aak->id }}" class="btn btn-light">{{ $aak->id }}</a></td>
-                        <td style="vertical-align: middle">{{ $aak->orderDate}}</td>
-                        <td style="vertical-align: middle">{{ $aak->filename}}</td>
-                        <td style="vertical-align: middle">
+                        <td><a href="/myjurnalaak/{{ $aak->id }}" class="btn btn-light">{{ $aak->id }}</a></td>
+                        <td>{{ $aak->orderDate}}</td>
+                        <td>{{ $aak->filename}}</td>
+                        <td>
                             @if ($aak->status == "Waiting for Approval")
                                 <label style="color:#606060"><b>{{ $aak->status}}</b></label>
                             @elseif ($aak->status == "REJECTED")

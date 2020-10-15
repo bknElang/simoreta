@@ -37,7 +37,7 @@
                     <div class="col" id="profile">
                         <label>{{auth()->user()->name}}</label>
                         <br>
-                        {{auth()->user()->NIP}}
+                        <label>{{auth()->user()->NIP}}</label>
                     </div>
                 </div>
 
@@ -161,7 +161,7 @@
                     <button class="btn btn-light d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
-                    <a href="/home"><img src="{{asset('assets/simoreta.png')}}" width="200px" height="50px" style="margin-left:50px;" alt=""></a>
+                    <a href="/home"><img src="{{asset('assets/simoreta.png')}}" id="navimg" alt=""></a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item">

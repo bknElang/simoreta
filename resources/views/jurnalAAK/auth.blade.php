@@ -43,10 +43,10 @@
 
                 @foreach ($aaks as $aak)
                     <tr>
-                        <td style="vertical-align: middle"><a href="/authjurnalaak/{{ $aak->id }}" class="btn btn-light">{{ $aak->id }}</a></td>
-                        <td style="vertical-align: middle">{{ $aak->orderDate}}</td>
-                        <td style="vertical-align: middle">{{ $aak->uName}}</td>
-                        <td style="vertical-align: middle">{{ $aak->filename}}</td>
+                        <td><a href="/authjurnalaak/{{ $aak->id }}" class="btn btn-light">{{ $aak->id }}</a></td>
+                        <td>{{ $aak->orderDate}}</td>
+                        <td>{{ $aak->uName}}</td>
+                        <td>{{ $aak->filename}}</td>
                     </tr>
                 @endforeach   
             </table>

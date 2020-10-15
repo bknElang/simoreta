@@ -40,11 +40,11 @@
 
                 @foreach ($requestjobs as $requestjob)
                     <tr>
-                        <td style="vertical-align: middle"><a href="/myjob/{{ $requestjob->id }}" class="btn btn-light">{{ $requestjob->id }}</a></td>
-                        <td style="vertical-align: middle">{{ $requestjob->orderDate}}</td>
-                        <td style="vertical-align: middle">{{ $requestjob->jenis}}</td>
-                        <td style="vertical-align: middle">{{ $requestjob->rName}}</td>
-                        <td style="vertical-align: middle">
+                        <td><a href="/myjob/{{ $requestjob->id }}" class="btn btn-light">{{ $requestjob->id }}</a></td>
+                        <td>{{ $requestjob->orderDate}}</td>
+                        <td>{{ $requestjob->jenis}}</td>
+                        <td>{{ $requestjob->rName}}</td>
+                        <td>
                             @if ($requestjob->status == "PENDING")
                                 <label style="color:red"><b>{{ $requestjob->status}}</b></label>
                             @elseif ($requestjob->status == "IN PROGRESS")

@@ -33,13 +33,13 @@
 
                 @foreach ($users as $user)
                     <tr>
-                        <td style="vertical-align: middle"><a href="/users/{{ $user->id }}" class="btn btn-light">{{ $user->id }}</a></td>
-                        <td style="vertical-align: middle">{{ $user->cName }}</td>
-                        <td style="vertical-align: middle">{{ $user->name}}</td>
-                        <td style="vertical-align: middle">{{ $user->NIP}}</td>
-                        <td style="vertical-align: middle">{{ $user->email}}</td>
-                        <td style="vertical-align: middle">{{ $user->nohp}}</td>
-                        <td style="vertical-align: middle">{{ $user->rName}}</td>
+                        <td><a href="/users/{{ $user->id }}" class="btn btn-light">{{ $user->id }}</a></td>
+                        <td>{{ $user->cName }}</td>
+                        <td>{{ $user->name}}</td>
+                        <td>{{ $user->NIP}}</td>
+                        <td>{{ $user->email}}</td>
+                        <td>{{ $user->nohp}}</td>
+                        <td>{{ $user->rName}}</td>
                     </tr>
                 @endforeach   
             </table>

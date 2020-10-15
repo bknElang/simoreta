@@ -43,10 +43,10 @@
 
                 @foreach ($requestjobs as $requestjob)
                     <tr>
-                        <td style="vertical-align: middle"><a href="/authjob/{{ $requestjob->id }}" class="btn btn-light">{{ $requestjob->id }}</a></td>
-                        <td style="vertical-align: middle">{{ $requestjob->uName}}</td>
-                        <td style="vertical-align: middle">{{ $requestjob->orderDate}}</td>
-                        <td style="vertical-align: middle">{{ $requestjob->jenis}}</td>
+                        <td><a href="/authjob/{{ $requestjob->id }}" class="btn btn-light">{{ $requestjob->id }}</a></td>
+                        <td>{{ $requestjob->uName}}</td>
+                        <td>{{ $requestjob->orderDate}}</td>
+                        <td>{{ $requestjob->jenis}}</td>
                     </tr>
                 @endforeach   
             </table>

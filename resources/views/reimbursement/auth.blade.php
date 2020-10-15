@@ -43,10 +43,10 @@
 
                 @foreach ($orderreimbursements as $orderreimbursement)
                     <tr>
-                        <td style="vertical-align: middle"><a href="/authreimbursement/{{ $orderreimbursement->id }}" class="btn btn-light">{{ $orderreimbursement->id }}</a></td>
-                        <td style="vertical-align: middle">{{ $orderreimbursement->uName}}</td>
-                        <td style="vertical-align: middle">{{ $orderreimbursement->orderDate}}</td>
-                        <td style="vertical-align: middle">{{ $orderreimbursement->namaRek}}</td>
+                        <td><a href="/authreimbursement/{{ $orderreimbursement->id }}" class="btn btn-light">{{ $orderreimbursement->id }}</a></td>
+                        <td>{{ $orderreimbursement->uName}}</td>
+                        <td>{{ $orderreimbursement->orderDate}}</td>
+                        <td>{{ $orderreimbursement->namaRek}}</td>
                     </tr>
                 @endforeach   
             </table>

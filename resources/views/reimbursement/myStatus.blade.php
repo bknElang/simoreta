@@ -40,11 +40,11 @@
 
                 @foreach ($orderreimbursements as $orderreimbursement)
                     <tr>
-                        <td style="vertical-align: middle"><a href="/myreimbursement/{{ $orderreimbursement->id }}" class="btn btn-light">{{ $orderreimbursement->id }}</a></td>
-                        <td style="vertical-align: middle">{{ $orderreimbursement->orderDate}}</td>
-                        <td style="vertical-align: middle">{{ $orderreimbursement->namaRek}}</td>
-                        <td style="vertical-align: middle">{{ $orderreimbursement->keterangan}}</td>
-                        <td style="vertical-align: middle">
+                        <td><a href="/myreimbursement/{{ $orderreimbursement->id }}" class="btn btn-light">{{ $orderreimbursement->id }}</a></td>
+                        <td>{{ $orderreimbursement->orderDate}}</td>
+                        <td>{{ $orderreimbursement->namaRek}}</td>
+                        <td>{{ $orderreimbursement->keterangan}}</td>
+                        <td>
                             @if ($orderreimbursement->status == "Waiting for Approval")
                                 <label style="color:#606060"><b>{{ $orderreimbursement->status}}</b></label>
                             @elseif ($orderreimbursement->status == "REJECTED")

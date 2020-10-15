@@ -40,11 +40,11 @@
 
                 @foreach ($kirimans as $kiriman)
                     <tr>
-                        <td style="vertical-align: middle"><a href="/authkiriman/{{ $kiriman->id }}" class="btn btn-light">{{ $kiriman->id }}</a></td>
-                        <td style="vertical-align: middle">{{ $kiriman->uName}}</td>
-                        <td style="vertical-align: middle">{{ $kiriman->orderDate}}</td>
-                        <td style="vertical-align: middle">{{ $kiriman->namaDebitur}}</td>
-                        <td style="vertical-align: middle">{{ $kiriman->namaPIC}}</td>
+                        <td><a href="/authkiriman/{{ $kiriman->id }}" class="btn btn-light">{{ $kiriman->id }}</a></td>
+                        <td>{{ $kiriman->uName}}</td>
+                        <td>{{ $kiriman->orderDate}}</td>
+                        <td>{{ $kiriman->namaDebitur}}</td>
+                        <td>{{ $kiriman->namaPIC}}</td>
                     </tr>
                 @endforeach   
             </table>

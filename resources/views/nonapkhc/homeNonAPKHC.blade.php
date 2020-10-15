@@ -10,7 +10,7 @@
         <div class="card border-danger bg-transparent sm-4">
             <div class="card-header bg-transparent border-danger">Pending</div>
             <div class="card-body text-danger">
-                <h5 class="card-title">Total Pending:</h5>
+                <h5 class="card-title">Total Pending: {{array_sum($pendinglogistik)}}</h5>
                 <li>
                     <a href="#pendingLogis" data-toggle="collapse" aria-expanded="false">
                         Logistik

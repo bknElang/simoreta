@@ -40,11 +40,11 @@
 
                 @foreach ($kirimans as $kiriman)
                     <tr>
-                        <td style="vertical-align: middle"><a href="/mykiriman/{{ $kiriman->id }}" class="btn btn-light">{{ $kiriman->id }}</a></td>
-                        <td style="vertical-align: middle">{{ $kiriman->orderDate}}</td>
-                        <td style="vertical-align: middle">{{ $kiriman->namaDebitur}}</td>
-                        <td style="vertical-align: middle">{{ $kiriman->namaPIC}}</td>
-                        <td style="vertical-align: middle">
+                        <td><a href="/mykiriman/{{ $kiriman->id }}" class="btn btn-light">{{ $kiriman->id }}</a></td>
+                        <td>{{ $kiriman->orderDate}}</td>
+                        <td>{{ $kiriman->namaDebitur}}</td>
+                        <td>{{ $kiriman->namaPIC}}</td>
+                        <td>
                             @if ($kiriman->status == "Waiting for Approval")
                                 <label style="color:#606060"><b>{{ $kiriman->status}}</b></label>
                             @elseif ($kiriman->status == "REJECTED")

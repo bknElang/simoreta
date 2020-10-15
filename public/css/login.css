@@ -2,7 +2,7 @@
 /* BASIC */
 
 html {
-    background-color: #56baed;
+    background-color: #eeeeee;
   }
   
   body {
@@ -72,8 +72,7 @@ html {
     color: white;
   }
   
-  
-  
+
   /* TABS */
   
   h2.inactive {
@@ -279,8 +278,6 @@ html {
     width: 100%;
   }
   
-  
-  
   /* OTHERS */
   
   *:focus {
@@ -288,6 +285,14 @@ html {
   } 
   
   #icon {
-    width:60%;
+    width:80%;
+    height: 95px;
   }
+
+@media (max-width: 768px) {
+  #icon {
+    width:80%;
+    height: 70px;
+  }
+}
   

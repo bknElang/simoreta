@@ -32,11 +32,11 @@
                             @csrf
                             <input type="hidden" value="{{$reset->resetID}}" name="resetID">
                             <input type="hidden" value="{{$reset->id}}" name="userID">
-                            <td style="vertical-align: middle">{{$reset->resetID}}</td>
-                            <td style="vertical-align: middle"><a href="/users/{{ $user->id }}">{{$reset->id}}</a></td>
-                            <td style="vertical-align: middle">{{$reset->name}}</td>
-                            <td style="vertical-align: middle">{{$reset->NIP}}</td>
-                            <td style="vertical-align: middle"><button type="submit" class="btn btn-success">Reset Password</button></td>
+                            <td>{{$reset->resetID}}</td>
+                            <td><a href="/users/{{ $user->id }}">{{$reset->id}}</a></td>
+                            <td>{{$reset->name}}</td>
+                            <td>{{$reset->NIP}}</td>
+                            <td><button type="submit" class="btn btn-success">Reset Password</button></td>
                         </form>
                     </tr>
                 @endforeach   

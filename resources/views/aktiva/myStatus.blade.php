@@ -40,11 +40,11 @@
 
                 @foreach ($aktivas as $aktiva)
                     <tr>
-                        <td style="vertical-align: middle"><a href="/myaktiva/{{ $aktiva->id }}" class="btn btn-light">{{ $aktiva->id }}</a></td>
-                        <td style="vertical-align: middle">{{ $aktiva->orderDate}}</td>
-                        <td style="vertical-align: middle">{{ $aktiva->jenisBarang}}</td>
-                        <td style="vertical-align: middle">{{ $aktiva->spesifikasi}}</td>
-                        <td style="vertical-align: middle">
+                        <td><a href="/myaktiva/{{ $aktiva->id }}" class="btn btn-light">{{ $aktiva->id }}</a></td>
+                        <td>{{ $aktiva->orderDate}}</td>
+                        <td>{{ $aktiva->jenisBarang}}</td>
+                        <td>{{ $aktiva->spesifikasi}}</td>
+                        <td>
                             @if ($aktiva->status == "Waiting for Approval")
                                 <label style="color:#606060"><b>{{ $aktiva->status}}</b></label>
                             @elseif ($aktiva->status == "REJECTED")
