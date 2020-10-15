@@ -43,6 +43,10 @@ class PagesController extends Controller
         $myprogressbuku = $this->progressBuku($user);
         $myfinishbuku = $this->finishBuku($user);
 
+        $mypendingsic = $this->pendingSic($user);
+        $myprogresssic = $this->progressSic($user);
+        $myfinishsic = $this->finishSic($user);
+
         if ($user->role_id == 1) {
             return view('admin.homeAdmin');
         } else if ($user->role_id == 2) {
@@ -59,7 +63,11 @@ class PagesController extends Controller
 
                 'pendingbuku' => $mypendingbuku,
                 'progressbuku' => $myprogressbuku,
-                'finishedbuku' => $myfinishbuku
+                'finishedbuku' => $myfinishbuku,
+
+                'pendingsic' => $mypendingsic,
+                'progresssic' => $myprogresssic,
+                'finishedsic' => $myfinishsic,
             ]);
         } else if ($user->role_id == 6) {
             return view('nonapk.homeNonAPK', [
@@ -69,7 +77,11 @@ class PagesController extends Controller
 
                 'pendingbuku' => $mypendingbuku, 
                 'progressbuku' => $myprogressbuku, 
-                'finishedbuku' => $myfinishbuku
+                'finishedbuku' => $myfinishbuku,
+
+                'pendingsic' => $mypendingsic,
+                'progresssic' => $myprogresssic,
+                'finishedsic' => $myfinishsic,
                 ]);
         }
     }
@@ -263,5 +275,87 @@ class PagesController extends Controller
         return $arrayFinish;
     }
 
+    public function pendingSic(User $user)
+    {
+        $month = date('m');
 
+        //PENDING SIC
+        $pendingFixAplikasi = DB::table('orderfixaplikasi')
+                    ->where('status', '=', 'PENDING')
+                    ->where('user_id', '=', $user->id)
+                    ->whereMonth('orderDate', '=', $month)
+                    ->count();
+
+        $pendingFixComputer = DB::table('orderfixcomputer')
+                    ->where('status', '=', 'PENDING')
+                    ->where('user_id', '=', $user->id)
+                    ->whereMonth('orderDate', '=', $month)
+                    ->count();
+
+        $pendingFixHardware = DB::table('orderfixhardware')
+                    ->where('status', '=', 'PENDING')
+                    ->where('user_id', '=', $user->id)
+                    ->whereMonth('orderDate', '=', $month)
+                    ->count();
+
+        $arrayPending = [$pendingFixAplikasi, $pendingFixComputer, $pendingFixHardware];
+
+        return $arrayPending;
+    }
+
+    public function progressSic(User $user)
+    {
+        $month = date('m');
+
+        //IN PROGRESS SIC
+        $progressFixAplikasi = DB::table('orderfixaplikasi')
+                    ->where('status', '=', 'IN PROGRESS')
+                    ->where('user_id', '=', $user->id)
+                    ->whereMonth('orderDate', '=', $month)
+                    ->count();
+
+        $progressFixComputer = DB::table('orderfixcomputer')
+                    ->where('status', '=', 'IN PROGRESS')
+                    ->where('user_id', '=', $user->id)
+                    ->whereMonth('orderDate', '=', $month)
+                    ->count();
+
+        $progressFixHardware = DB::table('orderfixhardware')
+                    ->where('status', '=', 'IN PROGRESS')
+                    ->where('user_id', '=', $user->id)
+                    ->whereMonth('orderDate', '=', $month)
+                    ->count();
+
+        $arrayProgress = [$progressFixAplikasi, $progressFixComputer, $progressFixHardware];
+
+        return $arrayProgress;
+    }
+
+    public function finishSic(User $user)
+    {
+        $month = date('m');
+
+        //FINISHED SIC
+        $finishedFixAplikasi = DB::table('orderfixaplikasi')
+                    ->where('status', '=', 'FINISHED')
+                    ->where('user_id', '=', $user->id)
+                    ->whereMonth('orderDate', '=', $month)
+                    ->count();
+
+        $finishedFixComputer = DB::table('orderfixcomputer')
+                    ->where('status', '=', 'FINISHED')
+                    ->where('user_id', '=', $user->id)
+                    ->whereMonth('orderDate', '=', $month)
+                    ->count();
+
+        $finishedFixHardware = DB::table('orderfixhardware')
+                    ->where('status', '=', 'FINISHED')
+                    ->where('user_id', '=', $user->id)
+                    ->whereMonth('orderDate', '=', $month)
+                    ->count();
+
+        $arrayFinished = [$finishedFixAplikasi, $finishedFixComputer, $finishedFixHardware];
+
+        return $arrayFinished;
+    }
 }

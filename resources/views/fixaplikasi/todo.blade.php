@@ -2,10 +2,10 @@
 
 @section('content')
     
-    <h1>Perbaikan Komputer</h1>
+    <h1>Perbaikan Aplikasi</h1>
     <hr>
 
-    <form action="/searchtodofixcomputer" method="get">
+    <form action="/searchtodofixaplikasi" method="get">
         <div class="row">
             <div class="col-sm-4 form-inline">
                 <label for="">From:</label>
@@ -18,7 +18,7 @@
 
             <div class="col-sm-4">
                 <button type="submit" class="btn btn-success">Search by Order Date</button>
-                <a href="/todofixcomputer" class="btn btn-dark">Clear Filter</a>
+                <a href="/todofixaplikasi" class="btn btn-dark">Clear Filter</a>
             </div>
         </div>
     </form>
@@ -38,25 +38,25 @@
                     <td class="col-sm-1" style="width: 30px"><b>ID</b></td>
                     <td class="col-sm-1" style="width: 100px"><b>Requested By</b></td>
                     <td class="col-sm-2" style="width: 100px"><b>Order Date</b></td>
-                    <td class="col-sm-2" style="width: 100px"><b>Komponen Komputer</b></td>
+                    <td class="col-sm-2" style="width: 100px"><b>Aplikasi</b></td>
                     <td class="col-sm-1" style="width: 30px"><b>Status</b></td>
                 </thead>
 
-                @foreach ($orderfixcomputer as $orderfixcomputer)
+                @foreach ($orderfixaplikasi as $orderfixaplikasi)
                     <tr>
-                        <td style="vertical-align: middle"><a href="/todofixcomputer/{{ $orderfixcomputer->id }}" class="btn btn-light">{{ $orderfixcomputer->id }}</a></td>
-                        <td style="vertical-align: middle">{{ $orderfixcomputer->uName}}</td>
-                        <td style="vertical-align: middle">{{ $orderfixcomputer->orderDate}}</td>
-                        <td style="vertical-align: middle">{{ $orderfixcomputer->jenis}}</td>
+                        <td style="vertical-align: middle"><a href="/todofixaplikasi/{{ $orderfixaplikasi->id }}" class="btn btn-light">{{ $orderfixaplikasi->id }}</a></td>
+                        <td style="vertical-align: middle">{{ $orderfixaplikasi->uName}}</td>
+                        <td style="vertical-align: middle">{{ $orderfixaplikasi->orderDate}}</td>
+                        <td style="vertical-align: middle">{{ $orderfixaplikasi->jenis}}</td>
                         <td style="vertical-align: middle">
-                            @if ($orderfixcomputer->status == "PENDING")
-                                <label style="color:red"><b>{{ $orderfixcomputer->status}}</b></label>
-                            @elseif ($orderfixcomputer->status == "IN PROGRESS")
-                                <label style="color:blue"><b>{{ $orderfixcomputer->status}}</b></label>
-                            @elseif ($orderfixcomputer->status == "IN PROGRESS")
-                                <label style="color:green"><b>{{ $orderfixcomputer->status}}</b></label>
+                            @if ($orderfixaplikasi->status == "PENDING")
+                                <label style="color:red"><b>{{ $orderfixaplikasi->status}}</b></label>
+                            @elseif ($orderfixaplikasi->status == "IN PROGRESS")
+                                <label style="color:blue"><b>{{ $orderfixaplikasi->status}}</b></label>
+                            @elseif ($orderfixaplikasi->status == "IN PROGRESS")
+                                <label style="color:green"><b>{{ $orderfixaplikasi->status}}</b></label>
                             @else
-                                <label>{{ $orderfixcomputer->status}}</label>
+                                <label>{{ $orderfixaplikasi->status}}</label>
                             @endif
                         </td>
                     </tr>
@@ -68,7 +68,7 @@
 
     <div class='row'>
         <label style="width: 15px"></label>
-        {{ $orderfixcomputer->links('pagination::bootstrap-4') }}
+        {{ $orderfixaplikasi->links('pagination::bootstrap-4') }}
     </div>
    
     

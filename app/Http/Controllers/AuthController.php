@@ -17,6 +17,7 @@ class AuthController extends Controller
     }
 
     public function postLogin(Request $request){
+        /*echo("test");*/
         if(Auth::attempt(['NIP' => $request->nip, 'password' => $request->password])){
             $current = new Datetime();
             if($request->nip != 'superadmin'){

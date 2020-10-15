@@ -40,7 +40,7 @@
 
                 @foreach ($orderfixcomputer as $orderfixcomputer)
                     <tr>
-                        <td style="vertical-align: middle"><a href="/myfixcomputer/{{ $orderfixcomputer->id }}" class="btn btn-light">{{ $orderreimbursement->id }}</a></td>
+                        <td style="vertical-align: middle"><a href="/myfixcomputer/{{ $orderfixcomputer->id }}" class="btn btn-light">{{ $orderfixcomputer->id }}</a></td>
                         <td style="vertical-align: middle">{{ $orderfixcomputer->orderDate}}</td>
                         <td style="vertical-align: middle">{{ $orderfixcomputer->jenis}}</td>
                         <td style="vertical-align: middle">{{ $orderfixcomputer->keterangan}}</td>

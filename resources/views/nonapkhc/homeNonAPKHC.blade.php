@@ -52,13 +52,13 @@
                     </a>
                     <ul class="collapse list-unstyled" id="pendingSIC">
                         <li>
-                            Komputer
+                            Perbaikan Aplikasi: {{$pendingsic[0]}}
                         </li>
                         <li>
-                            Aplikasi
+                            Perbaikan Komputer: {{$pendingsic[1]}}
                         </li>
                         <li>
-                            Hardware Lainnya
+                            Perbaikan Hardware Lainnya: {{$pendingsic[2]}}
                         </li>
                     </ul>
                 </li>
@@ -111,13 +111,13 @@
                     </a>
                     <ul class="collapse list-unstyled" id="progressSIC">
                         <li>
-                            Komputer
+                            Perbaikan Aplikasi: {{$progresssic[0]}}
                         </li>
                         <li>
-                            Aplikasi
+                            Perbaikan Komputer: {{$progresssic[1]}}
                         </li>
                         <li>
-                            Hardware Lainnya
+                            Perbaikan Hardware Lainnya: {{$progresssic[2]}}
                         </li>
                     </ul>
                 </li>
@@ -170,13 +170,13 @@
                     </a>
                     <ul class="collapse list-unstyled" id="finishSIC">
                         <li>
-                            Komputer
+                            Perbaikan Aplikasi: {{$finishedsic[0]}}
                         </li>
                         <li>
-                            Aplikasi
+                            Perbaikan Komputer: {{$finishedsic[1]}}
                         </li>
                         <li>
-                            Hardware Lainnya
+                            Perbaikan Hardware Lainnya: {{$finishedsic[2]}}
                         </li>
                     </ul>
                 </li>

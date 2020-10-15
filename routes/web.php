@@ -185,20 +185,53 @@ Route::patch('/todojob/{orderRequestJob}/finish', '\App\Http\Controllers\OrderRe
 //fixcomputer
 Route::get('/fixcomputer', '\App\Http\Controllers\OrderFixComputerController@create')->middleware('auth');
 Route::post('/fixcomputer', '\App\Http\Controllers\OrderFixComputerController@store')->middleware('auth')->name('fixcomputer');
-route::get('/myfixcomputer', '\App\Http\Controllers\OrderReimbursementsController@myindex')->middleware('auth');
-route::get('/searchmyfixcomputer', '\App\Http\Controllers\OrderReimbursementsController@mysearch')->middleware('auth');
-Route::get('/myfixcomputer/{orderReimbursement}', '\App\Http\Controllers\OrderReimbursementsController@show')->middleware('auth')->name('Order\'s Detail');
-route::get('/authfixcomputer', '\App\Http\Controllers\OrderReimbursementsController@authindex')->middleware('auth');
-route::get('/searchauthfixcomputer', '\App\Http\Controllers\OrderReimbursementsController@authsearch')->middleware('auth');
-Route::get('/authfixcomputer/{orderReimbursement}', '\App\Http\Controllers\OrderReimbursementsController@authdetail')->middleware('auth')->name('Order\'s Detail');
-Route::patch('/authfixcomputer/{orderReimbursement}/approve', '\App\Http\Controllers\OrderReimbursementsController@approve')->middleware('auth');
-Route::patch('/authfixcomputer/{orderReimbursement}/reject', '\App\Http\Controllers\OrderReimbursementsController@reject')->middleware('auth');
-Route::get('/todofixcomputer', '\App\Http\Controllers\OrderReimbursementsController@todoindex')->middleware('auth');
-route::get('/searchtodofixcomputer', '\App\Http\Controllers\OrderReimbursementsController@todosearch')->middleware('auth');
-Route::get('/todofixcomputer/{orderReimbursement}', '\App\Http\Controllers\OrderReimbursementsController@edit')->middleware('auth')->name('Order\'s Detail');
-Route::patch('/todofixcomputer/{orderReimbursement}', '\App\Http\Controllers\OrderReimbursementsController@update')->middleware('auth');
-Route::patch('/todofixcomputer/{orderReimbursement}/finish', '\App\Http\Controllers\OrderReimbursementsController@finish')->middleware('auth');
+route::get('/myfixcomputer', '\App\Http\Controllers\OrderFixComputerController@myindex')->middleware('auth');
+route::get('/searchmyfixcomputer', '\App\Http\Controllers\OrderFixComputerController@mysearch')->middleware('auth');
+Route::get('/myfixcomputer/{orderFixComputer}', '\App\Http\Controllers\OrderFixComputerController@show')->middleware('auth')->name('Order\'s Detail');
+route::get('/authfixcomputer', '\App\Http\Controllers\OrderFixComputerController@authindex')->middleware('auth');
+route::get('/searchauthfixcomputer', '\App\Http\Controllers\OrderFixComputerController@authsearch')->middleware('auth');
+Route::get('/authfixcomputer/{orderFixComputer}', '\App\Http\Controllers\OrderFixComputerController@authdetail')->middleware('auth')->name('Order\'s Detail');
+Route::patch('/authfixcomputer/{orderFixComputer}/approve', '\App\Http\Controllers\OrderFixComputerController@approve')->middleware('auth');
+Route::patch('/authfixcomputer/{orderFixComputer}/reject', '\App\Http\Controllers\OrderFixComputerController@reject')->middleware('auth');
+Route::get('/todofixcomputer', '\App\Http\Controllers\OrderFixComputerController@todoindex')->middleware('auth');
+route::get('/searchtodofixcomputer', '\App\Http\Controllers\OrderFixComputerController@todosearch')->middleware('auth');
+Route::get('/todofixcomputer/{orderFixComputer}', '\App\Http\Controllers\OrderFixComputerController@edit')->middleware('auth')->name('Order\'s Detail');
+Route::patch('/todofixcomputer/{orderFixComputer}', '\App\Http\Controllers\OrderFixComputerController@update')->middleware('auth');
+Route::patch('/todofixcomputer/{orderFixComputer}/finish', '\App\Http\Controllers\OrderFixComputerController@finish')->middleware('auth');
 
+//fixaplikasi
+Route::get('/fixaplikasi', '\App\Http\Controllers\OrderFixAplikasiController@create')->middleware('auth');
+Route::post('/fixaplikasi', '\App\Http\Controllers\OrderFixAplikasiController@store')->middleware('auth')->name('fixaplikasi');
+route::get('/myfixaplikasi', '\App\Http\Controllers\OrderFixAplikasiController@myindex')->middleware('auth');
+route::get('/searchmyfixaplikasi', '\App\Http\Controllers\OrderFixAplikasiController@mysearch')->middleware('auth');
+Route::get('/myfixaplikasi/{orderFixAplikasi}', '\App\Http\Controllers\OrderFixAplikasiController@show')->middleware('auth')->name('Order\'s Detail');
+route::get('/authfixaplikasi', '\App\Http\Controllers\OrderFixAplikasiController@authindex')->middleware('auth');
+route::get('/searchauthfixaplikasi', '\App\Http\Controllers\OrderFixAplikasiController@authsearch')->middleware('auth');
+Route::get('/authfixaplikasi/{orderFixAplikasi}', '\App\Http\Controllers\OrderFixAplikasiController@authdetail')->middleware('auth')->name('Order\'s Detail');
+Route::patch('/authfixaplikasi/{orderFixAplikasi}/approve', '\App\Http\Controllers\OrderFixAplikasiController@approve')->middleware('auth');
+Route::patch('/authfixaplikasi/{orderFixAplikasi}/reject', '\App\Http\Controllers\OrderFixAplikasiController@reject')->middleware('auth');
+Route::get('/todofixaplikasi', '\App\Http\Controllers\OrderFixAplikasiController@todoindex')->middleware('auth');
+route::get('/searchtodofixaplikasi', '\App\Http\Controllers\OrderFixAplikasiController@todosearch')->middleware('auth');
+Route::get('/todofixaplikasi/{orderFixAplikasi}', '\App\Http\Controllers\OrderFixAplikasiController@edit')->middleware('auth')->name('Order\'s Detail');
+Route::patch('/todofixaplikasi/{orderFixAplikasi}', '\App\Http\Controllers\OrderFixAplikasiController@update')->middleware('auth');
+Route::patch('/todofixaplikasi/{orderFixAplikasi}/finish', '\App\Http\Controllers\OrderFixAplikasiController@finish')->middleware('auth');
+
+//fixhardware
+Route::get('/fixhardware', '\App\Http\Controllers\OrderFixHardwareController@create')->middleware('auth');
+Route::post('/fixhardware', '\App\Http\Controllers\OrderFixHardwareController@store')->middleware('auth')->name('fixhardware');
+route::get('/myfixhardware', '\App\Http\Controllers\OrderFixHardwareController@myindex')->middleware('auth');
+route::get('/searchmyfixhardware', '\App\Http\Controllers\OrderFixHardwareController@mysearch')->middleware('auth');
+Route::get('/myfixhardware/{orderFixHardware}', '\App\Http\Controllers\OrderFixHardwareController@show')->middleware('auth')->name('Order\'s Detail');
+route::get('/authfixhardware', '\App\Http\Controllers\OrderFixHardwareController@authindex')->middleware('auth');
+route::get('/searchauthfixhardware', '\App\Http\Controllers\OrderFixHardwareController@authsearch')->middleware('auth');
+Route::get('/authfixhardware/{orderFixHardware}', '\App\Http\Controllers\OrderFixHardwareController@authdetail')->middleware('auth')->name('Order\'s Detail');
+Route::patch('/authfixhardware/{orderFixHardware}/approve', '\App\Http\Controllers\OrderFixHardwareController@approve')->middleware('auth');
+Route::patch('/authfixhardware/{orderFixHardware}/reject', '\App\Http\Controllers\OrderFixHardwareController@reject')->middleware('auth');
+Route::get('/todofixhardware', '\App\Http\Controllers\OrderFixHardwareController@todoindex')->middleware('auth');
+route::get('/searchtodofixhardware', '\App\Http\Controllers\OrderFixHardwareController@todosearch')->middleware('auth');
+Route::get('/todofixhardware/{orderFixHardware}', '\App\Http\Controllers\OrderFixHardwareController@edit')->middleware('auth')->name('Order\'s Detail');
+Route::patch('/todofixhardware/{orderFixHardware}', '\App\Http\Controllers\OrderFixHardwareController@update')->middleware('auth');
+Route::patch('/todofixhardware/{orderFixHardware}/finish', '\App\Http\Controllers\OrderFixHardwareController@finish')->middleware('auth');
 
 
 

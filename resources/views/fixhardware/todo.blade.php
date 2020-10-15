@@ -2,10 +2,10 @@
 
 @section('content')
     
-    <h1>Perbaikan Komputer</h1>
+    <h1>Perbaikan Hardware</h1>
     <hr>
 
-    <form action="/searchtodofixcomputer" method="get">
+    <form action="/searchtodofixhardware" method="get">
         <div class="row">
             <div class="col-sm-4 form-inline">
                 <label for="">From:</label>
@@ -18,7 +18,7 @@
 
             <div class="col-sm-4">
                 <button type="submit" class="btn btn-success">Search by Order Date</button>
-                <a href="/todofixcomputer" class="btn btn-dark">Clear Filter</a>
+                <a href="/todofixhardware" class="btn btn-dark">Clear Filter</a>
             </div>
         </div>
     </form>
@@ -42,21 +42,21 @@
                     <td class="col-sm-1" style="width: 30px"><b>Status</b></td>
                 </thead>
 
-                @foreach ($orderfixcomputer as $orderfixcomputer)
+                @foreach ($orderfixhardware as $orderfixhardware)
                     <tr>
-                        <td style="vertical-align: middle"><a href="/todofixcomputer/{{ $orderfixcomputer->id }}" class="btn btn-light">{{ $orderfixcomputer->id }}</a></td>
-                        <td style="vertical-align: middle">{{ $orderfixcomputer->uName}}</td>
-                        <td style="vertical-align: middle">{{ $orderfixcomputer->orderDate}}</td>
-                        <td style="vertical-align: middle">{{ $orderfixcomputer->jenis}}</td>
+                        <td style="vertical-align: middle"><a href="/todofixhardware/{{ $orderfixhardware->id }}" class="btn btn-light">{{ $orderfixhardware->id }}</a></td>
+                        <td style="vertical-align: middle">{{ $orderfixhardware->uName}}</td>
+                        <td style="vertical-align: middle">{{ $orderfixhardware->orderDate}}</td>
+                        <td style="vertical-align: middle">{{ $orderfixhardware->jenis}}</td>
                         <td style="vertical-align: middle">
-                            @if ($orderfixcomputer->status == "PENDING")
-                                <label style="color:red"><b>{{ $orderfixcomputer->status}}</b></label>
-                            @elseif ($orderfixcomputer->status == "IN PROGRESS")
-                                <label style="color:blue"><b>{{ $orderfixcomputer->status}}</b></label>
-                            @elseif ($orderfixcomputer->status == "IN PROGRESS")
-                                <label style="color:green"><b>{{ $orderfixcomputer->status}}</b></label>
+                            @if ($orderfixhardware->status == "PENDING")
+                                <label style="color:red"><b>{{ $orderfixhardware->status}}</b></label>
+                            @elseif ($orderfixhardware->status == "IN PROGRESS")
+                                <label style="color:blue"><b>{{ $orderfixhardware->status}}</b></label>
+                            @elseif ($orderfixhardware->status == "IN PROGRESS")
+                                <label style="color:green"><b>{{ $orderfixhardware->status}}</b></label>
                             @else
-                                <label>{{ $orderfixcomputer->status}}</label>
+                                <label>{{ $orderfixhardware->status}}</label>
                             @endif
                         </td>
                     </tr>
@@ -68,7 +68,7 @@
 
     <div class='row'>
         <label style="width: 15px"></label>
-        {{ $orderfixcomputer->links('pagination::bootstrap-4') }}
+        {{ $orderfixhardware->links('pagination::bootstrap-4') }}
     </div>
    
     
