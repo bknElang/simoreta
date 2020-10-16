@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\AssignKendaraan;
 use App\Models\OrderKendaraan;
+use App\Models\User;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +15,6 @@ class OrderKendaraansController extends Controller
     public PagesController $pageController;
 
     public function myindex(){
-
         $currUser = Auth::user();
 
         $pagesController = new PagesController();
@@ -27,12 +28,66 @@ class OrderKendaraansController extends Controller
         return view('kendaraan.myStatus', ['orderkendaraans' => $orderkendaraans, 'layout' => $layout]);
     }
 
-    public function todoindex(){
+    public function mysearch(Request $request){
+        $currUser = Auth::user();
 
-        $layout = 'layouts.logistik.app';
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $orderkendaraans = DB::table('orderkendaraans')
+                            ->where('user_id', '=', $currUser->id)
+                            ->whereBetween('orderDate', [$request->from, $request->to])
+                            ->orderByRaw('orderDate DESC')
+                            ->paginate(10);
+
+        return view('kendaraan.myStatus', ['orderkendaraans' => $orderkendaraans, 'layout' => $layout]);
+    }
+
+    public function authindex()
+    {
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
 
         $orderkendaraans = DB::table('orderkendaraans')
                             ->join('users', 'orderkendaraans.user_id', '=', 'users.id')
+                            ->select('orderkendaraans.*', 'users.name AS uName')
+                            ->where('hc_id', '=', $currUser->id)
+                            ->where('status', '=', 'Waiting for Approval')
+                            ->orderByRaw('orderDate DESC')
+                            ->paginate(10);
+
+        return view('kendaraan.auth', ['orderkendaraans' => $orderkendaraans, 'layout' => $layout]);
+    }
+
+    public function authsearch(Request $request)
+    {
+        $currUser = Auth::user();
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $orderkendaraans = DB::table('orderkendaraans')
+                        ->join('users', 'orderkendaraans.user_id', '=', 'users.id')
+                        ->select('orderkendaraans.*', 'users.name AS uName')
+                        ->where('hc_id', '=', $currUser->id)
+                        ->where('status', '=', 'Waiting for Approval')
+                        ->whereBetween('orderDate', [$request->from, $request->to])
+                        ->orderByRaw('orderDate DESC')
+                        ->paginate(10);
+
+        return view('kendaraan.auth', ['orderkendaraans' => $orderkendaraans, 'layout' => $layout]);
+    }
+
+    public function todoindex(){
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $orderkendaraans = DB::table('orderkendaraans')
+                            ->join('users', 'orderkendaraans.user_id', '=', 'users.id')
+                            ->where('orderkendaraans.status', '!=', 'Waiting for Approval')
+                            ->where('orderkendaraans.status', '!=', 'REJECTED')
                             ->select('orderkendaraans.*', 'users.name AS uName')
                             ->orderByRaw('orderDate DESC')
                             ->paginate(10);
@@ -40,14 +95,20 @@ class OrderKendaraansController extends Controller
         return view('kendaraan.todo', ['orderkendaraans' => $orderkendaraans, 'layout' => $layout]);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function searchtodo(Request $request){
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $orderkendaraans = DB::table('orderkendaraans')
+                            ->join('users', 'orderkendaraans.user_id', '=', 'users.id')
+                            ->select('orderkendaraans.*', 'users.name AS uName')
+                            ->where('orderkendaraans.status', '!=', 'Waiting for Approval')
+                            ->where('orderkendaraans.status', '!=', 'REJECTED')
+                            ->whereBetween('orderDate', [$request->from, $request->to])
+                            ->orderByRaw('orderDate DESC')
+                            ->paginate(10);
+
+        return view('kendaraan.todo', ['orderkendaraans' => $orderkendaraans, 'layout' => $layout]);
     }
 
     /**
@@ -63,7 +124,9 @@ class OrderKendaraansController extends Controller
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
 
-        return view('kendaraan.orderForm', ['layout' => $layout, 'currUser' => $currUser]);
+        $hcs = User::where('role_id', 5)->get();
+
+        return view('kendaraan.orderForm', ['layout' => $layout, 'currUser' => $currUser, 'hcs' => $hcs]);
     }
 
     /**
@@ -80,7 +143,8 @@ class OrderKendaraansController extends Controller
         $validatedData = $request->validate([
             'pickuplocation' => 'required',
             'destination' => 'required',
-            'jumlah' => 'required'
+            'jumlah' => 'required',
+            'keterangan' => 'required'
         ]);
 
         OrderKendaraan::create([
@@ -91,7 +155,8 @@ class OrderKendaraansController extends Controller
             'destinationAddress' => $request->destination,
             'necessity' => $request->needs,
             'totalPassanger' => $request->jumlah,
-            'keterangan' => $request->keterangan
+            'keterangan' => $request->keterangan,
+            'hc_id' => $request->hcname
         ]);
 
         return redirect()->back()->with('successOrder', 'Order Successfull!');
@@ -107,16 +172,14 @@ class OrderKendaraansController extends Controller
     public function show(OrderKendaraan $orderKendaraan)
     {
         //
-        $currUser = Auth::user();
+        $currUser = User::firstWhere('id', '=', $orderKendaraan->user_id);
 
-        $assign = DB::table('assignkendaraans')
-                    ->where('id', '=', $orderKendaraan->assign_id)
-                    ->get();
+        $assign = AssignKendaraan::find($orderKendaraan->assign_id);
 
         $pagesController = new PagesController();
         $layout = $pagesController->getLayout();
 
-        return view('kendaraan.showKendaraan', ['orderkendaraan' => $orderKendaraan, 'layout' => $layout, 'currUser' => $currUser, 'assignKendaraan' => $assign]);
+        return view('kendaraan.showKendaraan', ['orderkendaraan' => $orderKendaraan, 'layout' => $layout, 'currUser' => $currUser, 'assign' => $assign]);
     }
 
     /**
@@ -128,7 +191,7 @@ class OrderKendaraansController extends Controller
     public function edit(OrderKendaraan $orderKendaraan)
     {
         //
-        $currUser = Auth::user();
+        $currUser = User::firstWhere('id', '=', $orderKendaraan->user_id);
 
         $assign = AssignKendaraan::find($orderKendaraan->assign_id);
         
@@ -136,6 +199,39 @@ class OrderKendaraansController extends Controller
         $layout = $pagesController->getLayout();
 
         return view('kendaraan.assignKendaraan', ['orderkendaraan' => $orderKendaraan, 'layout' => $layout, 'currUser' => $currUser, 'assignKendaraan' => $assign]);
+    }
+
+    public function authdetail(OrderKendaraan $orderKendaraan)
+    {
+        //
+        $currUser = User::firstWhere('id', '=', $orderKendaraan->user_id);
+
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        return view('kendaraan.authDetail', ['layout' => $layout, 'currUser' => $currUser, 'orderkendaraan' => $orderKendaraan]);
+    }
+
+    public function approve(OrderKendaraan $orderKendaraan)
+    {
+        //
+        OrderKendaraan::where('id', $orderKendaraan->id)
+            ->update([
+                'status' => 'PENDING'
+            ]);
+
+        return redirect()->back()->with('success', 'Order Approved');
+    }
+
+    public function reject(OrderKendaraan $orderKendaraan)
+    {
+        //
+        OrderKendaraan::where('id', $orderKendaraan->id)
+            ->update([
+                'status' => 'REJECTED'
+            ]);
+
+        return redirect()->back()->with('success', 'Order Rejected');
     }
 
     /**

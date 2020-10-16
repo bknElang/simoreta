@@ -5,18 +5,38 @@
     <h1>Order List</h1>
     <hr>
 
-    <br>
+    <form action="/searchmyordercar" method="get">
+        <div class="row">
+            <div class="col-sm-4 form-inline">
+                <label for="">From:</label>
+                <input type="datetime-local" class="form-control" name="from">
+            </div>
+            <div class="col-sm-4 form-inline">
+                <label for="">To:</label>
+                <input type="datetime-local" class="form-control" name="to">
+            </div>
+
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-success">Search by Order Date</button>
+                <a href="/myordercar" class="btn btn-dark">Clear Filter</a>
+            </div>
+        </div>
+    </form>
+
+    <hr>
+
+    <p>Click ID for details</p>
 
     <div class="row">
         <div class="col-sm-12">
             <table class="table table-hover table-responsive-sm">
                 <thead>
-                    <td class="col-sm-1" style="width: 30px"><b>ID</b></td>
-                    <td class="col-sm-2" style="width: 100px"><b>Tanggal Order</b></td>
-                    <td class="col-sm-2" style="width: 100px"><b>Tanggal Pemakaian</b></td>
-                    <td class="col-sm-2" style="width: 100px"><b>Tanggal Selesai Pemakaian</b></td>
-                    <td class="col-sm-1" style="width: 30px"><b>Status</b></td>
-                    <td class="col-sm-2" style="width: 100px"><b>Keperluan</b></td>
+                    <th class="col-sm-1" style="width: 30px"><b>ID</b></th>
+                    <th class="col-sm-2" style="width: 100px"><b>Tanggal Order</b></th>
+                    <th class="col-sm-2" style="width: 100px"><b>Tanggal Pemakaian</b></th>
+                    <th class="col-sm-2" style="width: 100px"><b>Tanggal Selesai Pemakaian</b></th>
+                    <th class="col-sm-2" style="width: 100px"><b>Keperluan</b></th>
+                    <th class="col-sm-1" style="width: 30px"><b>Status</b></th>
                 </thead>
 
                 @foreach ($orderkendaraans as $orderkendaraan)
@@ -25,8 +45,20 @@
                         <td>{{ $orderkendaraan->orderDate}}</td>
                         <td>{{ $orderkendaraan->useDatetime}}</td>
                         <td>{{ $orderkendaraan->finishDatetime}}</td>
-                        <td><label style="color:red"><b>{{ $orderkendaraan->status}}</b></label></td>
                         <td>{{ $orderkendaraan->necessity}}</td>
+                        <td>
+                            @if ($orderkendaraan->status == "Waiting for Approval")
+                                <label style="color:#606060"><b>{{ $orderkendaraan->status}}</b></label>
+                            @elseif ($orderkendaraan->status == "REJECTED")
+                                <label style="color:#CC0000"><b>{{ $orderkendaraan->status}}</b></label>
+                            @elseif ($orderkendaraan->status == "PENDING")
+                                <label style="color:#CC6600"><b>{{ $orderkendaraan->status}}</b></label>
+                            @elseif ($orderkendaraan->status == "IN PROGRESS")
+                                <label style="color:blue"><b>{{ $orderkendaraan->status}}</b></label>
+                            @elseif ($orderkendaraan->status == "FINISHED")
+                                <label style="color:green"><b>{{ $orderkendaraan->status}}</b></label>
+                            @endif
+                        </td>
                     </tr>
                 @endforeach   
             </table>

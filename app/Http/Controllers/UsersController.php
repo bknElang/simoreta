@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -18,7 +20,6 @@ class UsersController extends Controller
     public function index()
     {
         //
-
         $users = DB::table('users')
                 ->join('roles', 'users.role_id', '=', 'roles.id')
                 ->join('cabangs', 'users.cabang_id', '=', 'cabangs.id')
@@ -101,6 +102,22 @@ class UsersController extends Controller
         //
     }
 
+    public function changepassword(User $user)
+    {
+        //
+        $pagesController = new PagesController();
+        $layout = $pagesController->getLayout();
+
+        $currDate = new DateTime ();
+
+        $getUpdate = new DateTime($user->lastChangedPassword);
+        $deadline = $getUpdate->modify('+30 day');
+
+        $interval = $currDate->diff($deadline);
+
+        return view('user.changePassword', ['user'=>$user, 'layout' => $layout, 'interval' => $interval]);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -111,39 +128,64 @@ class UsersController extends Controller
     public function update(Request $request, User $user)
     {
         //
-        $validatedData = $request->validate([
-            'nip' => 'required|numeric',
-            'nohp' => 'required|numeric',
-            'name' => 'required|max:255',
-            'email' => 'required',
-            'password' => 'required|alpha_num|confirmed'
-        ]);
-
         User::where('id', $user->id)
             ->update([
-                'NIP' => $request->nip,
-                'nohp' => $request->nohp,
-                'name' => $request->name,
-                'email' => $request->email,
                 'cabang_id' => $request->cabang,
                 'role_id' => $request->role,
-                'password' => bcrypt($request->password)
             ]);
 
         return redirect()->back()->with('updateSuccess', 'Details Updated');
+    }
 
+    public function updatelogin(User $user)
+    {
+        $current = new Datetime();
+
+        //
+        User::where('id', $user->id)
+            ->update([
+                'lastLogin' => $current
+            ]);
+
+        return redirect()->back()->with('updateSuccess', 'Details Updated');
+    }
+
+    public function updatePassword(Request $request, User $user){
+        if (!(Hash::check($request->oldPassword, Auth::user()->password))) {
+            // The passwords matches
+            return redirect()->back()->with("error", "Your current password does not matches with the password you provided. Please try again.");
+        }
+
+        if (strcmp($request->oldPassword, $request->newPassword) == 0) {
+            //Current password and new password are same
+            return redirect()->back()->with("error", "New Password cannot be same as your current password. Please choose a different password.");
+        }
+
+        $validatedData = $request->validate([
+            'newPassword' => 'required|alpha_num|min:6|confirmed'
+        ]);
+
+        $current = new Datetime();
+
+        User::where('id', $user->id)
+            ->update([
+                'password' => bcrypt($request->newPassword),
+                'lastChangedPassword' => $current
+            ]);
+
+        return redirect()->back()->with('success', 'Password Updated');
     }
 
     public function updateAvatar(Request $request, User $user){
         $request->validate([
-            'image' => 'required|max:2048',
+            'file' => 'required|max:2048|image',
         ]);
 
-        $imageName = $request->file('image')->getClientOriginalName();
+        $imageName = $request->file('file')->getClientOriginalName();
 
-        $uploadName = time().'-'.$user->username.'-'.$imageName;
+        $uploadName = time().'-'.$user->NIP.'-'.$imageName;
 
-        $request->file('image')->move('images',$uploadName);
+        $request->file('file')->move('images',$uploadName);
 
         User::where('id', $user->id)
             ->update([

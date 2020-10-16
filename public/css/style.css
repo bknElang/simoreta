@@ -1,11 +1,53 @@
-/*
-    DEMO STYLE
-*/
-
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {
     font-family: 'Poppins', sans-serif;
-    background: rgb(248, 248, 248);
+    background-color: #eeeeee ; 
+}
+
+.bg{
+    background-image: url('/assets/whitebg.jpg');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#navimg{
+    width: 190px;
+    height: 50px;
+    margin-left: 50px;
+}
+
+.fade-in {
+animation: fadeIn ease 1.7s;
+-webkit-animation: fadeIn ease 1.7s;
+-moz-animation: fadeIn ease 1.7s;
+-o-animation: fadeIn ease 1.7s;
+-ms-animation: fadeIn ease 1.7s;
+}
+@keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
 }
 
 p {
@@ -31,6 +73,12 @@ a:focus {
     border-radius: 0;
     margin-bottom: 40px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+
+    background-image: url('/assets/navbar.jpg');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .navbar-btn {
@@ -50,6 +98,9 @@ i,
 span {
     display: inline-block;
 }
+td{
+    vertical-align: middle;
+}
 
 /* ---------------------------------------------------
     SIDEBAR STYLE
@@ -63,7 +114,7 @@ span {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #343a40;
+    background: #004C99;
     color: #fff;
     transition: all 0.3s;
 }
@@ -115,7 +166,7 @@ span {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #3A4047;
+    background: #003A75;
 }
 
 #sidebar .sidebar-header strong {
@@ -125,7 +176,7 @@ span {
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #3A4047;
+    border-bottom: 0px solid #004C99;
 }
 
 #sidebar ul li a {
@@ -135,7 +186,7 @@ span {
 }
 
 #sidebar ul li a:hover {
-    color: #343a40;
+    color: #004C99;
     background: #fff;
 }
 
@@ -145,8 +196,8 @@ span {
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
-    color: #fff;
-    background: #343a40;
+    color: #004C99;
+    background: #fff;
 }
 
 a[data-toggle="collapse"] {
@@ -164,7 +215,7 @@ a[data-toggle="collapse"] {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #3A4047;
+    background: #0066CC;
 }
 
 ul.CTAs {
@@ -206,6 +257,11 @@ a.article:hover {
 ----------------------------------------------------- */
 
 @media (max-width: 768px) {
+    #navimg{
+        width: 150px;
+        height: 40px;
+        margin-left: 0px;
+    }
     #sidebar {
         min-width: 80px;
         max-width: 80px;
@@ -223,15 +279,28 @@ a.article:hover {
     #sidebar.active {
         margin-left: 0 !important;
     }
-    #sidebar .sidebar-header h3,
+    #sidebar .sidebar-header label,
     #sidebar .CTAs {
         display: none;
     }
+    #sidebar .sidebar-header img
+    {
+        display: none !important;
+    }    
+    #sidebar.active .sidebar-header img
+    {
+        display: block !important;
+    }    
     #sidebar .sidebar-header strong {
         display: block;
     }
+    
     #sidebar ul li a {
         padding: 20px 10px;
+        display: none !important;
+    }
+    #sidebar.active ul li a{
+        display: block !important;
     }
     #sidebar ul li a span {
         font-size: 0.85em;
@@ -250,6 +319,6 @@ a.article:hover {
         margin-left: 0;
     }
     #sidebarCollapse span {
-        display: none;
+        display: none ;
     }
 }

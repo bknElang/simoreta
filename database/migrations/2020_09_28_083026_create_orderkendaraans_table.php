@@ -17,7 +17,7 @@ class CreateOrderkendaraansTable extends Migration
         Schema::create('orderkendaraans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('assign_id')->nullable()->constrained('assignkendaraans');
-            $table->string('status')->default('PENDING');
+            $table->string('status')->default('Waiting for Approval');
             $table->foreignId('user_id')->constrained('users');
             $table->dateTime('orderDate')->useCurrent();
             $table->dateTime('useDatetime');
@@ -27,6 +27,7 @@ class CreateOrderkendaraansTable extends Migration
             $table->string('necessity')->nullable();
             $table->integer('totalPassanger');
             $table->string('keterangan');
+            $table->foreignId('hc_id')->constrained('users');
             $table->timestamps();
         });
     }

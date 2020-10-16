@@ -16,10 +16,13 @@ class CreateRequestjobsTable extends Migration
         Schema::create('requestjobs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
+            $table->dateTime('orderDate')->useCurrent();
+            $table->string('keterangan');
             $table->string('jenis');
             $table->foreignId('roles_to_id')->constrained('roles');
-            $table->string('status')->default('PENDING');
+            $table->string('status')->default('Waiting for Approval');
             $table->string('statusDetail')->nullable();
+            $table->foreignId('hc_id')->constrained('users');
             $table->timestamps();
         });
     }

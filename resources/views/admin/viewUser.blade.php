@@ -11,31 +11,35 @@
             <button type="submit" class="btn btn-success">Search</button>
         </div>
     </form>
-    <br>
+
+    <hr>
+
+    <p>Click ID for details</p>
+
+    <hr>
+
     <div class="row">
-        <div class="col-sm-10">
+        <div class="col-sm-12">
             <table class="table table-hover">
                 <thead>
-                    <td class="col-sm-1" style="width: 30px"><b>ID</b></td>
-                    <td class="col-sm-2" style="width: 30px"><b>Cabang</b></td>
-                    <td class="col-sm-2" style="width: 100px"><b>Nama</b></td>
-                    <td class="col-sm-3" style="width: 100px"><b>Email</b></td>
-                    <td class="col-sm-2" style="width: 100px"><b>No. HP</b></td>
-                    <td class="col-sm-2" style="width: 100px"><b>Unit Kerja</b></td>
-                    <td class="col-sm-2" style="width: 50px"><b>Edit</b></td>
+                    <th class="col-sm-1" style="width: 30px"><b>ID</b></th>
+                    <th class="col-sm-2" style="width: 30px"><b>Cabang</b></th>
+                    <th class="col-sm-2" style="width: 100px"><b>Nama</b></th>
+                    <th class="col-sm-2" style="width: 100px"><b>NIP</b></th>
+                    <th class="col-sm-3" style="width: 100px"><b>Email</b></th>
+                    <th class="col-sm-2" style="width: 100px"><b>No. HP</b></th>
+                    <th class="col-sm-2" style="width: 100px"><b>Unit Kerja</b></th>
                 </thead>
 
                 @foreach ($users as $user)
                     <tr>
-                        <td>{{ $user->id }}</td>
+                        <td><a href="/users/{{ $user->id }}" class="btn btn-light">{{ $user->id }}</a></td>
                         <td>{{ $user->cName }}</td>
                         <td>{{ $user->name}}</td>
+                        <td>{{ $user->NIP}}</td>
                         <td>{{ $user->email}}</td>
                         <td>{{ $user->nohp}}</td>
                         <td>{{ $user->rName}}</td>
-                        <td>
-                            <a href="/users/{{$user->id}}" class="btn btn-info">Details</a>
-                        </td>
                     </tr>
                 @endforeach   
             </table>

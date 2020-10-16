@@ -23,29 +23,29 @@
         <title>Login Page</title>
     </head>
     <body>
-
+        <div class="bg">
         <div class="wrapper fadeInDown">
             <div id="formContent">
             <!-- Tabs Titles -->
             <h1 style="color:white">Login</h1>
-
                 <!-- Icon -->
                 <br>
                 <div class="fadeIn first">
                     <img src="{{asset('assets/simoreta.png')}}" id="icon" alt="" />
                 </div>
                 <br>
-                <!-- Login Form -->
-                
+
+                <!-- Login Form --> 
                 <form class="form-signin" method="POST" action="{{route('login')}}">
                     {{csrf_field()}}
-                    <input type="text" id="login" class="fadeIn second form-control" name="email" placeholder="Email">
+                    <input type="text" id="login" class="fadeIn second form-control" name="nip" placeholder="NIP">
                     <input type="password" id="login" class="fadeIn third form-control" name="password" placeholder="Password">
                     <input type="submit" class="fadeIn fourth" value="Log In">           
                 </form>
 
                 <!-- Alert -->
                 <div id="formFooter">
+                    Forgot your password? Reset <a href="/forgotpassword">here</a>!
                     @if (Session::has('error'))
                         <div class="alert alert-danger fadeIn fourth alert-dismissible" role="alert">
                             {{ Session::get('error') }}
@@ -57,6 +57,8 @@
                 </div>
 
             </div>
+        </div>
+
         </div>
 
     </body>

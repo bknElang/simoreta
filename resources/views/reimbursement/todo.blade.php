@@ -2,22 +2,26 @@
 
 @section('content')
     
-    <h1>Order List</h1>
+    <h1>Reimbursement</h1>
     <hr>
 
-    <div class="row">
-        <div class="col-sm-4">
-            <input type="datetime-local" class="form-control">
-        </div>
+    <form action="/searchtodoreimbursement" method="get">
+        <div class="row">
+            <div class="col-sm-4 form-inline">
+                <label for="">From:</label>
+                <input type="datetime-local" class="form-control" name="from">
+            </div>
+            <div class="col-sm-4 form-inline">
+                <label for="">To:</label>
+                <input type="datetime-local" class="form-control" name="to">
+            </div>
 
-        <div class="col-sm-4">
-            <input type="datetime-local" class="form-control">
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-success">Search by Order Date</button>
+                <a href="/todoreimbursement" class="btn btn-dark">Clear Filter</a>
+            </div>
         </div>
-
-        <div class="col-sm-2">
-            <button type="submit" class="btn btn-success">Search By Order Date</button>
-        </div>
-    </div>
+    </form>
 
     <hr>
 
@@ -45,12 +49,16 @@
                         <td>{{ $orderreimbursement->orderDate}}</td>
                         <td>{{ $orderreimbursement->namaRek}}</td>
                         <td>
-                            @if ($orderreimbursement->status == "PENDING")
-                                <label style="color:red"><b>{{ $orderreimbursement->status}}</b></label>
+                            @if ($orderreimbursement->status == "Waiting for Approval")
+                                <label style="color:#606060"><b>{{ $orderreimbursement->status}}</b></label>
+                            @elseif ($orderreimbursement->status == "REJECTED")
+                                <label style="color:#CC0000"><b>{{ $orderreimbursement->status}}</b></label>
+                            @elseif ($orderreimbursement->status == "PENDING")
+                                <label style="color:#CC6600"><b>{{ $orderreimbursement->status}}</b></label>
                             @elseif ($orderreimbursement->status == "IN PROGRESS")
-                                <label style="color:#CCCC00"><b>{{ $orderreimbursement->status}}</b></label>
-                            @else
-                                <label style="color:lime"><b>{{ $orderreimbursement->status}}</b></label>
+                                <label style="color:blue"><b>{{ $orderreimbursement->status}}</b></label>
+                            @elseif ($orderreimbursement->status == "FINISHED")
+                                <label style="color:green"><b>{{ $orderreimbursement->status}}</b></label>
                             @endif
                         </td>
                     </tr>

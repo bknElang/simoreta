@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/customhover.css')}}">
+
     <!-- Font Awesome CCS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
@@ -28,18 +30,20 @@
         <nav id="sidebar">
             <div class="sidebar-header">
                 <div class="row">
-                    <div class="col-m-1">
-                        <a href="/users/{{auth()->user()->id}}" id="imgAva"><img src="{{asset('images/'.auth()->user()->avatar)}}" class="rounded mx-auto d-block" style="width:75px; height:75px"></a>
+                    <div class="col">
+                        <a href="/users/{{auth()->user()->id}}" id="imgAva"><img src="{{asset('images/'.auth()->user()->avatar)}}" class="rounded mx-auto d-block image" style="width:75px; height:75px"></a>
                     </div>
                     
                     <div class="col" id="profile">
                         <label>{{auth()->user()->name}}</label>
                         <br>
-                        {{auth()->user()->id}}
+                        <label>{{auth()->user()->NIP}}</label>
                     </div>
                 </div>
 
-                <a href="/users/{{auth()->user()->id}}"><strong><img src="{{asset('images/'.auth()->user()->avatar)}}" class="rounded mx-auto d-block" style="width:50px; height:50px"></strong></a>
+                <a href="/users/{{auth()->user()->id}}">
+                    <strong><img src="{{asset('images/'.auth()->user()->avatar)}}" class="rounded mx-auto d-block image" style="width:50px; height:50px"></strong>
+                </a>
             </div>
 
             <ul class="list-unstyled components">
@@ -56,10 +60,10 @@
                     </a>
                     <ul class="collapse list-unstyled" id="logistikSubmenu">
                         <li>
-                            <a href="#">Data Aktiva</a>
+                            <a href="/aktiva">Kebutuhan Aktiva</a>
                         </li>
                         <li>
-                            <a href="#">Kebutuhan APK</a>
+                            <a href="/atk">Kebutuhan ATK</a>
                         </li>
                         <li>
                             <a href="/ordercar">Kendaraan</a>
@@ -67,13 +71,24 @@
                         <li>
                             <a href="/reimbursement">Reimbursement</a>
                         </li>
+                        <li>
+                            <a href="/kiriman">Kiriman Dokumen</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="#pembukuanSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-book" style="margin-left:3px; margin-right:3px"></i>
                         Pembukuan
                     </a>
+                    <ul class="collapse list-unstyled" id="pembukuanSubmenu">
+                        <li>
+                            <a href="/jurnalmanual">Jurnal Manual</a>
+                        </li>
+                        <li>
+                            <a href="/jurnalaak">Jurnal AAK</a>
+                        </li>
+                    </ul>    
                 </li>
                 <li>
                     <a href="#sicSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -91,46 +106,97 @@
                             <a href="#">Hardware Lainnya</a>
                         </li>
                     </ul>
-
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/requestjob">
                         <i class="fas fa-hand-holding"></i>
                         Request Job
                     </a>
                 </li>
 
                 <li>
-                    <a href="/myorder">
+                    <a href="#myStatus" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-id-badge" style="margin-left:3px; margin-right:4px"></i>
                         My Status
                     </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-folder-open"></i>
-                        Laporan
-                    </a>
+                    <ul class="collapse list-unstyled" id="myStatus">
+                        <li>
+                            <a href="#myStatusLogistik" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                Logistik
+                            </a>
+                            <ul class="collapse list-unstyled" id="myStatusLogistik">
+                                <li>
+                                    <a href="/myaktiva">Kebutuhan Aktiva</a>
+                                </li>
+                                <li>
+                                    <a href="/myatk">Kebutuhan ATK</a>
+                                </li>
+                                <li>
+                                    <a href="/myordercar">Kendaraan</a>
+                                </li>
+                                <li>
+                                    <a href="/myreimbursement">Reimbursement</a>
+                                </li>
+                                <li>
+                                    <a href="/mykiriman">Kiriman Dokumen</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#myStatusBuku" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                Pembukuan
+                            </a>
+                            <ul class="collapse list-unstyled" id="myStatusBuku">
+                                <li>
+                                    <a href="/myjurnalmanual">Jurnal Manual</a>
+                                </li>
+                                <li>
+                                    <a href="/myjurnalaak">Jurnal AAK</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#myStatusSIC" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                Sistem Informasi Cabang
+                            </a>
+                            <ul class="collapse list-unstyled" id="myStatusSIC">
+                                <li>
+                                    <a href="#">Komputer</a>
+                                </li>
+                                <li>
+                                    <a href="#">Aplikasi</a>
+                                </li>
+                                <li>
+                                    <a href="#">Hardware Lainnya</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/myjob">Requested Jobs</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
 
         </nav>
 
         <!-- Menu Bar di Atas  -->
-        <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div id="content" class="bg fade-in">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-
-                    <button type="button" id="sidebarCollapse" class="btn btn-dark">
+                    <button type="button" id="sidebarCollapse" class="btn btn-light">
                         <i class="fas fa-align-left"></i>
                         <span></span>
                     </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="btn btn-light d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
-                    <a href="/home"><img src="{{asset('assets/simoreta.png')}}" width="200px" height="50px" style="margin-left:50px;" alt=""></a>
+                    <a href="/home"><img src="{{asset('assets/simoreta.png')}}" id="navimg" alt=""></a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/changepassword/{{auth()->user()->id}}"> Change Password</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                             </li>
@@ -141,6 +207,7 @@
             
             <!-- Content -->
             @yield('content')
+            
         </div>
     </div>
 

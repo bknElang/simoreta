@@ -1,119 +1,119 @@
 @extends($layout)
 
 @section('content')
+
     <h2>User's Detail</h2>
     <hr>
 
-    <form action="{{$user->id}}" method="POST">
-        <div class="row">
-            <div class="col-sm-6">
-                @method('patch')
-                @csrf
-        
+    @if(Session::has('updateAvaSuccess'))
+        <div class="alert alert-success">{{ Session::get('updateAvaSuccess') }}</div>
+    @endif
+
+    <div class="row">
+        <div class="col-sm-4" style="margin-left:15px">
+            <div class="row">
                 <label for="NIPID">NIP</label>
-                <div class='form-inline'>
-                    <input type="text" id="NIPID" class="form-control @error('nip') is-invalid @enderror" name="nip" placeholder="NIP" style="width:320px" value="{{$user->NIP}}" readonly>
-                    @error('nip') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
-                </div>
+            </div>
+            <div class="row">
+                <input type="text" id="NIPID" class="form-control" name="nip" placeholder="NIP" value="{{$user->NIP}}" readonly>
+            </div>
 
-                <br>
+            <br>
 
+            <div class="row">
                 <label for="emailID">Email</label>
-                <div class='form-inline'>
-                    <input type="text" id="emailID" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email" style="width:320px" value="{{$user->email}}" readonly>
-                    @error('email') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
-                </div>
+            </div>
+            <div class="row">
+                <input type="text" id="emailID" class="form-control" name="email" placeholder="Email" value="{{$user->email}}" readonly>
+            </div>
                 
-                <br>
+            <br>
 
+            <div class="row">
                 <label for="nohpID">No. HP</label>
-                <div class='form-inline'>
-                    <input type="text" id="nohpID" class="form-control @error('nohp') is-invalid @enderror" name="nohp" placeholder="No. HP" style="width:320px" value="{{$user->nohp}}" readonly>
-                    @error('nohp') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
-                </div>
+            </div>
+            <div class="row">
+                <input type="text" id="nohpID" class="form-control" name="nohp" placeholder="No. HP" value="{{$user->nohp}}" readonly>
+            </div>
                 
-                <br>
+            <br>
         
+            <div class="row">
                 <label for="nameID">Name</label>
-                <div class='form-inline'>
-                    <input type="text" id="login" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Name" style="width:320px" value="{{$user->name}}" readonly>
-                    @error('name') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
-                </div>
-        
-                <br>
-            
-                <label for="passwordID">Password</label>
-                <div class='form-inline'>
-                    <input type="password" id="passwordID" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" style="width:320px">
-                    @error('password') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
-                </div>
-                
-                <br>
-        
-                <label for="passwordID">Confirm Password</label>
-                <input type="password" id="login" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" placeholder="Confirm Password" style="width:320px">
-                
-                <br>
+            </div>
+            <div class="row">
+                <input type="text" id="login" class="form-control" name="name" placeholder="Name" value="{{$user->name}}" readonly>
+            </div>
+              
+            <br>
 
+            <div class="row">
                 <label for="cabangID">Cabang</label>
-                <select id="cabangID" class="form-control roles-select" name="cabang" style="width:320px">
+            </div>
+            <div class="row">
+                <select id="cabangID" class="form-control roles-select" name="cabang" disabled>
                     @foreach ($cabangs as $cabang)
                         <option value="{{$cabang->id}}" @if ($cabang->id == $user->cabang_id) {{'selected'}} @endif>{{$cabang->name}}</option>  
                     @endforeach
                 </select>
+            </div>
 
-                <br>
+            <br>
         
+            <div class="row">
                 <label for="roleID">Role</label>
-                <select id="roleID" class="form-control roles-select" name="role" style="width:320px">
+            </div>
+            <div class="row">
+                <select id="roleID" class="form-control roles-select" name="role" disabled>
                     @foreach ($roles as $role)
                         <option value="{{$role->id}}" @if ($role->id == $user->role_id) {{'selected'}} @endif>{{$role->name}}</option>  
                     @endforeach
                 </select>
-        
-                <br>
-
-                <div class="form-inline">
-                    <input type="submit" class="btn btn-success" value="Update">
-            </form>
-           
-                    <label for="" style="width: 5px"></label>
-                    
-                    <form action="{{$user->id}}" method="POST">
-                        @method('delete')
-                        @csrf
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </div>
-            
             </div>
-
-            <form action="{{$user->id}}" enctype="multipart/form-data" method="POST">
-                @csrf
-                <div class="col-sm-4">
-                    <center>
-                        <img src="{{asset('images/'.$user->avatar)}}" class="rounded mx-auto d-block" style="width:400px">
-                    </center>
-                    <br><br>
-                    <div class="form-inline">
-                        <input type="file" class="btn btn-dark" name="image">
-                        <button type="submit" class="btn btn-dark">Change Avatar</button>
-                    </div>
-                    
-                    <br>
-
-                    @if(Session::has('updateAvaSuccess'))
-                        <div class="alert alert-success" style="width:320px">{{ Session::get('updateAvaSuccess') }}</div>
-                    @endif
-                </div>
-            </form>
         </div>
-
+        
         <br>
 
-        @if(Session::has('updateSuccess'))
-                <div class="alert alert-success" style="width:320px">{{ Session::get('updateSuccess') }}</div>
-        @endif
+        <div class="col-sm-2"></div>
+
+        <div class="col-sm-4">
+            <br>
+            <div class="row">
+                <form action="{{$user->id}}" enctype="multipart/form-data" method="POST">
+                    @csrf
+
+                    <div class="container" >
+ 				        <img src="{{asset('images/'.$user->avatar)}}" class="rounded mx-auto d-block image">
+                        <div class="middle">
+                            <div class="text">
+                                <label>
+                                    <input type="file" name="file" style="display: none;" onchange="this.form.submit()">
+                                    Change Avatar
+                                </label>
+                            </div>
+                        </div>
+                    </div>	
+
+                    <br>
+
+                    @error('file')</label> <label style="color:red"> {{$message}}</label> @enderror
+                </form>
+            </div>
+        </div>
+
+    </div>
+    
+    <br>
+
+    <a href="/" class="btn btn-dark">Back to Home</a>   
 
         
+<script>
+    $(function(){
+    $("#upload_link").on('click', function(e){
+        e.preventDefault();
+        $("#upload:hidden").trigger('click');
+    });
+});
+</script>    
 @endsection

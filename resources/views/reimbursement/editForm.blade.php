@@ -46,14 +46,17 @@
     <br>
 
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-4">
             <label for="">Jenis Reimbursement</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="jenisDescID">{{$jenis->name}}</label>
                 </div>
-                <input id="jenisDescID" type="text" class="form-control" value="{{$jenis->deskripsi}}" style="color:gray" readonly>
             </div>
+        </div>
+
+        <div class="col-sm-6">
+            <a href="{{asset('file_reimburse/'.$orderreimbursement->file)}}" class="btn btn-primary">Download File</a>
         </div>
     </div>
 
@@ -86,16 +89,22 @@
             <br>
 
             <div class="row">
-                <div class="col-sm-3">
-                    <label for="nominalID">Nominal</label>
-                    <input type="text" id="nominalID" class="form-control" name="nominal" placeholder="Rp." style="width:200px" value="{{$orderreimbursement->nominal}}" readonly>
+                <div class="col-sm-4">
+                    <div class="input-group sm-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">Rp.</span>
+                        </div>
+                        <input type="text" id="basic-url" class="form-control" aria-describedby="basic-addon3"name="nominal" value="{{$orderreimbursement->nominal}}" readonly style="text-align: right">
+                    </div>    
                 </div>
             </div>
+
         </div>
             
     </div>
         
     <hr>
+    
     @if(Session::has('successDetail'))
         <div class="alert alert-success">{{ Session::get('successDetail') }}</div>
     @endif
@@ -124,7 +133,7 @@
             <a href="/todoreimbursement" class="btn btn-dark">Back</a>        
         </div>
 
-        @if ($orderreimbursement->status != 'FINISHED')
+        @if ($orderreimbursement->status == 'IN PROGRESS')
             <div class="col-sm-1">
                 <form action="{{$orderreimbursement->id}}/finish" method="post" class="form-inline">
                     @method('patch')
