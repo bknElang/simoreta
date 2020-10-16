@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AssignKendaraan;
 use App\Models\OrderKendaraan;
 use App\Models\User;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -142,7 +143,8 @@ class OrderKendaraansController extends Controller
         $validatedData = $request->validate([
             'pickuplocation' => 'required',
             'destination' => 'required',
-            'jumlah' => 'required'
+            'jumlah' => 'required',
+            'keterangan' => 'required'
         ]);
 
         OrderKendaraan::create([

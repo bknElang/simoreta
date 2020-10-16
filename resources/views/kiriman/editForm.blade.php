@@ -91,8 +91,8 @@
         </div>
 
         <div class="col-sm-4">
-            <br>
-            <a href="{{asset('kiriman_File/'.$orderKiriman->dokumen)}}" class="btn btn-primary">Download File</a>
+            <label for="dokumenID">Dokumen </label>
+            <input id="dokumenID" type="text" class="form-control" style="width:320px" name="notelp" value="{{$orderKiriman->dokumen}}" readonly>
         </div>
     </div>
 

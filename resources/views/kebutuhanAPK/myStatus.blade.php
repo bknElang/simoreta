@@ -51,7 +51,7 @@
                                 <label style="color:#CC6600"><b>{{ $orderatk->status}}</b></label>
                             @elseif ($orderatk->status == "IN PROGRESS")
                                 <label style="color:blue"><b>{{ $orderatk->status}}</b></label>
-                            @elseif ($orderatk->status == "IN PROGRESS")
+                            @elseif ($orderatk->status == "FINISHED")
                                 <label style="color:green"><b>{{ $orderatk->status}}</b></label>
                             @endif
                         </td>

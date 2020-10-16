@@ -59,7 +59,7 @@
 
             <div class="col-sm-4">
                 <label for="jumlahID">Jumlah Barang<label style="color: red">*</label></label>
-                <input type="number" id="jumlahID" class="form-control @error('jumlah') is-invalid @enderror" name="jumlah" placeholder="Spesifikasi" style="width:320px" min=1>
+                <input type="number" id="jumlahID" class="form-control @error('jumlah') is-invalid @enderror" name="jumlah" placeholder="Jumlah Barang" style="width:320px" min=1>
                 @error('jumlah') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
             </div>
         </div>

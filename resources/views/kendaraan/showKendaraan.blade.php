@@ -89,7 +89,7 @@
         
     <hr>
 
-    @if ($orderkendaraan->status != "PENDING" && $orderkendaraan->status != "Waiting for Approval")
+    @if ($orderkendaraan->status != "PENDING" && $orderkendaraan->status != "Waiting for Approval" && && $orderkendaraan->status != "REJECTED")
             <input type="hidden" name="orderID" value="{{$orderkendaraan->id}}">
             <div class="row">
                 <div class="col-sm-4">
@@ -128,9 +128,6 @@
     <hr>
 
     @endif
-
-
-
 
     <a href="/myordercar" class="btn btn-dark">Back</a>   
 

@@ -103,7 +103,7 @@
 
             <div class="col-sm-4">
                 <label for="dokumenID">Dokumen <label style="color: red">*</label></label>
-                <input id="dokumenID" type="file" class="form-control @error('dokumen') is-invalid @enderror" style="width:320px" name="dokumen">
+                <input id="dokumenID" type="text" class="form-control @error('dokumen') is-invalid @enderror" style="width:320px" name="dokumen">
                 @error('dokumen') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
             </div>
         </div>

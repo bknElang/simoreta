@@ -46,7 +46,7 @@
 
     <hr>
 
-    @if ($jurnalAAK->status != 'PENDING')
+    @if ($jurnalAAK->status != 'PENDING' && $jurnalAAK->status != 'Waiting for Approval' && $jurnalAAK->status != 'REJECTED')
         <div class="row">
             <div class="col-sm-12">
                 <label for="">Status Detail</label>

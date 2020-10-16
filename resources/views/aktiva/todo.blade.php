@@ -49,11 +49,15 @@
                         <td>{{ $aktiva->orderDate}}</td>
                         <td>{{ $aktiva->jenisBarang}}</td>
                         <td>
-                            @if ($aktiva->status == "PENDING")
-                                <label style="color:red"><b>{{ $aktiva->status}}</b></label>
+                            @if ($aktiva->status == "Waiting for Approval")
+                                <label style="color:#606060"><b>{{ $aktiva->status}}</b></label>
+                            @elseif ($aktiva->status == "REJECTED")
+                                <label style="color:#CC0000"><b>{{ $aktiva->status}}</b></label>
+                            @elseif ($aktiva->status == "PENDING")
+                                <label style="color:#CC6600"><b>{{ $aktiva->status}}</b></label>
                             @elseif ($aktiva->status == "IN PROGRESS")
                                 <label style="color:blue"><b>{{ $aktiva->status}}</b></label>
-                            @else
+                            @elseif ($aktiva->status == "FINISHED")
                                 <label style="color:green"><b>{{ $aktiva->status}}</b></label>
                             @endif
                         </td>

@@ -16,6 +16,8 @@ class CreateResetrequestsTable extends Migration
         Schema::create('resetrequests', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('hc_id')->constrained('users');
+            $table->string('status');
             $table->timestamps();
         });
     }

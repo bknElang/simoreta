@@ -51,11 +51,15 @@
                         <td>{{ $orderkendaraan->useDatetime}}</td>
                         <td>{{ $orderkendaraan->finishDatetime}}</td>
                         <td>
-                            @if ($orderkendaraan->status == "PENDING")
-                                <label style="color:red"><b>{{ $orderkendaraan->status}}</b></label>
+                            @if ($orderkendaraan->status == "Waiting for Approval")
+                                <label style="color:#606060"><b>{{ $orderkendaraan->status}}</b></label>
+                            @elseif ($orderkendaraan->status == "REJECTED")
+                                <label style="color:#CC0000"><b>{{ $orderkendaraan->status}}</b></label>
+                            @elseif ($orderkendaraan->status == "PENDING")
+                                <label style="color:#CC6600"><b>{{ $orderkendaraan->status}}</b></label>
                             @elseif ($orderkendaraan->status == "IN PROGRESS")
                                 <label style="color:blue"><b>{{ $orderkendaraan->status}}</b></label>
-                            @else
+                            @elseif ($orderkendaraan->status == "FINISHED")
                                 <label style="color:green"><b>{{ $orderkendaraan->status}}</b></label>
                             @endif
                         </td>

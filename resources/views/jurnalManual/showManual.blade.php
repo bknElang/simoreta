@@ -46,8 +46,8 @@
 
     <hr>
 
-    @if ($jurnalManual->status != 'PENDING')
-        <div class="row">
+    @if ($jurnalManual->status != 'PENDING' && $jurnalManual->status != 'Waiting for Approval' && $jurnalManual->status != 'REJECTED')
+        <div class="row">REJECTED
             <div class="col-sm-12">
                 <label for="">Status Detail</label>
                 <textarea class="form-control" name="statusDetail" id="" cols="30" rows="5" readonly>{{$jurnalManual->statusDetail}}</textarea>

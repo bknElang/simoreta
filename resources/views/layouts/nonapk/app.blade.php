@@ -63,7 +63,7 @@
                             <a href="/aktiva">Kebutuhan Aktiva</a>
                         </li>
                         <li>
-                            <a href="/atk">Kebutuhan APK</a>
+                            <a href="/atk">Kebutuhan ATK</a>
                         </li>
                         <li>
                             <a href="/ordercar">Kendaraan</a>
@@ -126,10 +126,10 @@
                             </a>
                             <ul class="collapse list-unstyled" id="myStatusLogistik">
                                 <li>
-                                    <a href="/myaktiva">Data Aktiva</a>
+                                    <a href="/myaktiva">Kebutuhan Aktiva</a>
                                 </li>
                                 <li>
-                                    <a href="/myatk">Kebutuhan APK</a>
+                                    <a href="/myatk">Kebutuhan ATK</a>
                                 </li>
                                 <li>
                                     <a href="/myordercar">Kendaraan</a>

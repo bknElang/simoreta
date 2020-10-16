@@ -68,6 +68,14 @@
                 @csrf
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
+
+            <label for="" style="width: 5px"></label>
+
+            <form action="{{$user->id}}" method="POST">
+                @method('patch')
+                @csrf
+                <button type="submit" class="btn btn-primary">Activate User</button>
+            </form>
         </div>
     <br>
                     

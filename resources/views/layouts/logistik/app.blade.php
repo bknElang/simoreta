@@ -58,10 +58,10 @@
                     </a>
                     <ul class="collapse list-unstyled" id="todolist">
                         <li>
-                            <a href="/todoaktiva">Data Aktiva</a>
+                            <a href="/todoaktiva">Kebutuhan Aktiva</a>
                         </li>
                         <li>
-                            <a href="/todoatk">Kebutuhan APK</a>
+                            <a href="/todoatk">Kebutuhan ATK</a>
                         </li>
                         <li>
                             <a href="/todocar">Kendaraan</a>

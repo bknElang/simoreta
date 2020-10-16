@@ -2,7 +2,7 @@
 
 @section('content')
     
-    <h1>Home Non - APK</h1>
+    <h1>Laporan Pembukuan</h1>
     <hr>
 
     <form action="/getlaporan" method="get">
@@ -21,12 +21,12 @@
 
     <hr>
     
-    <h2>Your todo orders {{$month}}:</h2>
+    <h2>Your to do orders {{$month}}:</h2>
     <div class="card-deck">
         <div class="card border-danger bg-transparent sm-4">
             <div class="card-header bg-transparent border-danger">Pending</div>
             <div class="card-body text-danger">
-                <h5 class="card-title">Total Pending:</h5>
+                <h5 class="card-title">Total Pending: {{array_sum($pendingbuku)}}</h5>
                 <li>
                     Jurnal AAK: {{$pendingbuku[0]}}
                 </li>
@@ -40,7 +40,7 @@
         <div class="card border-primary bg-transparent sm-4">
             <div class="card-header bg-transparent border-primary">In Progress</div>
             <div class="card-body text-primary ">
-                <h5 class="card-title">Total In Progress:</h5>
+                <h5 class="card-title">Total In Progress: {{array_sum($progressbuku)}}</h5>
                 <li>
                     Jurnal AAK: {{$progressbuku[0]}}
                 </li>
@@ -54,7 +54,7 @@
         <div class="card border-success bg-transparent sm-4">
             <div class="card-header bg-transparent border-success">Finished</div>
             <div class="card-body text-success">
-                <h5 class="card-title">Total Finished:</h5>
+                <h5 class="card-title">Total Finished: {{array_sum($finishedbuku)}}</h5>
                 <li>
                     Jurnal AAK: {{$finishedbuku[0]}}
                 </li>

@@ -59,15 +59,17 @@
         
         <hr>
 
+        @if ($orderRequestJob->status != 'PENDING' && $orderRequestJob->status != 'Waiting for Approval' && $orderRequestJob->status != 'REJECTED')
         <div class="row">
             <div class="col-sm-12">
                 <label for="">Status Detail</label>
                 <textarea class="form-control" name="statusDetail" id="" cols="30" rows="5" readonly>{{$orderRequestJob->statusDetail}}</textarea>
             </div>
         </div>
-
-        <hr>
         
+        <hr>
+        @endif   
+  
         <a href="/myjob" class="btn btn-dark">Back</a>   
 
         <br><br>

@@ -12,6 +12,6 @@ class ResetRequest extends Model
     protected $table = 'resetrequests';
 
     protected $fillable = [
-        'user_id'
+        'user_id', 'hc_id', 'status'
     ];
 }

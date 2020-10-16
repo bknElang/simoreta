@@ -49,11 +49,15 @@
                         <td>{{ $manual->uName}}</td>
                         <td>{{ $manual->filename}}</td>
                         <td>
-                            @if ($manual->status == "PENDING")
-                                <label style="color:red"><b>{{ $manual->status}}</b></label>
+                            @if ($manual->status == "Waiting for Approval")
+                                <label style="color:#606060"><b>{{ $manual->status}}</b></label>
+                            @elseif ($manual->status == "REJECTED")
+                                <label style="color:#CC0000"><b>{{ $manual->status}}</b></label>
+                            @elseif ($manual->status == "PENDING")
+                                <label style="color:#CC6600"><b>{{ $manual->status}}</b></label>
                             @elseif ($manual->status == "IN PROGRESS")
                                 <label style="color:blue"><b>{{ $manual->status}}</b></label>
-                            @else
+                            @elseif ($manual->status == "FINISHED")
                                 <label style="color:green"><b>{{ $manual->status}}</b></label>
                             @endif
                         </td>

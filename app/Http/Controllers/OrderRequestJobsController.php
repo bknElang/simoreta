@@ -6,6 +6,7 @@ use App\Models\Cabang;
 use App\Models\OrderRequestJob;
 use App\Models\Role;
 use App\Models\User;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -276,11 +277,12 @@ class OrderRequestJobsController extends Controller
     public function update(Request $request, OrderRequestJob $orderRequestJob)
     {
         //
+        $current = new DateTime();
 
         OrderRequestJob::where('id', $orderRequestJob->id)
             ->update([
                 'status' => 'IN PROGRESS',
-                'statusDetail' => $request->statusDetail
+                'statusDetail' => $request->statusDetail . ' - (Updated at: ' . $current->format('Y-m-d H:i') . ')'
             ]);
 
         return redirect()->back()->with('successDetail', 'Details Updated!');

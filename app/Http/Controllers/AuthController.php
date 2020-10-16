@@ -84,13 +84,17 @@ class AuthController extends Controller
 
     public function postReset(Request $request){
         $validatedData = $request->validate([
-            'nip' => 'exists:users,nip'
+            'nip' => 'exists:users,nip',
+            'niphc' => 'exists:users,nip'
         ]);
 
         $user = User::firstWhere('NIP', '=', $request->nip);
+        $userhc = User::firstWhere('NIP', '=', $request->niphc);
     
         ResetRequest::create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'hc_id' => $userhc->id,
+            'status' => 'Waiting for Approval'
         ]);
 
         return redirect()->back()->with('success', 'Reset Requested!');
@@ -101,12 +105,33 @@ class AuthController extends Controller
         return redirect('/');
     }
 
-    public function viewReset(){
+    public function viewResetAdmin(){
         $resets = DB::table('resetrequests')
             ->join('users', 'resetrequests.user_id', '=', 'users.id')
             ->select('resetrequests.id AS resetID', 'users.*')
+            ->where('resetrequests.status', '=', 'PENDING')
             ->paginate(10);
 
         return view('admin.viewForgot', ['resets' => $resets]);
+    }
+
+    public function viewResetHC(){
+        $resets = DB::table('resetrequests')
+            ->join('users', 'resetrequests.user_id', '=', 'users.id')
+            ->select('resetrequests.id AS resetID', 'users.*')
+            ->where('resetrequests.status', '=', 'Waiting for Approval')
+            ->paginate(10);
+
+        return view('nonapkhc.viewForgot', ['resets' => $resets]);
+    }
+
+    public function approve(ResetRequest $resetRequest){
+        ResetRequest::where('id', $resetRequest->id)
+            ->update([
+                'status' => 'PENDING',
+            ]);
+
+        return redirect()->back()->with('success', 'Password reset request approved');
+        
     }
 }

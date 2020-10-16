@@ -129,7 +129,7 @@
                                     <a href="/myaktiva">Data Aktiva</a>
                                 </li>
                                 <li>
-                                    <a href="/myatk">Kebutuhan APK</a>
+                                    <a href="/myatk">Kebutuhan ATK</a>
                                 </li>
                                 <li>
                                     <a href="/myordercar">Kendaraan</a>
@@ -188,10 +188,10 @@
                             </a>
                             <ul class="collapse list-unstyled" id="authLogistik">
                                 <li>
-                                    <a href="/authaktiva">Data Aktiva</a>
+                                    <a href="/authaktiva">Kebutuhan Aktiva</a>
                                 </li>
                                 <li>
-                                    <a href="/authatk">Kebutuhan APK</a>
+                                    <a href="/authatk">Kebutuhan ATK</a>
                                 </li>
                                 <li>
                                     <a href="/authcar">Kendaraan</a>
@@ -235,6 +235,9 @@
                         </li>
                         <li>
                             <a href="/authjob">Requested Jobs</a>
+                        </li>
+                        <li>
+                            <a href="/viewforgothc">Requested Password Resets</a>
                         </li>
                     </ul>
                 </li>

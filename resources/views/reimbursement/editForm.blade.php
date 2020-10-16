@@ -89,7 +89,7 @@
             <br>
 
             <div class="row">
-                <div class="col-sm-9">
+                <div class="col-sm-4">
                     <div class="input-group sm-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3">Rp.</span>

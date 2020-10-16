@@ -35,8 +35,8 @@
                     <th class="col-sm-2" style="width: 100px"><b>Tanggal Order</b></th>
                     <th class="col-sm-2" style="width: 100px"><b>Tanggal Pemakaian</b></th>
                     <th class="col-sm-2" style="width: 100px"><b>Tanggal Selesai Pemakaian</b></th>
-                    <th class="col-sm-1" style="width: 30px"><b>Status</b></th>
                     <th class="col-sm-2" style="width: 100px"><b>Keperluan</b></th>
+                    <th class="col-sm-1" style="width: 30px"><b>Status</b></th>
                 </thead>
 
                 @foreach ($orderkendaraans as $orderkendaraan)
@@ -45,6 +45,7 @@
                         <td>{{ $orderkendaraan->orderDate}}</td>
                         <td>{{ $orderkendaraan->useDatetime}}</td>
                         <td>{{ $orderkendaraan->finishDatetime}}</td>
+                        <td>{{ $orderkendaraan->necessity}}</td>
                         <td>
                             @if ($orderkendaraan->status == "Waiting for Approval")
                                 <label style="color:#606060"><b>{{ $orderkendaraan->status}}</b></label>
@@ -54,11 +55,10 @@
                                 <label style="color:#CC6600"><b>{{ $orderkendaraan->status}}</b></label>
                             @elseif ($orderkendaraan->status == "IN PROGRESS")
                                 <label style="color:blue"><b>{{ $orderkendaraan->status}}</b></label>
-                            @elseif ($orderkendaraan->status == "IN PROGRESS")
+                            @elseif ($orderkendaraan->status == "FINISHED")
                                 <label style="color:green"><b>{{ $orderkendaraan->status}}</b></label>
                             @endif
                         </td>
-                        <td>{{ $orderkendaraan->necessity}}</td>
                     </tr>
                 @endforeach   
             </table>

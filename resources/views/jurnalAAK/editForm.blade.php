@@ -71,7 +71,7 @@
 
     <div class="row">
         <div class="col-sm-1">
-            <a href="/todomanual" class="btn btn-dark">Back</a>
+            <a href="/todoaak" class="btn btn-dark">Back</a>
         </div>
 
         @if ($jurnalAAK->status == 'IN PROGRESS')

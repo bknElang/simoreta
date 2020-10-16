@@ -54,29 +54,42 @@
 
         <hr>
 
-        <form action="/todojob/{{$orderRequestJob->id}}/change" method="post">
-            @method('patch')
-            @csrf
+        @if ($orderRequestJob->status == 'PENDING')
+            <form action="/todojob/{{$orderRequestJob->id}}/change" method="post">
+                @method('patch')
+                @csrf
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="assignedID">Assigned to</label>
+                        <select name="unitAPK" id="assignedID" class="form-control">
+                            @foreach ($roles as $row)
+                               <option value="{{$row->id}}" @if ($row->id == $roleto->id) selected @endif>{{$row->name}}</option>
+                               @php
+                                   $roleto = $row
+                               @endphp
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <br>
+                
+                <div class="row">
+                    <div class="col-sm-4">         
+                        <button type="submit" class="btn btn-primary">Change</button>               
+                    </div>              
+                </div>
+            </form>
+
+        @else
             <div class="row">
                 <div class="col-sm-4">
                     <label for="assignedID">Assigned to</label>
-                    <select name="unitAPK" id="assignedID" class="form-control">
-                        @foreach ($roles as $row)
-                           <option value="{{$row->id}}" @if ($row->id == $roleto->id) selected @endif @if ($orderRequestJob->status != 'PENDING') readonly @endif>{{$row->name}}</option>
-                        @endforeach
-                    </select>
+                    <input type="text" id="assignedID" class="form-control" name="unitkerja" style="width:300px" value="{{$roleto->name}}" readonly>
                 </div>
             </div>
+        @endif
 
-            @if ($orderRequestJob->status == 'PENDING')
-            <br>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <button type="submit" class="btn btn-primary">Change</button>
-                    </div>
-                </div>
-            @endif
-        </form>
         
         <hr>
 

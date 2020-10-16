@@ -102,12 +102,12 @@
                 <br>
 
                 <div class="row">
-                    <div class="col-sm-9">
-                        <div class="input-group sm-3">
+                    <div class="col-sm-4">
+                        <div class="input-group sm-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon3">Rp. </span>
                             </div>
-                            <input type="text" id="basic-url" class="form-control @error('nominal') is-invalid @enderror" aria-describedby="basic-addon3"name="nominal" value="{{old('nominal')}}" style="text-align: right">
+                            <input type="text" id="basic-url" class="form-control @error('nominal') is-invalid @enderror" aria-describedby="basic-addon3"name="nominal" value="{{old('nominal')}}" style="text-align: right;">
                         </div>    
                     </div>
 

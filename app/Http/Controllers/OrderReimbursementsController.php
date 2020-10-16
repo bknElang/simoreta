@@ -7,6 +7,7 @@ use App\Models\JenisReimbursement;
 use App\Models\OrderReimbursement;
 use App\Models\Role;
 use App\Models\User;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -287,10 +288,12 @@ class OrderReimbursementsController extends Controller
     public function update(Request $request, OrderReimbursement $orderReimbursement)
     {
         //
+        $current = new DateTime();
+
         OrderReimbursement::where('id', $orderReimbursement->id)
             ->update([
                 'status' => 'IN PROGRESS',
-                'statusDetail' => $request->statusDetail
+                'statusDetail' => $request->statusDetail . ' - (Updated at: ' . $current->format('Y-m-d H:i') . ')'
             ]);
 
         return redirect()->back()->with('successDetail', 'Details Updated!');

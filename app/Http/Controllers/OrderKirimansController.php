@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\OrderKiriman;
 use App\Models\User;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -160,6 +161,7 @@ class OrderKirimansController extends Controller
                 'namaPenerima' => 'required',
                 'notelp' => 'required|numeric',
                 'alamat' => 'required',
+                'dokumen' => 'required',
                 'pertanggungan' => 'required|numeric',
             ]);
         }else{
@@ -169,14 +171,10 @@ class OrderKirimansController extends Controller
                 'namaTujuan' => 'required',
                 'namaPenerima' => 'required',
                 'notelp' => 'required|numeric',
+                'dokumen' => 'required',
                 'alamat' => 'required',
             ]);
         }
-
-        $file = $request->file('dokumen');
-        $fileName = $file->getClientOriginalName();
-        $uploadName = time() . '-' . $fileName;
-        $request->file('dokumen')->move('kiriman_File', $uploadName);
 
         OrderKiriman::create([
             'user_id' => $currUser->id,
@@ -187,7 +185,7 @@ class OrderKirimansController extends Controller
             'namaPIC' => $request->namaPenerima,
             'alamat' => $request->alamat,
             'noPenerima' => $request->notelp,
-            'dokumen' => $uploadName,
+            'dokumen' => $request->dokumen,
             'hc_id' => $request->hcname
         ]);
 
@@ -271,10 +269,12 @@ class OrderKirimansController extends Controller
     public function update(Request $request, OrderKiriman $orderKiriman)
     {
         //
+        $current = new DateTime();
+
         OrderKiriman::where('id', $orderKiriman->id)
         ->update([
             'status' => 'IN PROGRESS',
-            'statusDetail' => $request->statusDetail
+            'statusDetail' => $request->statusDetail . ' - (Updated at: ' . $current->format('Y-m-d H:i') . ')'
         ]);
 
         return redirect()->back()->with('successDetail', 'Details Updated!');

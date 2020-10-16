@@ -33,7 +33,7 @@
                             <input type="hidden" value="{{$reset->resetID}}" name="resetID">
                             <input type="hidden" value="{{$reset->id}}" name="userID">
                             <td>{{$reset->resetID}}</td>
-                            <td><a href="/users/{{ $user->id }}">{{$reset->id}}</a></td>
+                            <td><a href="/users/{{ $reset->id }}">{{$reset->id}}</a></td>
                             <td>{{$reset->name}}</td>
                             <td>{{$reset->NIP}}</td>
                             <td><button type="submit" class="btn btn-success">Reset Password</button></td>

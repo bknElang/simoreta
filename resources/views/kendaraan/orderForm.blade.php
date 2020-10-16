@@ -37,12 +37,12 @@
         <div class="row">
             <div class="col-sm-4">
                 <label for="dateofuseID">Tanggal Pemakaian <label style="color: red">*</label></label>
-                <input id="dateofuseID" type="datetime-local" class="form-control" style="width:320px" name="dateofuse" value="{{$date->format('Y-m-d\TH:i:s')}}" min="{{$date->format('Y-m-d\TH:i:s')}}">
+                <input id="dateofuseID" type="datetime-local" class="form-control" style="width:320px" name="dateofuse">
             </div>
 
              <div class="col-sm-4">
                 <label for="datefinishedID">Tanggal Selesai <label style="color: red">*</label></label>
-                <input id="datefinishedID" type="datetime-local" class="form-control" style="width:320px" name="datefinished" value="{{$date->format('Y-m-d\TH:i:s')}}" min="{{$date->format('Y-m-d\TH:i:s')}}">  
+                <input id="datefinishedID" type="datetime-local" class="form-control" style="width:320px" name="datefinished">  
             </div>
         </div>
 
@@ -80,7 +80,7 @@
         <div class="row">
             <div class="col-sm-4">
                 <label for="jumlahID">Jumlah Penumpang <label style="color: red">*</label></label>
-                <input id="jumlahID" type="number" class="form-control @error('jumlah') is-invalid @enderror" style="width:320px" name="jumlah" placeholder="Jumlah penumpang" value="{{old('jumlah')}}">  
+                <input id="jumlahID" type="number" class="form-control @error('jumlah') is-invalid @enderror" style="width:320px" name="jumlah" placeholder="Jumlah penumpang" value="{{old('jumlah')}}" min=1>  
                 @error('jumlah') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
             </div>
         </div>
@@ -89,8 +89,9 @@
 
         <div class="row">
             <div class="col-sm-4">
-                <label for="ketID">Keterangan</label>
-                <textarea id="ketID" class="form-control" name="keterangan" cols="40" rows="4">{{old('keterangan')}}</textarea>
+                <label for="ketID">Keterangan <label style="color: red">*</label></label>
+                <textarea id="ketID" class="form-control @error('keterangan') is-invalid @enderror" name="keterangan" cols="40" rows="4">{{old('keterangan')}}</textarea>
+                @error('keterangan') <label style="width: 5px"></label> <label style="color:red"> {{$message }}</label> @enderror
             </div>
         </div>
 

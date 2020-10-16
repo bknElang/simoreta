@@ -137,6 +137,19 @@ class UsersController extends Controller
         return redirect()->back()->with('updateSuccess', 'Details Updated');
     }
 
+    public function updatelogin(User $user)
+    {
+        $current = new Datetime();
+
+        //
+        User::where('id', $user->id)
+            ->update([
+                'lastLogin' => $current
+            ]);
+
+        return redirect()->back()->with('updateSuccess', 'Details Updated');
+    }
+
     public function updatePassword(Request $request, User $user){
         if (!(Hash::check($request->oldPassword, Auth::user()->password))) {
             // The passwords matches

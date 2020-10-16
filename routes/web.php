@@ -21,7 +21,9 @@ Route::get('/home', '\App\Http\Controllers\PagesController@home')->middleware('a
 //forgot password
 Route::get('/forgotpassword', '\App\Http\Controllers\AuthController@getReset')->middleware('guest')->name('forgotpassword');
 Route::post('/forgotpassword', '\App\Http\Controllers\AuthController@postReset')->middleware('guest');
-Route::get('/viewforgot', '\App\Http\Controllers\AuthController@viewReset')->middleware('auth');
+Route::get('/viewforgot', '\App\Http\Controllers\AuthController@viewResetAdmin')->middleware('auth');
+Route::get('/viewforgothc', '\App\Http\Controllers\AuthController@viewResetHC')->middleware('auth');
+Route::patch('/viewforgothc/{resetRequest}', '\App\Http\Controllers\AuthController@approve')->middleware('auth');
 Route::delete('/viewforgot/{resetRequest}', '\App\Http\Controllers\ResetRequestsController@destroy')->middleware('auth');
 
 //register
@@ -35,6 +37,7 @@ Route::get('/logout', '\App\Http\Controllers\AuthController@logout')->middleware
 Route::get('/users', '\App\Http\Controllers\UsersController@index')->middleware('auth')->name('Users');
 Route::get('/users', '\App\Http\Controllers\UsersController@search')->middleware('auth')->name('search');
 Route::get('/users/{user}','\App\Http\Controllers\UsersController@show')->middleware('auth')->name('User\'s Detail');
+Route::patch('/users/{user}','\App\Http\Controllers\UsersController@updatelogin')->middleware('auth');
 Route::delete('/users/{user}','\App\Http\Controllers\UsersController@destroy')->middleware('auth');
 Route::post('/users/{user}','\App\Http\Controllers\UsersController@updateAvatar')->middleware('auth');
 Route::get('/changepassword/{user}', '\App\Http\Controllers\UsersController@changepassword')->middleware('auth')->name('changepassword');

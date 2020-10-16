@@ -40,7 +40,17 @@
                 <form class="form-signin" method="POST" action="{{route('forgotpassword')}}">
                     {{csrf_field()}}
                     <input type="text" id="login" class="fadeIn second form-control @error('nip') is-invalid @enderror" name="nip" placeholder="NIP">
-                    @error('nip') <label style="width: 5px"></label> <label class="fadeIn third" style="color:red"> {{$message }}</label> @enderror
+                    @error('nip')
+                        <label class="fadeIn third" style="color:red"> {{$message }}</label> 
+                        <br>
+                    @enderror
+
+                    <input type="text" id="login" class="fadeIn second form-control @error('niphc') is-invalid @enderror" name="niphc" placeholder="NIP Supervisor">
+                    @error('niphc')
+                        <label class="fadeIn third" style="color:red"> {{$message }}</label> 
+                        <br>
+                    @enderror
+                    
                     <input type="submit" class="fadeIn fourth" value="Reset Password">           
                 </form>
 
